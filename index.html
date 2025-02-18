@@ -47,7 +47,7 @@
       justify-content: center;
       background-color: #00FFFF; /* 80s Blue */
     }
-    /* Black text with white glow, bold, slightly larger */
+    /* Removed text-shadow to eliminate glow around links */
     nav a {
       color: #000;
       text-decoration: none;
@@ -55,7 +55,6 @@
       display: inline-block;
       font-weight: bold;
       font-size: 1.1em;
-      text-shadow: 0 0 2px #fff, 0 0 4px #fff;
     }
     nav a:hover {
       background-color: #00cccc;
@@ -118,11 +117,6 @@
       margin: 20px 0;
       padding-left: 20px;
     }
-    .services-list ul {
-      list-style-type: circle;
-      margin: 10px 0 10px 20px;
-      padding-left: 20px;
-    }
 
     /* FOOTER (Pink Background) */
     footer {
@@ -164,7 +158,7 @@
     <a href="#services">Services</a>
     <!-- LinkedIn link -->
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-    <!-- New Contact link -->
+    <!-- Contact link -->
     <a href="mailto:brandon@morpheos.llc">Contact</a>
   </nav>
 
@@ -202,74 +196,43 @@
   <section id="services">
     <h2 class="section-title">Services</h2>
     <div class="services-content">
+
       <h3>Scientific Due Diligence & Commercialization Analysis</h3>
       <ul class="services-list">
-        <li>
-          Generates reports and memos summarizing:
-          <ul>
-            <li>Key scientific concepts</li>
-            <li>Commercialization considerations</li>
-          </ul>
-        </li>
-        <li>
-          Evaluates strengths and weaknesses of:
-          <ul>
-            <li>Preclinical in vitro data</li>
-            <li>Animal model data</li>
-          </ul>
-        </li>
-        <li>
-          Conducts:
-          <ul>
-            <li>Competitive landscape analyses</li>
-            <li>Path-to-clinic analyses</li>
-          </ul>
-        </li>
-        <li>Prioritizes drug targets for indication selection.</li>
-        <li>
-          Designs:
-          <ul>
-            <li>Target validation studies</li>
-            <li>Proof-of-concept studies</li>
-            <li>Preclinical de-risking road maps</li>
-          </ul>
-        </li>
-        <li>Engages key opinion leaders (KOLs) and integrates feedback.</li>
+        <li><strong>Summarize Key Scientific Concepts:</strong> Provide concise, high-level reviews of preclinical and clinical data.</li>
+        <li><strong>Commercialization Feasibility:</strong> Assess market potential, competitive landscapes, and regulatory paths.</li>
+        <li><strong>Preclinical Evaluation:</strong> Review and critique in vitro and in vivo data, highlighting strengths and weaknesses.</li>
+        <li><strong>Path-to-Clinic Strategy:</strong> Outline critical steps for clinical development and de-risking.</li>
+        <li><strong>Target Validation & Study Design:</strong> Develop comprehensive roadmaps for proof-of-concept and efficacy trials.</li>
+        <li><strong>KOL Engagement:</strong> Identify key opinion leaders, gather expert feedback, and integrate insights into development plans.</li>
       </ul>
 
       <h3>Business Development</h3>
       <ul class="services-list">
-        <li>Facilitates strategic collaborations between biotech, pharma, and academic partners.</li>
-        <li>
-          Develops:
-          <ul>
-            <li>Marketing materials</li>
-            <li>Pitch presentations</li>
-            <li>Capability decks</li>
-          </ul>
-        </li>
-        <li>
-          Negotiates:
-          <ul>
-            <li>Contracts</li>
-            <li>Deal closing</li>
-            <li>Alliance management</li>
-          </ul>
-        </li>
-        <li>Networks at conferences and industry events to expand client relationships.</li>
-        <li>Drives IP strategy and in-licensing/out-licensing activities.</li>
-        <li>Oversees outsourcing strategies and remote CRO project management.</li>
-        <li>
-          Executes technical sales and marketing initiatives including:
-          <ul>
-            <li>Client discovery</li>
-            <li>Outreach</li>
-            <li>Marketing strategy</li>
-            <li>Conference exhibits</li>
-            <li>Sponsorships</li>
-            <li>Selling platform services (e.g. preclinical pharmacology, DMPK, toxicology, disease models, and more)</li>
-          </ul>
-        </li>
+        <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
+        <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
+        <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
+        <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
+        <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
+        <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings (pharmacology, DMPK, toxicology, etc.).</li>
+      </ul>
+
+      <h3>AI Productivity Coaching for Professionals & Executives</h3>
+      <ul class="services-list">
+        <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
+        <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications, including prompt engineering.</li>
+        <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
+        <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead and enhance productivity.</li>
+        <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge and needs evolve.</li>
+      </ul>
+
+      <h3>Academic & Research Tutoring (Molecular Biology, Biochemistry, Genetics, etc.)</h3>
+      <ul class="services-list">
+        <li><strong>Customized Tutoring Sessions:</strong> Tailor lesson plans to individual learning styles and academic needs.</li>
+        <li><strong>Fundamental Concepts & Techniques:</strong> Reinforce core principles and laboratory methodologies for molecular biology, biochemistry, and genetics.</li>
+        <li><strong>Study & Research Guidance:</strong> Provide support for exam prep, lab reports, thesis work, and scientific writing.</li>
+        <li><strong>Problem-Solving & Data Analysis:</strong> Teach critical-thinking approaches to experimental design and data interpretation.</li>
+        <li><strong>Long-Term Skill Building:</strong> Equip learners with strategies for continuous scientific growth and career development.</li>
       </ul>
     </div>
   </section>
