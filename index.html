@@ -46,8 +46,9 @@
       display: flex;
       justify-content: center;
       background-color: #BEE3F8; /* Softer pastel blue */
+      position: relative;       /* Needed for dropdown positioning */
     }
-    /* Removed text-shadow to eliminate glow */
+    /* Black text, bold, slightly larger; no glow */
     nav a {
       color: #000;
       text-decoration: none;
@@ -58,6 +59,35 @@
     }
     nav a:hover {
       background-color: #a8d6ec; /* Slightly darker pastel blue on hover */
+    }
+
+    /* Dropdown container for "Services" */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    /* Hidden by default; shown when toggled */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: #BEE3F8; /* Match nav bar color */
+      padding: 10px;
+      min-width: 200px;
+      z-index: 999;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 8px;
+      color: #000;
+      font-weight: normal;
+      font-size: 1em;
+      text-decoration: none;
+    }
+    .dropdown-menu a:hover {
+      background-color: #a8d6ec;
     }
 
     /* HERO/BANNER SECTION */
@@ -167,10 +197,20 @@
   <!-- Navigation -->
   <nav>
     <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <!-- LinkedIn link -->
+
+    <!-- Dropdown for Services -->
+    <div class="dropdown">
+      <a href="#" id="servicesLink">Services</a>
+      <div class="dropdown-menu" id="servicesDropdown">
+        <a href="#services-sci-due">Scientific Due Diligence</a>
+        <a href="#services-sci-due">Commercialization Analysis</a>
+        <a href="#services-biz-dev">Business Development</a>
+        <a href="#services-ai-coach">AI Productivity Coaching</a>
+        <a href="#services-academic">Academic Tutoring</a>
+      </div>
+    </div>
+
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-    <!-- Contact link -->
     <a href="mailto:brandon@morpheos.llc">Contact</a>
   </nav>
 
@@ -209,8 +249,8 @@
     <h2 class="section-title">Services</h2>
     <div class="services-content">
 
-      <!-- Scientific Due Diligence & Commercialization Analysis -->
-      <h3>Scientific Due Diligence & Commercialization Analysis</h3>
+      <!-- Scientific Due Diligence -->
+      <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
       <ul class="services-list">
         <li><strong>Summarize Key Scientific Concepts:</strong> Provide concise, high-level reviews of preclinical and clinical data.</li>
         <li><strong>Commercialization Feasibility:</strong> Assess market potential, competitive landscapes, and regulatory paths.</li>
@@ -221,7 +261,7 @@
       </ul>
 
       <!-- Business Development -->
-      <h3>Business Development</h3>
+      <h3 id="services-biz-dev">Business Development</h3>
       <ul class="services-list">
         <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
         <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
@@ -232,7 +272,7 @@
       </ul>
 
       <!-- AI Productivity Coaching -->
-      <h3>AI Productivity Coaching for Professionals & Executives</h3>
+      <h3 id="services-ai-coach">AI Productivity Coaching for Professionals & Executives</h3>
       <ul class="services-list">
         <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
         <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications, including prompt engineering.</li>
@@ -242,7 +282,7 @@
       </ul>
 
       <!-- Academic & Research Tutoring -->
-      <h3>Academic & Research Tutoring (Molecular Biology, Biochemistry, Genetics, etc.)</h3>
+      <h3 id="services-academic">Academic & Research Tutoring (Molecular Biology, Biochemistry, Genetics, Immunology)</h3>
       <ul class="services-list">
         <li><strong>Customized Tutoring Sessions:</strong> Tailor lesson plans to individual learning styles and academic needs.</li>
         <li><strong>Fundamental Concepts & Techniques:</strong> Reinforce core principles and laboratory methodologies for molecular biology, biochemistry, and genetics.</li>
@@ -262,6 +302,24 @@
   <script>
     // Dynamically update the year in the footer
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dropdown toggle logic
+    const servicesLink = document.getElementById('servicesLink');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+
+    document.addEventListener('click', function(e) {
+      // If user clicks the "Services" link, toggle the dropdown
+      if (servicesLink.contains(e.target)) {
+        e.preventDefault();
+        servicesDropdown.style.display =
+          servicesDropdown.style.display === 'block' ? 'none' : 'block';
+      } else {
+        // If the click is outside the dropdown, close it
+        if (!servicesDropdown.contains(e.target)) {
+          servicesDropdown.style.display = 'none';
+        }
+      }
+    });
   </script>
 </body>
 </html>
