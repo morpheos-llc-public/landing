@@ -125,7 +125,26 @@
     text-align: center;
     padding: 20px
     }
+    
+   /* Mobile Fix */
+@media (max-width: 768px) {
+    .hero {
+        background-attachment: scroll; /* Fixes mobile scrolling issue */
+        background-position: center top; /* Ensures a better crop of the image */
+        min-height: 50vh; /* Adjusted for smaller screens */
+    }
+
+    .hero h1 {
+        font-size: 2.2em; /* Slightly reduce size for readability */
+    }
+
+    .hero p {
+        font-size: 1em;
+        max-width: 90%;
+    }
+}
     /* White text with black glow for hero heading */
+/* FIX - commented when attempting mobile fix
     .hero h1 {
       color: #fff;
       font-size: 3em;
@@ -133,6 +152,7 @@
       text-shadow: 0 0 5px #000, 0 0 10px #000;
     }
     /* Center paragraph, limit width, black glow */
+/* FIX - commented when attempting mobile fix
     .hero p {
       color: #fff;
       font-size: 1.2em;
@@ -141,6 +161,7 @@
       text-align: center;
       text-shadow: 0 0 5px #000, 0 0 10px #000;
     }
+    
 
     /* SECTIONS */
     section {
