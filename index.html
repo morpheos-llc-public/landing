@@ -18,7 +18,14 @@
       color: #fff;
       line-height: 1.6;
     }
-
+	/*     Responsive images */
+        .responsive-img {
+        width: 80%;
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: auto;
+    }
     /* HEADER (Pink Background -> #b34566) */
     header {
       background: #b34566;
@@ -94,6 +101,7 @@
     .hero {
       /* Local banner image: place 'banner.webp' in 'banner' folder */
       background: url('banner/banner.webp') no-repeat center center/cover;
+/* Previous version */ /* 
       height: 60vh;
       display: flex;
       flex-direction: column;
@@ -101,6 +109,21 @@
       align-items: center;
       text-align: center;
       padding: 20px;
+ */
+ background-position: center;
+    background-attachment: fixed; /* Optional: Adds a nice parallax effect */
+    background-repeat: no-repeat;
+    width: 100%; /* Ensure it doesn't overflow */
+/*     max-width: 1100px; /* Match the section's max-width */ */
+    margin: 0 auto; /* Centers the hero section */
+    height: auto;
+    min-height: 60vh; /* Keeps a consistent height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px
     }
     /* White text with black glow for hero heading */
     .hero h1 {
@@ -196,7 +219,7 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#about">About</a>
+    <a href="#method">Approach</a>
 
     <!-- Dropdown for Services -->
     <div class="dropdown">
@@ -210,6 +233,7 @@
       </div>
     </div>
 
+    <a href="#about">About</a>
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
     <a href="mailto:brandon@morpheos.llc">Contact</a>
   </nav>
@@ -222,20 +246,31 @@
     </p>
   </div>
 
-  <!-- About Section -->
-  <section id="about">
-    <h2 class="section-title">About Me</h2>
+  <!-- Method Section -->
+  <section id="method">
+    <h2 class="section-title">Approach</h2>
     <div class="about-content">
-      <p>
-        <strong>Brandon Hogstad, Ph.D.</strong>, is principal consultant and founder of Morpheos Innovation LLC, where he partners with startups, investors, and academic institutions across biotech and AI-driven platforms. He specializes in strategic commercialization, alliance management, and scientific due diligence—guiding breakthrough innovations from concept to market.
-      </p>
-      <p>
-Before launching Morpheos, Brandon led drug discovery accelerator programs and high-impact collaborations at NYU Langone Health, securing partnerships with global industry leaders like Sanofi and Pfizer (including the antiviral research that contributed to Paxlovid). He later advanced AI-driven immunotherapy initiatives at Immunai, forging strategic relationships to harness single-cell genomics for precision medicine.
-      </p>
-      <p>
-Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicine at Mount Sinai. His contributions have appeared in top-tier journals such as Nature and the Journal of Experimental Medicine. Drawing on his broad expertise in target validation, preclinical strategy, and cutting-edge AI applications, Brandon remains committed to advancing medical science and global health through technology-driven innovation.
-		</p>
+	<p>
+        <strong>Defining and Communicating Breakthroughs to Reach Investors & Customers: </strong>Innovative scientists and engineers hold extensive knowledge in their field, but information overload can lead to confused and disinterested customers and investors. Therefore, it's an innovators job to <strong>efficiently & effectively communicate the value of their technology</strong> in order to capture their audience's attention and bring them onboard with their vision. </p>
+        <div style="display: flex; justify-content: center; align-items: center;">
+<img src="banner/bridge.png" alt="Responsive Image" class="responsive-img">
+</div>
+<p> At Morpheos, we work with scientists, engineers, and technical founders to translate complex innovations into <strong>clear, compelling messaging</strong> and <strong>clearly defined commercial strategy</strong> that resonates with investors, partners, and customers. </p>
+<p>The process starts with <strong>deep listening</strong> — we directly engage with the technical team to understand the depth of the technology and fully grasp and define the technology's <strong>unique value proposition</strong>. We then work to refine and distill that complexity into a clear and efficient narrative that can <strong>(1) unify the development team around common goals, (2) draw in customers, and (3) efficiently capture the attention of investors and potential business partners.</strong> 
+</p>
+
     </div>
+    <p>
+
+
+
+
+<div style="display: flex; justify-content: center; align-items: center;">
+<img src="banner/distill.png" alt="Responsive Image" class="responsive-img">
+</div>
+
+</p>
+    
   </section>
 
   <!-- Services Section -->
@@ -285,6 +320,22 @@ Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicin
         <li><strong>Long-Term Skill Building:</strong> Equip learners with strategies for continuous scientific growth and career development.</li>
       </ul>
 
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about-content">
+      <p>
+        <strong>Brandon Hogstad, Ph.D.</strong>, is principal consultant and founder of Morpheos Innovation LLC, where he partners with startups, investors, and academic institutions across biotech and AI-driven platforms. He specializes in strategic commercialization, alliance management, and scientific due diligence—guiding breakthrough innovations from concept to market.
+      </p>
+      <p>
+Before launching Morpheos, Brandon led drug discovery accelerator programs and high-impact collaborations at NYU Langone Health, securing partnerships with global industry leaders like Sanofi and Pfizer (including the antiviral research that contributed to Paxlovid). He later advanced AI-driven immunotherapy initiatives at Immunai, forging strategic relationships to harness single-cell genomics for precision medicine.
+      </p>
+      <p>
+Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicine at Mount Sinai. His contributions have appeared in top-tier journals such as Nature and the Journal of Experimental Medicine. Drawing on his broad expertise in target validation, preclinical strategy, and cutting-edge AI applications, Brandon remains committed to advancing medical science and global health through technology-driven innovation.
+		</p>
     </div>
   </section>
 
