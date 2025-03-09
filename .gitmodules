@@ -1,4 +1,4 @@
 [submodule "landing"]
   path = landing
-  url = <correct-URL>
+  url = https://github.com/morpheos-llc-public/landing
 
