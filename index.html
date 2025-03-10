@@ -331,6 +331,7 @@
     <div class="dropdown">
       <a href="#" id="servicesLink">Services</a>
       <div class="dropdown-menu" id="servicesDropdown">
+        <a href="#services-overview">Overview</a>
         <a href="#services-sci-due">Scientific Due Diligence</a>
         <a href="#services-sci-due">Commercialization Analysis</a>
         <a href="#services-biz-dev">Business Development</a>
@@ -341,7 +342,16 @@
 
     <a href="#about">About</a>
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-    <a href="mailto:brandon@morpheos.llc">Contact</a>
+
+<!-- Dropdown for Contact -->
+  <div class="dropdown">
+    <a href="#" id="contactLink">Contact</a>
+    <div class="dropdown-menu" id="contactDropdown">
+      <a href="https://calendly.com/brandon-hogstad" target="_blank">Schedule a call</a>
+      <a href="mailto:brandon@morpheos.llc">Contact by email</a>
+    </div>
+  </div>
+  
   </nav>
 
   <!-- Hero Section -->
@@ -384,13 +394,17 @@
     <h2 class="section-title">Services</h2>
 
 <div style="display: flex; justify-content: center; align-items: center;">
-<img id="services-sci-due" src="banner/services.png" alt="Responsive Image" class="responsive-img">
+<img id="services-overview" src="banner/services.png" alt="Responsive Image" class="responsive-img">
 </div>
+<p style="margin-top: 16px; margin-bottom: 30px;"><strong>Morpheos</strong> offers comprehensive consulting services for startups, investors, and university tech transfer officers working with biotechnology and artificial intelligence (AI) technology platforms. 
+<a href="https://calendly.com/brandon-hogstad" target="_blank" rel="noopener noreferrer" style="color: white;">Schedule a free consultation call</a> to discuss your organization's needs and brainstorm strategic initiatives.</p> 
+<p> </p>
+<p> </p>
 
     <div class="services-content">
 
       <!-- Scientific Due Diligence -->
-      <h3>Scientific Due Diligence & Commercialization Analysis</h3>
+      <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
       <ul class="services-list">
         <li><strong>Summarize Key Scientific Concepts:</strong> Provide concise, high-level reviews of preclinical and clinical data.</li>
         <li><strong>Commercialization Feasibility:</strong> Assess market potential, competitive landscapes, and regulatory paths.</li>
@@ -455,27 +469,36 @@ Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicin
     <p>&copy; <span id="year"></span> Morpheos LLC. All Rights Reserved.</p>
   </footer>
 
-  <script>
-    // Dynamically update the year in the footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script>
+  // Dynamically update the year in the footer
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Dropdown toggle logic
-    const servicesLink = document.getElementById('servicesLink');
-    const servicesDropdown = document.getElementById('servicesDropdown');
+  // Dropdown toggle logic
+  const servicesLink = document.getElementById('servicesLink');
+  const servicesDropdown = document.getElementById('servicesDropdown');
+  const contactLink = document.getElementById('contactLink');
+  const contactDropdown = document.getElementById('contactDropdown');
 
-    document.addEventListener('click', function(e) {
-      // If user clicks the "Services" link, toggle the dropdown
-      if (servicesLink.contains(e.target)) {
-        e.preventDefault();
-        servicesDropdown.style.display =
-          servicesDropdown.style.display === 'block' ? 'none' : 'block';
-      } else {
-        // If the click is outside the dropdown, close it
-        if (!servicesDropdown.contains(e.target)) {
-          servicesDropdown.style.display = 'none';
-        }
-      }
-    });
-  </script>
+  document.addEventListener('click', function(e) {
+    // Toggle "Services" dropdown
+    if (servicesLink.contains(e.target)) {
+      e.preventDefault();
+      servicesDropdown.style.display =
+        servicesDropdown.style.display === 'block' ? 'none' : 'block';
+    } else if (!servicesDropdown.contains(e.target)) {
+      servicesDropdown.style.display = 'none';
+    }
+
+    // Toggle "Contact" dropdown
+    if (contactLink.contains(e.target)) {
+      e.preventDefault();
+      contactDropdown.style.display =
+        contactDropdown.style.display === 'block' ? 'none' : 'block';
+    } else if (!contactDropdown.contains(e.target)) {
+      contactDropdown.style.display = 'none';
+    }
+  });
+</script>
+
 </body>
 </html>
