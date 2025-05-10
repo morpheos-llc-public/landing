@@ -254,6 +254,8 @@
       padding: 40px 20px;
       border-bottom: 1px solid #FFFFFF;
       overflow: hidden;
+      perspective: 1px;
+      transform-style: preserve-3d;
     }
 
     .hero video {
@@ -264,6 +266,8 @@
       height: 100%;
       object-fit: cover;
       z-index: -1;
+      transform: translateZ(-1px) scale(2.2);
+      transform-origin: center center;
     }
 
     .hero::before {
@@ -275,6 +279,7 @@
       height: 100%;
       background: rgba(0, 0, 0, 0.3);
       z-index: 0;
+      transform: translateZ(-0.5px) scale(1.8);
     }
 
     .hero h1 {
@@ -289,6 +294,7 @@
         0 0 32px rgba(0, 0, 0, 0.5);
       position: relative;
       z-index: 1;
+      transform: translateZ(0);
     }
 
     .hero p {
@@ -305,6 +311,7 @@
         0 0 32px rgba(0, 0, 0, 0.5);
       position: relative;
       z-index: 1;
+      transform: translateZ(0);
     }
 
     /* SECTIONS */
@@ -453,16 +460,23 @@
         padding-top: 60px;
       }
 
+      .hero {
+        perspective: none;
+        transform-style: flat;
+      }
+
       .hero video {
         display: none;
+        transform: none;
       }
 
       .hero::before {
         display: none;
+        transform: none;
       }
 
       .hero {
-        background: url('banner/banner.webp') no-repeat center center/cover;
+        background: url('banner/Waves.png') no-repeat center center/cover;
       }
 
       .hero h1 {
@@ -506,10 +520,11 @@
     <div class="dropdown">
       <a href="#" id="servicesLink">SERVICES</a>
       <div class="dropdown-menu" id="servicesDropdown">
+        <a href="#services-biz-dev">Business Development</a>
+        <a href="#services-ai-coach">AI Productivity & Implementation</a>
         <a href="#services-sci-due">Scientific Due Diligence</a>
         <a href="#services-sci-due">Commercialization Analysis</a>
-        <a href="#services-biz-dev">Business Development</a>
-        <a href="#services-ai-coach">AI Productivity Coaching</a>
+
       </div>
     </div>
     <a href="#about">ABOUT</a>
@@ -529,10 +544,11 @@
     <a href="#method">APPROACH</a>
     <div class="mobile-menu-section">
       <a href="#services" class="mobile-menu-header">SERVICES</a>
+      <a href="#services-biz-dev" class="mobile-menu-subitem">Business Development</a>
+      <a href="#services-ai-coach" class="mobile-menu-subitem">AI Productivity & Implementation</a>
       <a href="#services-sci-due" class="mobile-menu-subitem">Scientific Due Diligence</a>
       <a href="#services-sci-due" class="mobile-menu-subitem">Commercialization Analysis</a>
-      <a href="#services-biz-dev" class="mobile-menu-subitem">Business Development</a>
-      <a href="#services-ai-coach" class="mobile-menu-subitem">AI Productivity Coaching</a>
+      
     </div>
     <a href="#about">ABOUT</a>
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
@@ -546,9 +562,9 @@
     <video autoplay muted loop playsinline>
       <source src="banner/loop2.mp4" type="video/mp4">
     </video>
-    <h1>EMPOWERING INNOVATION</h1>
+    <h1>EMPOWERING INNOVATORS</h1>
     <p>
-      Strategic partnering and business development initiatives for startups, investors, non-profits, and academia
+Partnering with founders, investors, and changemakers to build what's next
     </p>
   </div>
 
@@ -578,7 +594,44 @@
   <section id="services">
     <h2 class="section-title">SERVICES</h2>
     <div class="services-content">
-      <!-- Scientific Due Diligence -->
+  
+      <!-- Business Development -->
+      <div class="service-section">
+        <div class="service-header" data-target="biz-dev">
+          <h3 id="services-biz-dev">Business Development & Startup Coaching</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="biz-dev">
+          <ul class="services-list">
+            <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
+            <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
+            <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
+            <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
+            <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
+            <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- AI Productivity & Implementation Coaching -->
+      <div class="service-section">
+        <div class="service-header" data-target="ai-coach">
+          <h3 id="services-ai-coach">AI Productivity & Implementation</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="ai-coach">
+          <ul class="services-list">
+            <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
+            <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
+            <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
+            <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
+            <li><strong>Protoyping & Custom Tool Development:</strong> Prototype your ideas and develop custom tools to automate workflows and improve productivity.</li>
+            <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+        <!-- Scientific Due Diligence -->
       <div class="service-section">
         <div class="service-header" data-target="sci-due">
           <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
@@ -596,41 +649,6 @@
         </div>
       </div>
 
-      <!-- Business Development -->
-      <div class="service-section">
-        <div class="service-header" data-target="biz-dev">
-          <h3 id="services-biz-dev">Business Development</h3>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="service-content" id="biz-dev">
-          <ul class="services-list">
-            <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
-            <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
-            <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
-            <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
-            <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
-            <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- AI Productivity Coaching -->
-      <div class="service-section">
-        <div class="service-header" data-target="ai-coach">
-          <h3 id="services-ai-coach">AI Productivity Coaching for Professionals & Executives</h3>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div class="service-content" id="ai-coach">
-          <ul class="services-list">
-            <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
-            <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
-            <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
-            <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
-            <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- About Section -->
@@ -733,6 +751,16 @@
         const list = content.querySelector('.services-list');
         list.classList.toggle('active');
       });
+    });
+
+    // Parallax effect for hero video
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const video = document.querySelector('.hero video');
+      if (video) {
+        const scale = 2.2 + (scrolled * 0.001); // Increased zoom rate from 0.0005 to 0.001
+        video.style.transform = `translateZ(-1px) scale(${scale})`;
+      }
     });
   </script>
 </body>
