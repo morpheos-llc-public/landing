@@ -317,6 +317,11 @@
       list-style-type: none;
       margin: 20px 0;
       padding-left: 0;
+      display: none; /* Hide by default */
+    }
+
+    .services-list.active {
+      display: block;
     }
 
     .services-list li {
@@ -330,6 +335,45 @@
       position: absolute;
       left: 0;
       color: #FFFFFF;
+    }
+
+    /* Service header styling */
+    .service-header {
+      cursor: pointer;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .service-header:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .service-header h3 {
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    .service-header .toggle-icon {
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+
+    .service-header.active .toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    .service-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .service-content.active {
+      max-height: 1000px; /* Adjust based on content */
+      transition: max-height 0.5s ease-in;
     }
 
     /* FOOTER */
@@ -481,37 +525,57 @@
     <h2 class="section-title">SERVICES</h2>
     <div class="services-content">
       <!-- Scientific Due Diligence -->
-      <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
-      <ul class="services-list">
-        <li><strong>Summarize Key Scientific Concepts:</strong> Provide concise, high-level reviews of preclinical and clinical data.</li>
-        <li><strong>Commercialization Feasibility:</strong> Assess market potential, competitive landscapes, and regulatory paths.</li>
-        <li><strong>Preclinical Evaluation:</strong> Review and critique in vitro and in vivo data, highlighting strengths and weaknesses.</li>
-        <li><strong>Path-to-Clinic Strategy:</strong> Outline critical steps for clinical development and de-risking.</li>
-        <li><strong>Target Validation & Study Design:</strong> Develop comprehensive roadmaps for proof-of-concept and efficacy trials.</li>
-        <li><strong>KOL Engagement:</strong> Identify key opinion leaders, gather expert feedback, and integrate insights into development plans.</li>
-      </ul>
+      <div class="service-section">
+        <div class="service-header" data-target="sci-due">
+          <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="sci-due">
+          <ul class="services-list">
+            <li><strong>Summarize Key Scientific Concepts:</strong> Provide concise, high-level reviews of preclinical and clinical data.</li>
+            <li><strong>Commercialization Feasibility:</strong> Assess market potential, competitive landscapes, and regulatory paths.</li>
+            <li><strong>Preclinical Evaluation:</strong> Review and critique in vitro and in vivo data, highlighting strengths and weaknesses.</li>
+            <li><strong>Path-to-Clinic Strategy:</strong> Outline critical steps for clinical development and de-risking.</li>
+            <li><strong>Target Validation & Study Design:</strong> Develop comprehensive roadmaps for proof-of-concept and efficacy trials.</li>
+            <li><strong>KOL Engagement:</strong> Identify key opinion leaders, gather expert feedback, and integrate insights into development plans.</li>
+          </ul>
+        </div>
+      </div>
 
       <!-- Business Development -->
-      <h3 id="services-biz-dev">Business Development</h3>
-      <ul class="services-list">
-        <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
-        <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
-        <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
-        <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
-        <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
-        <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
-      </ul>
+      <div class="service-section">
+        <div class="service-header" data-target="biz-dev">
+          <h3 id="services-biz-dev">Business Development</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="biz-dev">
+          <ul class="services-list">
+            <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
+            <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
+            <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
+            <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
+            <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
+            <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
+          </ul>
+        </div>
+      </div>
 
       <!-- AI Productivity Coaching -->
-      <h3 id="services-ai-coach">AI Productivity Coaching for Professionals & Executives</h3>
-      <ul class="services-list">
-        <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
-        <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
-        <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
-        <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
-        <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
-      </ul>
-
+      <div class="service-section">
+        <div class="service-header" data-target="ai-coach">
+          <h3 id="services-ai-coach">AI Productivity Coaching for Professionals & Executives</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="ai-coach">
+          <ul class="services-list">
+            <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
+            <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
+            <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
+            <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
+            <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -592,6 +656,28 @@
         mobileMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
         document.body.style.overflow = '';
+      });
+    });
+
+    // Service section toggle functionality
+    document.querySelectorAll('.service-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const targetId = header.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        const icon = header.querySelector('.toggle-icon');
+        
+        // Toggle active class on header
+        header.classList.toggle('active');
+        
+        // Toggle content visibility
+        content.classList.toggle('active');
+        
+        // Toggle icon
+        icon.textContent = content.classList.contains('active') ? '−' : '+';
+        
+        // Toggle list visibility
+        const list = content.querySelector('.services-list');
+        list.classList.toggle('active');
       });
     });
   </script>
