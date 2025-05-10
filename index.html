@@ -109,6 +109,7 @@
       opacity: 0;
       transition: opacity 0.3s ease;
       text-decoration: none;
+      pointer-events: auto;
     }
 
     .nav-logo.visible {
@@ -315,9 +316,9 @@
   <!-- Navigation -->
   <nav>
     <a href="#" class="nav-logo">MORPHEOS</a>
-    <a href="#method">APPROACH</a>
+    <a href="#method">Approach</a>
     <div class="dropdown">
-      <a href="#" id="servicesLink">SERVICES</a>
+      <a href="#" id="servicesLink">Services</a>
       <div class="dropdown-menu" id="servicesDropdown">
         <a href="#services-overview">Overview</a>
         <a href="#services-sci-due">Scientific Due Diligence</a>
@@ -352,17 +353,6 @@
   <section id="method">
     <h2 class="section-title">APPROACH</h2>
     <div class="about-content">
-<<<<<<< HEAD
-	<p>
-        <strong>Defining and Communicating Breakthroughs to Reach Investors & Customers: </strong>Innovative scientists and engineers hold extensive knowledge in their field, but information overload can lead to confused and disinterested customers and investors. At Morpheos, it's our job to help you <strong>efficiently & effectively communicate the value of your technology</strong> in order to capture your audience's attention and bring them onboard with your vision. </p>
-        <div style="display: flex; justify-content: center; align-items: center;">
-<img src="banner/bridge.png" alt="Responsive Image" class="responsive-img">
-</div>
-<p> At Morpheos, we work with scientists, engineers, and technical founders to translate complex innovations into <strong>clear, compelling messaging</strong> and <strong>clearly defined commercial strategy</strong> that resonates with investors, partners, and customers. </p>
-<p>The process starts with <strong>deep listening</strong> — we directly engage with the technical team to understand the depth of the technology and fully grasp and define the technology's <strong>unique value proposition</strong>. We then work to refine and distill that complexity into a clear and efficient narrative that can <strong>(1) unify the development team around common goals, (2) draw in customers, and (3) efficiently capture the attention of investors and potential business partners.</strong> 
-</p>
-
-=======
       <p>
         <strong>Defining and Communicating Breakthroughs to Reach Investors & Customers:</strong> Innovative scientists and engineers hold extensive knowledge in their field, but information overload can lead to confused and disinterested customers and investors. Therefore, it's an innovator's job to <strong>efficiently & effectively communicate the value of their technology</strong> in order to capture their audience's attention and bring them onboard with their vision.
       </p>
@@ -376,28 +366,11 @@
         The process starts with <strong>deep listening</strong> — we directly engage with the technical team to understand the depth of the technology and fully grasp and define the technology's <strong>unique value proposition</strong>. We then work to refine and distill that complexity into a clear and efficient narrative that can <strong>(1) unify the development team around common goals, (2) draw in customers, and (3) efficiently capture the attention of investors and potential business partners.</strong>
       </p>
     </div>
-    <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
-      <img src="banner/distill.png" alt="Distillation Process" class="responsive-img">
->>>>>>> dimming-scroll
-    </div>
   </section>
 
   <!-- Services Section -->
   <section id="services">
-<<<<<<< HEAD
-    <h2 class="section-title">Services</h2>
-
-<div style="display: flex; justify-content: center; align-items: center;">
-<img id="services-overview" src="banner/services.png" alt="Responsive Image" class="responsive-img">
-</div>
-<p style="margin-top: 16px; margin-bottom: 30px;"><strong>Morpheos</strong> offers comprehensive consulting services for startups, investors, and university tech transfer officers working with biotechnology and artificial intelligence (AI) technology platforms. 
-<a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank" rel="noopener noreferrer" style="color: white; font-weight: bold; text-decoration: underline;">Schedule a free 20 minute consultation call</a> to discuss your organization's needs and brainstorm strategic initiatives.</p> 
-<p> </p>
-<p> </p>
-
-=======
     <h2 class="section-title">SERVICES</h2>
->>>>>>> dimming-scroll
     <div class="services-content">
       <!-- Scientific Due Diligence -->
       <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
@@ -428,32 +401,11 @@
 </div>
       <h3>AI Productivity Coaching for Professionals & Executives</h3>
       <ul class="services-list">
-<<<<<<< HEAD
-        <li><strong>Workflow Assessment & Training:</strong> Analyze current workflow processes to identify where AI tools can enhance and streamline daily tasks. One-on-one or team-based coaching on AI-powered applications without coding experience, including prompt engineering.</li>
-
-        <li><strong>Prompt Library & Template Creation:</strong> Custom-built, reusable prompt libraries and templates tailored to your specific professional workflows and business use-cases.</li>
-
-        <li><strong>Advanced Prompt Engineering Training:</strong> Deep-dive training sessions focused on prompt crafting techniques, best practices, and advanced strategies (e.g., chain-of-thought prompting, few-shot prompting, multi-modal prompting).</li>
-
-<li><strong>AI-Powered Personal Productivity:</strong> Personal effectiveness training focused on leveraging AI tools for personal knowledge management (PKM), task prioritization, decision-making support, overcoming procrastination, and mitigating executive cognitive overload. </li>
-
-=======
         <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
         <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
         <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
         <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
         <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
-      </ul>
-
-      <!-- Academic & Research Tutoring -->
-      <h3 id="services-academic">Academic & Research Tutoring</h3>
-      <ul class="services-list">
-        <li><strong>Customized Tutoring Sessions:</strong> Tailor lesson plans to individual learning styles and academic needs.</li>
-        <li><strong>Fundamental Concepts & Techniques:</strong> Reinforce core principles and laboratory methodologies.</li>
-        <li><strong>Study & Research Guidance:</strong> Provide support for exam prep, lab reports, and scientific writing.</li>
-        <li><strong>Problem-Solving & Data Analysis:</strong> Teach critical-thinking approaches to experimental design.</li>
-        <li><strong>Long-Term Skill Building:</strong> Equip learners with strategies for continuous scientific growth.</li>
->>>>>>> dimming-scroll
       </ul>
     </div>
   </section>
@@ -508,35 +460,19 @@
       contactDropdown.style.display = 'none';
     }
   });
+
+  // Handle scroll behavior for nav logo
+  const navLogo = document.querySelector('.nav-logo');
+  const header = document.querySelector('header');
+  
+  window.addEventListener('scroll', function() {
+    const headerBottom = header.offsetTop + header.offsetHeight;
+    if (window.scrollY >= headerBottom) {
+      navLogo.classList.add('visible');
+    } else {
+      navLogo.classList.remove('visible');
+    }
+  });
 </script>
-
-<<<<<<< HEAD
-=======
-    document.addEventListener('click', function(e) {
-      if (servicesLink.contains(e.target)) {
-        e.preventDefault();
-        servicesDropdown.style.display =
-          servicesDropdown.style.display === 'block' ? 'none' : 'block';
-      } else {
-        if (!servicesDropdown.contains(e.target)) {
-          servicesDropdown.style.display = 'none';
-        }
-      }
-    });
-
-    // Handle scroll behavior for nav logo
-    const navLogo = document.querySelector('.nav-logo');
-    const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', function() {
-      const headerBottom = header.offsetTop + header.offsetHeight;
-      if (window.scrollY >= headerBottom) {
-        navLogo.classList.add('visible');
-      } else {
-        navLogo.classList.remove('visible');
-      }
-    });
-  </script>
->>>>>>> dimming-scroll
 </body>
 </html>
