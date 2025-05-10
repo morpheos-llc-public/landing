@@ -89,8 +89,30 @@
       display: flex;
       justify-content: center;
       background-color: #000000;
-      position: relative;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       border-bottom: 1px solid #FFFFFF;
+      transition: all 0.3s ease;
+    }
+
+    /* Logo that appears on scroll */
+    .nav-logo {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.2em;
+      color: #FFFFFF;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-logo.visible {
+      opacity: 1;
     }
 
     nav a {
@@ -292,9 +314,8 @@
 
   <!-- Navigation -->
   <nav>
+    <a href="#" class="nav-logo">MORPHEOS</a>
     <a href="#method">APPROACH</a>
-
-    <!-- Dropdown for Services -->
     <div class="dropdown">
       <a href="#" id="servicesLink">SERVICES</a>
       <div class="dropdown-menu" id="servicesDropdown">
@@ -305,7 +326,6 @@
         <a href="#services-academic">Academic Tutoring</a>
       </div>
     </div>
-
     <a href="#about">ABOUT</a>
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
     <a href="mailto:brandon@morpheos.llc">CONTACT</a>
@@ -427,6 +447,19 @@
         if (!servicesDropdown.contains(e.target)) {
           servicesDropdown.style.display = 'none';
         }
+      }
+    });
+
+    // Handle scroll behavior for nav logo
+    const navLogo = document.querySelector('.nav-logo');
+    const header = document.querySelector('header');
+    
+    window.addEventListener('scroll', function() {
+      const headerBottom = header.offsetTop + header.offsetHeight;
+      if (window.scrollY >= headerBottom) {
+        navLogo.classList.add('visible');
+      } else {
+        navLogo.classList.remove('visible');
       }
     });
   </script>
