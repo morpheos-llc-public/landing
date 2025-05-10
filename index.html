@@ -109,6 +109,7 @@
       opacity: 0;
       transition: opacity 0.3s ease;
       text-decoration: none;
+      pointer-events: auto;
     }
 
     .nav-logo.visible {
@@ -157,6 +158,85 @@
 
     .dropdown-menu a:hover {
       background-color: #111111;
+    }
+
+    /* Mobile menu styles */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #FFFFFF;
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: #000000;
+      padding: 60px 20px 20px;
+      transition: right 0.3s ease;
+      z-index: 1000;
+      border-left: 1px solid #FFFFFF;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 15px 0;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-section {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-header {
+      font-weight: 600 !important;
+      font-family: 'Outfit', sans-serif;
+      padding-left: 0 !important;
+    }
+
+    .mobile-menu-subitem {
+      padding-left: 20px !important;
+      font-size: 0.95em;
+    }
+
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    .menu-overlay.active {
+      display: block;
     }
 
     /* HERO/BANNER SECTION */
@@ -268,14 +348,27 @@
 
     /* MEDIA QUERIES */
     @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
+      /* Hide regular nav items on mobile */
+      nav a:not(.nav-logo) {
+        display: none;
       }
 
-      nav a {
-        flex: 1 1 100%;
-        text-align: center;
-        border-bottom: 1px solid #FFFFFF;
+      /* Show hamburger menu */
+      .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+
+      /* Show mobile menu */
+      .mobile-menu {
+        display: block;
+      }
+
+      /* Adjust header padding to accommodate hamburger */
+      header {
+        padding-top: 60px;
       }
 
       .hero h1 {
@@ -330,6 +423,30 @@
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
     <a href="mailto:brandon@morpheos.llc">CONTACT</a>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="mobile-menu">
+    <a href="#method">APPROACH</a>
+    <div class="mobile-menu-section">
+      <a href="#services" class="mobile-menu-header">SERVICES</a>
+      <a href="#services-sci-due" class="mobile-menu-subitem">Scientific Due Diligence</a>
+      <a href="#services-sci-due" class="mobile-menu-subitem">Commercialization Analysis</a>
+      <a href="#services-biz-dev" class="mobile-menu-subitem">Business Development</a>
+      <a href="#services-ai-coach" class="mobile-menu-subitem">AI Productivity Coaching</a>
+      <a href="#services-academic" class="mobile-menu-subitem">Academic Tutoring</a>
+    </div>
+    <a href="#about">ABOUT</a>
+    <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
+    <a href="mailto:brandon@morpheos.llc">CONTACT</a>
+  </div>
+
+  <div class="menu-overlay"></div>
 
   <!-- Hero Section -->
   <div class="hero">
@@ -434,33 +551,59 @@
     // Dynamically update the year in the footer
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Dropdown toggle logic
+    // Dropdown functionality
     const servicesLink = document.getElementById('servicesLink');
     const servicesDropdown = document.getElementById('servicesDropdown');
 
-    document.addEventListener('click', function(e) {
-      if (servicesLink.contains(e.target)) {
-        e.preventDefault();
-        servicesDropdown.style.display =
-          servicesDropdown.style.display === 'block' ? 'none' : 'block';
-      } else {
-        if (!servicesDropdown.contains(e.target)) {
-          servicesDropdown.style.display = 'none';
-        }
+    servicesLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
+        servicesDropdown.style.display = 'none';
       }
     });
 
-    // Handle scroll behavior for nav logo
+    // Logo fade-in on scroll
     const navLogo = document.querySelector('.nav-logo');
     const header = document.querySelector('header');
-    
-    window.addEventListener('scroll', function() {
-      const headerBottom = header.offsetTop + header.offsetHeight;
-      if (window.scrollY >= headerBottom) {
+    const headerHeight = header.offsetHeight;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > headerHeight) {
         navLogo.classList.add('visible');
       } else {
         navLogo.classList.remove('visible');
       }
+    });
+
+    // Mobile menu functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    menuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
     });
   </script>
 </body>
