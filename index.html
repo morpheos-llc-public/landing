@@ -214,8 +214,8 @@
     }
 
     .mobile-menu-header {
-      font-weight: 600 !important;
-      font-family: 'Outfit', sans-serif;
+      font-weight: 400 !important;
+      font-family: 'Nunito', sans-serif;
       padding-left: 0 !important;
     }
 
@@ -241,10 +241,7 @@
 
     /* HERO/BANNER SECTION */
     .hero {
-      background: url('banner/banner.webp') no-repeat center center/cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+      position: relative;
       width: 100%;
       margin: 0 auto;
       height: auto;
@@ -256,6 +253,28 @@
       text-align: center;
       padding: 40px 20px;
       border-bottom: 1px solid #FFFFFF;
+      overflow: hidden;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 0;
     }
 
     .hero h1 {
@@ -268,6 +287,8 @@
         0 0 16px #000, 
         0 0 24px rgba(0, 0, 0, 0.7), 
         0 0 32px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 1;
     }
 
     .hero p {
@@ -282,6 +303,8 @@
         0 0 16px #000, 
         0 0 24px rgba(0, 0, 0, 0.7), 
         0 0 32px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 1;
     }
 
     /* SECTIONS */
@@ -392,9 +415,13 @@
 
     /* MEDIA QUERIES */
     @media (max-width: 768px) {
-      /* Hide regular nav items on mobile */
+      /* Hide regular nav items and fade-in logo on mobile */
       nav a:not(.nav-logo) {
         display: none;
+      }
+
+      .nav-logo {
+        display: none; /* Hide the fade-in logo on mobile */
       }
 
       /* Show hamburger menu */
@@ -410,9 +437,32 @@
         display: block;
       }
 
+      /* Mobile menu logo styling */
+      .mobile-menu-logo {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 600;
+        font-size: 1.4em;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+      }
+
       /* Adjust header padding to accommodate hamburger */
       header {
         padding-top: 60px;
+      }
+
+      .hero video {
+        display: none;
+      }
+
+      .hero::before {
+        display: none;
+      }
+
+      .hero {
+        background: url('banner/banner.webp') no-repeat center center/cover;
       }
 
       .hero h1 {
@@ -475,6 +525,7 @@
   </div>
 
   <div class="mobile-menu">
+    <div class="mobile-menu-logo">MORPHEOS</div>
     <a href="#method">APPROACH</a>
     <div class="mobile-menu-section">
       <a href="#services" class="mobile-menu-header">SERVICES</a>
@@ -492,6 +543,9 @@
 
   <!-- Hero Section -->
   <div class="hero">
+    <video autoplay muted loop playsinline>
+      <source src="banner/loop2.mp4" type="video/mp4">
+    </video>
     <h1>EMPOWERING INNOVATION</h1>
     <p>
       Strategic partnering and business development initiatives for startups, investors, non-profits, and academia
