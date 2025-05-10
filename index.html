@@ -4,314 +4,303 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Morpheos LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    /* CSS Reset */
+    html {
+      box-sizing: border-box;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    /* Base Styles */
     * {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: Verdana, sans-serif;
+      font-family: 'Nunito', sans-serif;
     }
 
-    /* Overall body styling: black background, white text */
+    /* Overall body styling: pure black background, white text */
     body {
-      background-color: #000;
-      color: #fff;
+      background-color: #000000;
+      color: #FFFFFF;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+      color: #FFFFFF;
+      font-weight: 600;
+      text-transform: none;
+    }
+
+    p {
+      color: #FFFFFF;
+      font-weight: 300;
       line-height: 1.6;
     }
-	/*     Responsive images */
-        .responsive-img {
-        width: 80%;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: auto;
+
+    a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-weight: 400;
     }
-    /* HEADER (Pink Background -> #b34566) */
+
+    a:hover, a:focus {
+      text-decoration: underline;
+    }
+
+    /* Responsive images */
+    .responsive-img {
+      width: 80%;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: auto;
+      border: 1px solid #FFFFFF;
+    }
+
+    /* HEADER */
     header {
-      background: #b34566;
+      background: #000000;
       text-align: center;
-      padding: 20px;
+      padding: 40px 20px;
+      border-bottom: 1px solid #FFFFFF;
     }
-    /* Larger, bold, white text with black glow */
-    header h2,
-    header p {
-      color: #fff;
-      font-weight: bold;
 
-      text-shadow:
-		 0 0 4px #000, 0 0 4px #000;      
-		-2px -2px 0 black, /* Top-left */
-         2px -2px 0 black, /* Top-right */
-        -2px  2px 0 black, /* Bottom-left */
-         2px  2px 0 black; /* Bottom-right */
-
-    }
-    /* Increase the font sizes for readability */
     header h2 {
-      font-size: 1.8em;
+      font-size: 2em;
       margin-bottom: 10px;
+      font-weight: 600;
     }
+
     header p {
       font-size: 1.2em;
+      font-weight: 300;
     }
 
-    /* NAV (Pastel Blue Background) */
+    /* NAV */
     nav {
       display: flex;
       justify-content: center;
-      background-color: #BEE3F8; /* Softer pastel blue */
-      position: relative;       /* Needed for dropdown positioning */
+      background-color: #000000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid #FFFFFF;
+      transition: all 0.3s ease;
     }
-    /* Black text, bold, slightly larger; no glow */
+
+    /* Logo that appears on scroll */
+    .nav-logo {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.2em;
+      color: #FFFFFF;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-decoration: none;
+    }
+
+    .nav-logo.visible {
+      opacity: 1;
+    }
+
     nav a {
-      color: #000;
+      color: #FFFFFF;
       text-decoration: none;
       padding: 15px 20px;
       display: inline-block;
-      font-weight: bold;
+      font-weight: normal;
       font-size: 1.1em;
     }
+
     nav a:hover {
-      background-color: #a8d6ec; /* Slightly darker pastel blue on hover */
+      background-color: #111111;
     }
 
-    /* Dropdown container for "Services" */
+    /* Dropdown styling */
     .dropdown {
       position: relative;
       display: inline-block;
     }
 
-    /* Hidden by default; shown when toggled */
     .dropdown-menu {
       display: none;
       position: absolute;
       top: 100%;
       left: 0;
-      background-color: #BEE3F8; /* Match nav bar color */
+      background-color: #000000;
       padding: 10px;
       min-width: 200px;
       z-index: 999;
+      border: 1px solid #FFFFFF;
     }
+
     .dropdown-menu a {
       display: block;
       padding: 8px;
-      color: #000;
+      color: #FFFFFF;
       font-weight: normal;
       font-size: 1em;
       text-decoration: none;
     }
+
     .dropdown-menu a:hover {
-      background-color: #a8d6ec;
+      background-color: #111111;
     }
 
     /* HERO/BANNER SECTION */
     .hero {
-      /* Local banner image: place 'banner.webp' in 'banner' folder */
       background: url('banner/banner.webp') no-repeat center center/cover;
-/* Previous version */ /* 
-      height: 60vh;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      width: 100%;
+      margin: 0 auto;
+      height: auto;
+      min-height: 60vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      padding: 20px;
- */
- background-position: center;
-    background-attachment: fixed; /* Optional: Adds a nice parallax effect */
-    background-repeat: no-repeat;
-    width: 100%; /* Ensure it doesn't overflow */
-/*     max-width: 1100px; /* Match the section's max-width */ */
-    margin: 0 auto; /* Centers the hero section */
-    height: auto;
-    min-height: 60vh; /* Keeps a consistent height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 20px
-    }
-    
-    /* Hero Heading - Strong Black Outer Glow (Applies by Default to All Screens) */
-
-.hero h1 {
-    color: #fff;
-    font-size: 2.5em;
-    margin-bottom: 20px;
- 	text-shadow: 
-    	0 0 8px #000, 
-        0 0 16px #000, 
-        0 0 24px rgba(0, 0, 0, 0.7), 
-        0 0 32px rgba(0, 0, 0, 0.5);
-
-
-}
-
-
-/* Hero Paragraph - Strong Black Outer Glow */
-.hero p {
-    color: #fff;
-    font-size: 1.2em;
-    max-width: 60%;
-    margin: 0 auto 20px auto;
-    text-align: center;
-    text-shadow: 
-        0 0 8px #000, 
-        0 0 16px #000, 
-        0 0 24px rgba(0, 0, 0, 0.7), 
-        0 0 32px rgba(0, 0, 0, 0.5);
-}
-    
-   /* Mobile Fix */
-@media (max-width: 768px) {
-    .hero {
-        background-attachment: scroll; /* Fixes mobile scrolling issue */
-        background-position: center top; /* Ensures a better crop of the image */
-        min-height: 50vh; /* Adjusted for smaller screens */
+      padding: 40px 20px;
+      border-bottom: 1px solid #FFFFFF;
     }
 
     .hero h1 {
- /*       font-size: 2.2em; /* Slightly reduce size for readability */
-    color: #fff;
-    font-size: 3em;
-    margin-bottom: 20px;
-    text-shadow: 
-        0 0 10px #000, 
-        0 0 20px #000, 
-        0 0 30px #000, 
-        0 0 40px rgba(0, 0, 0, 0.8), 
-        0 0 50px rgba(0, 0, 0, 0.6);    }
-
-    .hero p {
-	color: #fff;
-    font-size: 1.2em;
-    max-width: 60%;
-    margin: 0 auto 20px auto;
-    text-align: center;
-    text-shadow: 
-        0 0 8px #000, 
-        0 0 16px #000, 
-        0 0 24px rgba(0, 0, 0, 0.7), 
-        0 0 32px rgba(0, 0, 0, 0.5);
-
-/* 
-        font-size: 1em;
-        max-width: 90%;
- */
- 
-    }
-    
-}
-    /* White text with black glow for hero heading */
-/* FIX - commented when attempting mobile fix
-    .hero h1 {
-      color: #fff;
+      color: #FFFFFF;
       font-size: 3em;
       margin-bottom: 20px;
-      text-shadow: 0 0 5px #000, 0 0 10px #000;
+      font-weight: 600;
+      text-shadow: 
+        0 0 8px #000, 
+        0 0 16px #000, 
+        0 0 24px rgba(0, 0, 0, 0.7), 
+        0 0 32px rgba(0, 0, 0, 0.5);
     }
-    /* Center paragraph, limit width, black glow */
-/* FIX - commented when attempting mobile fix
+
     .hero p {
-      color: #fff;
+      color: #FFFFFF;
       font-size: 1.2em;
       max-width: 60%;
       margin: 0 auto 20px auto;
       text-align: center;
-      text-shadow: 0 0 5px #000, 0 0 10px #000;
+      font-weight: 300;
+      text-shadow: 
+        0 0 8px #000, 
+        0 0 16px #000, 
+        0 0 24px rgba(0, 0, 0, 0.7), 
+        0 0 32px rgba(0, 0, 0, 0.5);
     }
-    
 
     /* SECTIONS */
     section {
-      padding: 40px 20px;
+      padding: 60px 20px;
       max-width: 1100px;
       margin: 0 auto;
+      border-bottom: 1px solid #FFFFFF;
     }
-    /* Section titles now use #b34566 */
+
     .section-title {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
       font-size: 2em;
-      color: #b34566;
+      color: #FFFFFF;
+      font-weight: 600;
     }
 
     .about-content p {
       margin-bottom: 20px;
       line-height: 1.8;
+      font-weight: 300;
     }
 
     .services-content {
       margin: 0 auto;
       line-height: 1.8;
+      font-weight: 300;
     }
 
-    /* Bullet styling for services */
+    /* Services list styling */
     .services-list {
-      list-style-type: disc;
+      list-style-type: none;
       margin: 20px 0;
-      padding-left: 20px;
+      padding-left: 0;
     }
 
-    /* FOOTER (Pink Background -> #b34566) */
-    footer {
-      background: #b34566;
-      text-align: center;
-      padding: 20px;
+    .services-list li {
+      margin-bottom: 15px;
+      padding-left: 20px;
+      position: relative;
     }
-    /* Larger, bold, white text with black glow */
+
+    .services-list li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #FFFFFF;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #000000;
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid #FFFFFF;
+    }
+
     footer p {
-      color: #fff;
-      font-weight: bold;
+      color: #FFFFFF;
+      font-weight: 300;
       font-size: 1.2em;
-      text-shadow: 0 0 2px #000, 0 0 4px #000;
     }
 
     /* MEDIA QUERIES */
     @media (max-width: 768px) {
-      /* Stack the nav links on smaller screens */
       nav {
         flex-wrap: wrap;
       }
+
       nav a {
         flex: 1 1 100%;
         text-align: center;
-        border-bottom: 1px solid #a8d6ec;
+        border-bottom: 1px solid #FFFFFF;
       }
 
       .hero h1 {
- 	   color: #fff;
-    	font-size: 2.3em;
-	    margin-bottom: 20px;
-    	text-shadow: 
-        0 0 10px #000, 
-        0 0 20px #000, 
-        0 0 30px #000, 
-        0 0 40px rgba(0, 0, 0, 0.8), 
-        0 0 50px rgba(0, 0, 0, 0.6);      
-        }
+        font-size: 2.3em;
+        text-shadow: 
+          0 0 10px #000, 
+          0 0 20px #000, 
+          0 0 30px #000, 
+          0 0 40px rgba(0, 0, 0, 0.8), 
+          0 0 50px rgba(0, 0, 0, 0.6);
+      }
 
       .hero p {
-		color: #fff;
-	    font-size: 1.2em;
- 	   max-width: 60%;
-    	margin: 0 auto 20px auto;
-	    text-align: center;
-    	text-shadow: 
-        	0 0 8px #000, 
-	        0 0 16px #000, 
-    	    0 0 24px rgba(0, 0, 0, 0.7), 
-        	0 0 32px rgba(0, 0, 0, 0.5);
-      	}
-      	
-      	.responsive-img {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        display: block;
-        margin: auto;
+        font-size: 1.1em;
+        max-width: 90%;
+        text-shadow: 
+          0 0 8px #000, 
+          0 0 16px #000, 
+          0 0 24px rgba(0, 0, 0, 0.7), 
+          0 0 32px rgba(0, 0, 0, 0.5);
+      }
 
+      .responsive-img {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -319,17 +308,16 @@
 
   <!-- Header -->
   <header>
-    <h2>Morpheos Innovation</h2>
+    <h2>MORPHEOS INNOVATION</h2>
     <p>Strategic Consulting for Biotech & AI Commercialization</p>
   </header>
 
   <!-- Navigation -->
   <nav>
-    <a href="#method">Approach</a>
-
-    <!-- Dropdown for Services -->
+    <a href="#" class="nav-logo">MORPHEOS</a>
+    <a href="#method">APPROACH</a>
     <div class="dropdown">
-      <a href="#" id="servicesLink">Services</a>
+      <a href="#" id="servicesLink">SERVICES</a>
       <div class="dropdown-menu" id="servicesDropdown">
         <a href="#services-overview">Overview</a>
         <a href="#services-sci-due">Scientific Due Diligence</a>
@@ -338,7 +326,6 @@
         <a href="#services-ai-coach">AI Productivity Coaching</a>
       </div>
     </div>
-
     <a href="#about">About</a>
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
 
@@ -355,7 +342,7 @@
 
   <!-- Hero Section -->
   <div class="hero">
-    <h1>Empowering Innovation</h1>
+    <h1>EMPOWERING INNOVATION</h1>
     <p>
       Strategic partnering and business development initiatives for startups, investors, non-profits, and academia
     </p>
@@ -363,8 +350,9 @@
 
   <!-- Method Section -->
   <section id="method">
-    <h2 class="section-title">Approach</h2>
+    <h2 class="section-title">APPROACH</h2>
     <div class="about-content">
+<<<<<<< HEAD
 	<p>
         <strong>Defining and Communicating Breakthroughs to Reach Investors & Customers: </strong>Innovative scientists and engineers hold extensive knowledge in their field, but information overload can lead to confused and disinterested customers and investors. At Morpheos, it's our job to help you <strong>efficiently & effectively communicate the value of your technology</strong> in order to capture your audience's attention and bring them onboard with your vision. </p>
         <div style="display: flex; justify-content: center; align-items: center;">
@@ -374,22 +362,29 @@
 <p>The process starts with <strong>deep listening</strong> — we directly engage with the technical team to understand the depth of the technology and fully grasp and define the technology's <strong>unique value proposition</strong>. We then work to refine and distill that complexity into a clear and efficient narrative that can <strong>(1) unify the development team around common goals, (2) draw in customers, and (3) efficiently capture the attention of investors and potential business partners.</strong> 
 </p>
 
+=======
+      <p>
+        <strong>Defining and Communicating Breakthroughs to Reach Investors & Customers:</strong> Innovative scientists and engineers hold extensive knowledge in their field, but information overload can lead to confused and disinterested customers and investors. Therefore, it's an innovator's job to <strong>efficiently & effectively communicate the value of their technology</strong> in order to capture their audience's attention and bring them onboard with their vision.
+      </p>
+      <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
+        <img src="banner/bridge.png" alt="Bridge to Innovation" class="responsive-img">
+      </div>
+      <p>
+        At Morpheos, we work with scientists, engineers, and technical founders to translate complex innovations into <strong>clear, compelling messaging</strong> and <strong>clearly defined commercial strategy</strong> that resonates with investors, partners, and customers.
+      </p>
+      <p>
+        The process starts with <strong>deep listening</strong> — we directly engage with the technical team to understand the depth of the technology and fully grasp and define the technology's <strong>unique value proposition</strong>. We then work to refine and distill that complexity into a clear and efficient narrative that can <strong>(1) unify the development team around common goals, (2) draw in customers, and (3) efficiently capture the attention of investors and potential business partners.</strong>
+      </p>
     </div>
-    <p>
-
-
-
-
-<div style="display: flex; justify-content: center; align-items: center;">
-<img src="banner/distill.png" alt="Responsive Image" class="responsive-img">
-</div>
-
-</p>
-    
+    <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
+      <img src="banner/distill.png" alt="Distillation Process" class="responsive-img">
+>>>>>>> dimming-scroll
+    </div>
   </section>
 
   <!-- Services Section -->
   <section id="services">
+<<<<<<< HEAD
     <h2 class="section-title">Services</h2>
 
 <div style="display: flex; justify-content: center; align-items: center;">
@@ -400,8 +395,10 @@
 <p> </p>
 <p> </p>
 
+=======
+    <h2 class="section-title">SERVICES</h2>
+>>>>>>> dimming-scroll
     <div class="services-content">
-
       <!-- Scientific Due Diligence -->
       <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
       <ul class="services-list">
@@ -421,7 +418,7 @@
         <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
         <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
         <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
-        <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings (pharmacology, DMPK, toxicology, etc.).</li>
+        <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
       </ul>
 
       <!-- AI Productivity Coaching -->
@@ -431,6 +428,7 @@
 </div>
       <h3>AI Productivity Coaching for Professionals & Executives</h3>
       <ul class="services-list">
+<<<<<<< HEAD
         <li><strong>Workflow Assessment & Training:</strong> Analyze current workflow processes to identify where AI tools can enhance and streamline daily tasks. One-on-one or team-based coaching on AI-powered applications without coding experience, including prompt engineering.</li>
 
         <li><strong>Prompt Library & Template Creation:</strong> Custom-built, reusable prompt libraries and templates tailored to your specific professional workflows and business use-cases.</li>
@@ -439,30 +437,46 @@
 
 <li><strong>AI-Powered Personal Productivity:</strong> Personal effectiveness training focused on leveraging AI tools for personal knowledge management (PKM), task prioritization, decision-making support, overcoming procrastination, and mitigating executive cognitive overload. </li>
 
+=======
+        <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
+        <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
+        <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
+        <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
+        <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
       </ul>
 
+      <!-- Academic & Research Tutoring -->
+      <h3 id="services-academic">Academic & Research Tutoring</h3>
+      <ul class="services-list">
+        <li><strong>Customized Tutoring Sessions:</strong> Tailor lesson plans to individual learning styles and academic needs.</li>
+        <li><strong>Fundamental Concepts & Techniques:</strong> Reinforce core principles and laboratory methodologies.</li>
+        <li><strong>Study & Research Guidance:</strong> Provide support for exam prep, lab reports, and scientific writing.</li>
+        <li><strong>Problem-Solving & Data Analysis:</strong> Teach critical-thinking approaches to experimental design.</li>
+        <li><strong>Long-Term Skill Building:</strong> Equip learners with strategies for continuous scientific growth.</li>
+>>>>>>> dimming-scroll
+      </ul>
     </div>
   </section>
 
   <!-- About Section -->
   <section id="about">
-    <h2 class="section-title">About</h2>
+    <h2 class="section-title">ABOUT</h2>
     <div class="about-content">
       <p>
         <strong>Brandon Hogstad, Ph.D.</strong>, is principal consultant and founder of Morpheos Innovation LLC, where he partners with startups, investors, and academic institutions across biotech and AI-driven platforms. He specializes in strategic commercialization, alliance management, and scientific due diligence—guiding breakthrough innovations from concept to market.
       </p>
       <p>
-Before launching Morpheos, Brandon led drug discovery accelerator programs and high-impact collaborations at NYU Langone Health, securing partnerships with global industry leaders like Sanofi and Pfizer (including the antiviral research that contributed to Paxlovid). He later advanced AI-driven immunotherapy initiatives at Immunai, forging strategic relationships to harness single-cell genomics for precision medicine.
+        Before launching Morpheos, Brandon led drug discovery accelerator programs and high-impact collaborations at NYU Langone Health, securing partnerships with global industry leaders like Sanofi and Pfizer (including the antiviral research that contributed to Paxlovid). He later advanced AI-driven immunotherapy initiatives at Immunai, forging strategic relationships to harness single-cell genomics for precision medicine.
       </p>
       <p>
-Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicine at Mount Sinai. His contributions have appeared in top-tier journals such as Nature and the Journal of Experimental Medicine. Drawing on his broad expertise in target validation, preclinical strategy, and cutting-edge AI applications, Brandon remains committed to advancing medical science and global health through technology-driven innovation.
-		</p>
+        Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicine at Mount Sinai. His contributions have appeared in top-tier journals such as Nature and the Journal of Experimental Medicine. Drawing on his broad expertise in target validation, preclinical strategy, and cutting-edge AI applications, Brandon remains committed to advancing medical science and global health through technology-driven innovation.
+      </p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; <span id="year"></span> Morpheos LLC. All Rights Reserved.</p>
+    <p>&copy; <span id="year"></span> MORPHEOS LLC. ALL RIGHTS RESERVED.</p>
   </footer>
 
 <script>
@@ -496,5 +510,33 @@ Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicin
   });
 </script>
 
+<<<<<<< HEAD
+=======
+    document.addEventListener('click', function(e) {
+      if (servicesLink.contains(e.target)) {
+        e.preventDefault();
+        servicesDropdown.style.display =
+          servicesDropdown.style.display === 'block' ? 'none' : 'block';
+      } else {
+        if (!servicesDropdown.contains(e.target)) {
+          servicesDropdown.style.display = 'none';
+        }
+      }
+    });
+
+    // Handle scroll behavior for nav logo
+    const navLogo = document.querySelector('.nav-logo');
+    const header = document.querySelector('header');
+    
+    window.addEventListener('scroll', function() {
+      const headerBottom = header.offsetTop + header.offsetHeight;
+      if (window.scrollY >= headerBottom) {
+        navLogo.classList.add('visible');
+      } else {
+        navLogo.classList.remove('visible');
+      }
+    });
+  </script>
+>>>>>>> dimming-scroll
 </body>
 </html>
