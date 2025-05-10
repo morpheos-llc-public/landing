@@ -62,26 +62,68 @@
       height: auto;
       display: block;
       margin: auto;
-      border: 1px solid #FFFFFF;
     }
 
     /* HEADER */
     header {
-      background: #000000;
+      position: relative;
       text-align: center;
       padding: 40px 20px;
       border-bottom: 1px solid #FFFFFF;
+      overflow: hidden;
+      perspective: 1px;
+      transform-style: preserve-3d;
+    }
+
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      transform: translateZ(-1px) scale(2.2);
+      transform-origin: center center;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 0;
+      transform: translateZ(-0.5px) scale(1.8);
     }
 
     header h2 {
       font-size: 2em;
       margin-bottom: 10px;
       font-weight: 600;
+      position: relative;
+      z-index: 1;
+      transform: translateZ(0);
+      text-shadow: 
+        0 0 8px #000, 
+        0 0 16px #000, 
+        0 0 24px rgba(0, 0, 0, 0.7), 
+        0 0 32px rgba(0, 0, 0, 0.5);
     }
 
     header p {
       font-size: 1.2em;
       font-weight: 300;
+      position: relative;
+      z-index: 1;
+      transform: translateZ(0);
+      text-shadow: 
+        0 0 8px #000, 
+        0 0 16px #000, 
+        0 0 24px rgba(0, 0, 0, 0.7), 
+        0 0 32px rgba(0, 0, 0, 0.5);
     }
 
     /* NAV */
@@ -160,12 +202,88 @@
       background-color: #111111;
     }
 
+    /* Mobile menu styles */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      right: 20px;
+      top: 20px;
+      width: 30px;
+      height: 20px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #FFFFFF;
+      margin: 6px 0;
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background-color: #000000;
+      padding: 60px 20px 20px;
+      transition: right 0.3s ease;
+      z-index: 1000;
+      border-left: 1px solid #FFFFFF;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 15px 0;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-section {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-header {
+      font-weight: 400 !important;
+      font-family: 'Nunito', sans-serif;
+      padding-left: 0 !important;
+    }
+
+    .mobile-menu-subitem {
+      padding-left: 20px !important;
+      font-size: 0.95em;
+    }
+
+    .menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+    }
+
+    .menu-overlay.active {
+      display: block;
+    }
+
     /* HERO/BANNER SECTION */
     .hero {
-      background: url('banner/banner.webp') no-repeat center center/cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
+      position: relative;
       width: 100%;
       margin: 0 auto;
       height: auto;
@@ -177,6 +295,33 @@
       text-align: center;
       padding: 40px 20px;
       border-bottom: 1px solid #FFFFFF;
+      overflow: hidden;
+      perspective: 1px;
+      transform-style: preserve-3d;
+    }
+
+    .hero video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      transform: translateZ(-1px) scale(2.2);
+      transform-origin: center center;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 0;
+      transform: translateZ(-0.5px) scale(1.8);
     }
 
     .hero h1 {
@@ -189,6 +334,9 @@
         0 0 16px #000, 
         0 0 24px rgba(0, 0, 0, 0.7), 
         0 0 32px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 1;
+      transform: translateZ(0);
     }
 
     .hero p {
@@ -203,6 +351,9 @@
         0 0 16px #000, 
         0 0 24px rgba(0, 0, 0, 0.7), 
         0 0 32px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 1;
+      transform: translateZ(0);
     }
 
     /* SECTIONS */
@@ -238,6 +389,11 @@
       list-style-type: none;
       margin: 20px 0;
       padding-left: 0;
+      display: none; /* Hide by default */
+    }
+
+    .services-list.active {
+      display: block;
     }
 
     .services-list li {
@@ -251,6 +407,45 @@
       position: absolute;
       left: 0;
       color: #FFFFFF;
+    }
+
+    /* Service header styling */
+    .service-header {
+      cursor: pointer;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .service-header:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .service-header h3 {
+      margin: 0;
+      font-size: 1.4em;
+    }
+
+    .service-header .toggle-icon {
+      font-size: 1.2em;
+      transition: transform 0.3s ease;
+    }
+
+    .service-header.active .toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    .service-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .service-content.active {
+      max-height: 1000px; /* Adjust based on content */
+      transition: max-height 0.5s ease-in;
     }
 
     /* FOOTER */
@@ -269,14 +464,60 @@
 
     /* MEDIA QUERIES */
     @media (max-width: 768px) {
-      nav {
-        flex-wrap: wrap;
+      /* Hide regular nav items and fade-in logo on mobile */
+      nav a:not(.nav-logo) {
+        display: none;
       }
 
-      nav a {
-        flex: 1 1 100%;
+      .nav-logo {
+        display: none; /* Hide the fade-in logo on mobile */
+      }
+
+      /* Show hamburger menu */
+      .menu-toggle {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
+
+      /* Show mobile menu */
+      .mobile-menu {
+        display: block;
+      }
+
+      /* Mobile menu logo styling */
+      .mobile-menu-logo {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 600;
+        font-size: 1.4em;
+        padding: 20px 0;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         text-align: center;
-        border-bottom: 1px solid #FFFFFF;
+      }
+
+      /* Adjust header padding to accommodate hamburger */
+      header {
+        padding-top: 60px;
+      }
+
+      .hero {
+        perspective: none;
+        transform-style: flat;
+      }
+
+      .hero video {
+        display: none;
+      }
+
+      .hero::before {
+        display: none;
+        transform: none;
+      }
+
+      .hero {
+        background: url('banner/Waves.png') no-repeat center center/cover;
       }
 
       .hero h1 {
@@ -299,8 +540,16 @@
           0 0 32px rgba(0, 0, 0, 0.5);
       }
 
+      header video {
+        display: none;
+      }
+
       .responsive-img {
         width: 100%;
+      }
+
+      header {
+        background: #000000;
       }
     }
   </style>
@@ -309,6 +558,9 @@
 
   <!-- Header -->
   <header>
+    <video autoplay muted loop playsinline>
+      <source src="banner/twostrands.mp4" type="video/mp4">
+    </video>
     <h2>MORPHEOS INNOVATION</h2>
     <p>Strategic Consulting for Biotech & AI Commercialization</p>
   </header>
@@ -316,36 +568,55 @@
   <!-- Navigation -->
   <nav>
     <a href="#" class="nav-logo">MORPHEOS</a>
-    <a href="#method">Approach</a>
+    <a href="#method">APPROACH</a>
     <div class="dropdown">
-      <a href="#" id="servicesLink">Services</a>
+      <a href="#" id="servicesLink">SERVICES</a>
       <div class="dropdown-menu" id="servicesDropdown">
-        <a href="#services-overview">Overview</a>
+        <a href="#services-biz-dev">Business Development</a>
+        <a href="#services-ai-coach">AI Productivity & Implementation</a>
         <a href="#services-sci-due">Scientific Due Diligence</a>
         <a href="#services-sci-due">Commercialization Analysis</a>
-        <a href="#services-biz-dev">Business Development</a>
-        <a href="#services-ai-coach">AI Productivity Coaching</a>
+
       </div>
     </div>
-    <a href="#about">About</a>
-    <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-
-<!-- Dropdown for Contact -->
-  <div class="dropdown">
-    <a href="#" id="contactLink">Contact</a>
-    <div class="dropdown-menu" id="contactDropdown">
-      <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a 20 minute call via Calendly</a>
-      <a href="mailto:brandon@morpheos.llc">Contact via email</a>
-    </div>
-  </div>
-  
+    <a href="#about">ABOUT</a>
+    <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
+    <a href="mailto:brandon@morpheos.llc">CONTACT</a>
   </nav>
+
+  <!-- Mobile Menu -->
+  <div class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-logo">MORPHEOS</div>
+    <a href="#method">APPROACH</a>
+    <div class="mobile-menu-section">
+      <a href="#services" class="mobile-menu-header">SERVICES</a>
+      <a href="#services-biz-dev" class="mobile-menu-subitem">Business Development</a>
+      <a href="#services-ai-coach" class="mobile-menu-subitem">AI Productivity & Implementation</a>
+      <a href="#services-sci-due" class="mobile-menu-subitem">Scientific Due Diligence</a>
+      <a href="#services-sci-due" class="mobile-menu-subitem">Commercialization Analysis</a>
+      
+    </div>
+    <a href="#about">ABOUT</a>
+    <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
+    <a href="mailto:brandon@morpheos.llc">CONTACT</a>
+  </div>
+
+  <div class="menu-overlay"></div>
 
   <!-- Hero Section -->
   <div class="hero">
-    <h1>EMPOWERING INNOVATION</h1>
+    <video autoplay muted loop playsinline>
+      <source src="banner/loop2.mp4" type="video/mp4">
+    </video>
+    <h1>EMPOWERING INNOVATORS</h1>
     <p>
-      Strategic partnering and business development initiatives for startups, investors, non-profits, and academia
+Partnering with founders, investors, and changemakers to build what's next
     </p>
   </div>
 
@@ -366,48 +637,70 @@
         The process starts with <strong>deep listening</strong> — we directly engage with the technical team to understand the depth of the technology and fully grasp and define the technology's <strong>unique value proposition</strong>. We then work to refine and distill that complexity into a clear and efficient narrative that can <strong>(1) unify the development team around common goals, (2) draw in customers, and (3) efficiently capture the attention of investors and potential business partners.</strong>
       </p>
     </div>
+    <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
+      <img src="banner/distill.png" alt="Distillation Process" class="responsive-img">
+    </div>
   </section>
 
   <!-- Services Section -->
   <section id="services">
     <h2 class="section-title">SERVICES</h2>
     <div class="services-content">
-      <!-- Scientific Due Diligence -->
-      <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
-      <ul class="services-list">
-        <li><strong>Summarize Key Scientific Concepts:</strong> Provide concise, high-level reviews of preclinical and clinical data.</li>
-        <li><strong>Commercialization Feasibility:</strong> Assess market potential, competitive landscapes, and regulatory paths.</li>
-        <li><strong>Preclinical Evaluation:</strong> Review and critique in vitro and in vivo data, highlighting strengths and weaknesses.</li>
-        <li><strong>Path-to-Clinic Strategy:</strong> Outline critical steps for clinical development and de-risking.</li>
-        <li><strong>Target Validation & Study Design:</strong> Develop comprehensive roadmaps for proof-of-concept and efficacy trials.</li>
-        <li><strong>KOL Engagement:</strong> Identify key opinion leaders, gather expert feedback, and integrate insights into development plans.</li>
-      </ul>
-
+  
       <!-- Business Development -->
-      <h3 id="services-biz-dev">Business Development</h3>
-      <ul class="services-list">
-        <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
-        <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
-        <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
-        <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
-        <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
-        <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
-      </ul>
+      <div class="service-section">
+        <div class="service-header" data-target="biz-dev">
+          <h3 id="services-biz-dev">Business Development & Startup Coaching</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="biz-dev">
+          <ul class="services-list">
+            <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
+            <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
+            <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
+            <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
+            <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
+            <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
+          </ul>
+        </div>
+      </div>
 
-      <!-- AI Productivity Coaching -->
-      
-      <div style="display: flex; justify-content: center; align-items: center;" id="services-ai-coach">
-<img src="banner/AI_coaching.png" alt="Responsive Image" class="responsive-img">
-</div>
-      <h3>AI Productivity Coaching for Professionals & Executives</h3>
-      <ul class="services-list">
-        <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
-        <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
-        <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
-        <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
-        <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
-      </ul>
+      <!-- AI Productivity & Implementation Coaching -->
+      <div class="service-section">
+        <div class="service-header" data-target="ai-coach">
+          <h3 id="services-ai-coach">AI Productivity & Implementation</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="ai-coach">
+          <ul class="services-list">
+            <li><strong>Workflow Assessment:</strong> Analyze current processes to identify where AI tools can streamline daily tasks.</li>
+            <li><strong>Customized Training:</strong> Provide one-on-one or team-based coaching on AI-powered applications.</li>
+            <li><strong>Strategic Implementation:</strong> Develop tailored action plans for integrating AI solutions into existing workflows.</li>
+            <li><strong>Efficiency & Automation:</strong> Recommend best practices and tools to reduce operational overhead.</li>
+            <li><strong>Protoyping & Custom Tool Development:</strong> Prototype your ideas and develop custom tools to automate workflows and improve productivity.</li>
+            <li><strong>Ongoing Support:</strong> Offer continuous check-ins and updates as new AI solutions emerge.</li>
+          </ul>
+        </div>
+      </div>
     </div>
+        <!-- Scientific Due Diligence -->
+      <div class="service-section">
+        <div class="service-header" data-target="sci-due">
+          <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="sci-due">
+          <ul class="services-list">
+            <li><strong>Summarize Key Scientific Concepts:</strong> Provide concise, high-level reviews of preclinical and clinical data.</li>
+            <li><strong>Commercialization Feasibility:</strong> Assess market potential, competitive landscapes, and regulatory paths.</li>
+            <li><strong>Preclinical Evaluation:</strong> Review and critique in vitro and in vivo data, highlighting strengths and weaknesses.</li>
+            <li><strong>Path-to-Clinic Strategy:</strong> Outline critical steps for clinical development and de-risking.</li>
+            <li><strong>Target Validation & Study Design:</strong> Develop comprehensive roadmaps for proof-of-concept and efficacy trials.</li>
+            <li><strong>KOL Engagement:</strong> Identify key opinion leaders, gather expert feedback, and integrate insights into development plans.</li>
+          </ul>
+        </div>
+      </div>
+
   </section>
 
   <!-- About Section -->
@@ -431,48 +724,103 @@
     <p>&copy; <span id="year"></span> MORPHEOS LLC. ALL RIGHTS RESERVED.</p>
   </footer>
 
-<script>
-  // Dynamically update the year in the footer
-  document.getElementById('year').textContent = new Date().getFullYear();
+  <script>
+    // Dynamically update the year in the footer
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Dropdown toggle logic
-  const servicesLink = document.getElementById('servicesLink');
-  const servicesDropdown = document.getElementById('servicesDropdown');
-  const contactLink = document.getElementById('contactLink');
-  const contactDropdown = document.getElementById('contactDropdown');
+    // Dropdown functionality
+    const servicesLink = document.getElementById('servicesLink');
+    const servicesDropdown = document.getElementById('servicesDropdown');
 
-  document.addEventListener('click', function(e) {
-    // Toggle "Services" dropdown
-    if (servicesLink.contains(e.target)) {
+    servicesLink.addEventListener('click', (e) => {
       e.preventDefault();
-      servicesDropdown.style.display =
-        servicesDropdown.style.display === 'block' ? 'none' : 'block';
-    } else if (!servicesDropdown.contains(e.target)) {
-      servicesDropdown.style.display = 'none';
-    }
+      servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+    });
 
-    // Toggle "Contact" dropdown
-    if (contactLink.contains(e.target)) {
-      e.preventDefault();
-      contactDropdown.style.display =
-        contactDropdown.style.display === 'block' ? 'none' : 'block';
-    } else if (!contactDropdown.contains(e.target)) {
-      contactDropdown.style.display = 'none';
-    }
-  });
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
+        servicesDropdown.style.display = 'none';
+      }
+    });
 
-  // Handle scroll behavior for nav logo
-  const navLogo = document.querySelector('.nav-logo');
-  const header = document.querySelector('header');
-  
-  window.addEventListener('scroll', function() {
-    const headerBottom = header.offsetTop + header.offsetHeight;
-    if (window.scrollY >= headerBottom) {
-      navLogo.classList.add('visible');
-    } else {
-      navLogo.classList.remove('visible');
-    }
-  });
-</script>
+    // Logo fade-in on scroll
+    const navLogo = document.querySelector('.nav-logo');
+    const header = document.querySelector('header');
+    const headerHeight = header.offsetHeight;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > headerHeight) {
+        navLogo.classList.add('visible');
+      } else {
+        navLogo.classList.remove('visible');
+      }
+    });
+
+    // Mobile menu functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    menuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    // Close menu when clicking a link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Service section toggle functionality
+    document.querySelectorAll('.service-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const targetId = header.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        const icon = header.querySelector('.toggle-icon');
+        
+        // Toggle active class on header
+        header.classList.toggle('active');
+        
+        // Toggle content visibility
+        content.classList.toggle('active');
+        
+        // Toggle icon
+        icon.textContent = content.classList.contains('active') ? '−' : '+';
+        
+        // Toggle list visibility
+        const list = content.querySelector('.services-list');
+        list.classList.toggle('active');
+      });
+    });
+
+    // Parallax effect for hero video
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const video = document.querySelector('.hero video');
+      const headerVideo = document.querySelector('header video');
+      
+      if (video) {
+        const scale = 2.2 + (scrolled * 0.001);
+        video.style.transform = `translateZ(-1px) scale(${scale})`;
+      }
+      
+      if (headerVideo) {
+        const scale = 2.2 + (scrolled * 0.001);
+        headerVideo.style.transform = `translateZ(-1px) scale(${scale})`;
+      }
+    });
+  </script>
 </body>
 </html>
