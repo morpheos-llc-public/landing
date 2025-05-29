@@ -11,6 +11,7 @@
     /* CSS Reset */
     html {
       box-sizing: border-box;
+      overflow-x: hidden;
     }
     *, *:before, *:after {
       box-sizing: inherit;
@@ -29,6 +30,9 @@
       color: #FFFFFF;
       line-height: 1.6;
       font-weight: 400;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
 
     /* Typography */
@@ -616,7 +620,13 @@
     </div>
     <a href="#about">ABOUT</a>
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
-    <a href="mailto:brandon@morpheos.llc">CONTACT</a>
+    <div class="dropdown">
+      <a href="#" id="contactLink">CONTACT</a>
+      <div class="dropdown-menu" id="contactDropdown">
+        <a href="mailto:brandon@morpheos.llc">Email</a>
+        <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a free 20 minute consultation</a>
+      </div>
+    </div>
   </nav>
 
   <!-- Mobile Menu -->
@@ -639,7 +649,13 @@
     </div>
     <a href="#about">ABOUT</a>
     <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
-    <a href="mailto:brandon@morpheos.llc">CONTACT</a>
+    <div class="dropdown">
+      <a href="#" id="contactLink">CONTACT</a>
+      <div class="dropdown-menu" id="contactDropdown">
+        <a href="mailto:brandon@morpheos.llc">Email</a>
+        <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a free 20 minute consultation</a>
+      </div>
+    </div>
   </div>
 
   <div class="menu-overlay"></div>
@@ -675,7 +691,7 @@
 
       </p>
         
-        <strong>It all starts with deep listening.</strong> At Morpheos, we listen and assess your individual needs, goals, workflows, and pain points. We then tailor our training to your specific needs.
+        <strong>It all starts with deep listening.</strong> At Morpheos, we listen and assess your goals, workflows, and pain points. We then tailor our training to your specific needs.
       </h3></p>
       <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
         <img src="banner/AI_coaching.png" alt="AI Coaching Process" class="responsive-img">
@@ -781,16 +797,28 @@
     // Dropdown functionality
     const servicesLink = document.getElementById('servicesLink');
     const servicesDropdown = document.getElementById('servicesDropdown');
+    const contactLink = document.getElementById('contactLink');
+    const contactDropdown = document.getElementById('contactDropdown');
 
     servicesLink.addEventListener('click', (e) => {
       e.preventDefault();
       servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+      contactDropdown.style.display = 'none';
     });
 
-    // Close dropdown when clicking outside
+    contactLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      contactDropdown.style.display = contactDropdown.style.display === 'block' ? 'none' : 'block';
+      servicesDropdown.style.display = 'none';
+    });
+
+    // Close dropdowns when clicking outside
     document.addEventListener('click', (e) => {
       if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
         servicesDropdown.style.display = 'none';
+      }
+      if (!contactLink.contains(e.target) && !contactDropdown.contains(e.target)) {
+        contactDropdown.style.display = 'none';
       }
     });
 
