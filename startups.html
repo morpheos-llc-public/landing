@@ -98,22 +98,9 @@
       z-index: 0;
       transform: translateZ(-0.5px) scale(1.8);
     }
-    header h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      font-weight: 600;
-      position: relative;
-      z-index: 1;
-      transform: translateZ(0);
-      text-shadow: 
-        0 0 8px #000, 
-        0 0 16px #000, 
-        0 0 24px rgba(0, 0, 0, 0.7), 
-        0 0 32px rgba(0, 0, 0, 0.5);
-    }
 
     header h2 {
-      font-size: 2.1em;
+      font-size: 4em;
       margin-bottom: 10px;
       font-weight: 600;
       position: relative;
@@ -369,28 +356,6 @@
       transform: translateZ(0);
     }
 
-    /* CTA Button Styles */
-    .cta-button {
-      display: inline-block;
-      background-color: #FFFFFF;
-      color: #000000;
-      padding: 15px 30px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1em;
-      margin-top: 20px;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 1;
-    }
-
-    .cta-button:hover {
-      background-color: #F0F0F0;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
     /* SECTIONS */
     section {
       padding: 60px 20px;
@@ -596,7 +561,7 @@
     <video autoplay muted loop playsinline>
       <source src="banner/twostrands.mp4" type="video/mp4">
     </video>
-    <h1>MORPHEOS INNOVATION</h1>
+    <h2>MORPHEOS INNOVATION</h2>
     <p style="font-size: 1.8em;">AI Literacy & Implementation Coaching for Professionals & Teams</p>
   </header>
 
@@ -607,21 +572,16 @@
     <div class="dropdown">
       <a href="#" id="servicesLink">SERVICES</a>
       <div class="dropdown-menu" id="servicesDropdown">
-        <a href="#services-ai-coach">AI Literacy & Implementation Coaching</a>
-        <a href="#services-biz-dev">Business Development for Startups</a>
-        <a href="#services-sci-due">Scientific Due Diligence for Investors</a>
-        <a href="#services-sci-due">Commercialization Analysis for Tech Transfer Officers</a>
+        <a href="#services-biz-dev">Business Development</a>
+        <a href="#services-ai-coach">AI Productivity & Implementation</a>
+        <a href="#services-sci-due">Scientific Due Diligence</a>
+        <a href="#services-sci-due">Commercialization Analysis</a>
+
       </div>
     </div>
     <a href="#about">ABOUT</a>
-    <div class="dropdown">
-      <a href="#" id="contactLink">CONTACT</a>
-      <div class="dropdown-menu" id="contactDropdown">
-        <a href="mailto:brandon@morpheos.llc">Email</a>
-        <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-        <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a 20 minute consultation</a>
-      </div>
-    </div>
+    <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
+    <a href="mailto:brandon@morpheos.llc">CONTACT</a>
   </nav>
 
   <!-- Mobile Menu -->
@@ -636,21 +596,15 @@
     <a href="#method">APPROACH</a>
     <div class="mobile-menu-section">
       <a href="#services" class="mobile-menu-header">SERVICES</a>
-      <a href="#services-ai-coach" class="mobile-menu-subitem">AI Literacy & Implementation</a>
       <a href="#services-biz-dev" class="mobile-menu-subitem">Business Development</a>
+      <a href="#services-ai-coach" class="mobile-menu-subitem">AI Productivity & Implementation</a>
       <a href="#services-sci-due" class="mobile-menu-subitem">Scientific Due Diligence</a>
       <a href="#services-sci-due" class="mobile-menu-subitem">Commercialization Analysis</a>
       
     </div>
     <a href="#about">ABOUT</a>
-    <div class="dropdown">
-      <a href="#" id="contactLink">CONTACT</a>
-      <div class="dropdown-menu" id="contactDropdown">
-        <a href="mailto:brandon@morpheos.llc">Email</a>
-        <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-        <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a 20 minute consultation</a>
-      </div>
-    </div>
+    <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LINKEDIN</a>
+    <a href="mailto:brandon@morpheos.llc">CONTACT</a>
   </div>
 
   <div class="menu-overlay"></div>
@@ -660,49 +614,61 @@
     <video autoplay muted loop playsinline>
       <source src="banner/loop2.mp4" type="video/mp4">
     </video>
-    <h1>AI is here. Empower yourself & your team.</h1>
+    <h1>Empowering Innovators</h1>
     <p style="font-size: 1.4em;">
-      Step beyond the basics to unlock AI's true potential for you and your team. We'll help you navigate the complexities of AI and empower you to use it to its fullest potential.
+      Partnering with founders, investors, and changemakers to build what's next.
     </p>
-    <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute consultation</a>
   </div>
 
   <!-- Method Section -->
   <section id="method">
     <h2 class="section-title">APPROACH</h2>
     <div class="about-content">
-      <h3>
       <p>
-        <li>For better or worse, AI is now embedding into all industries. Working knowledge about AI is quickly becoming a necessity in the workplace.</li>
-        <p> </p>
-        <li>Morpheos offers AI literacy and implementation coaching for professionals and teams. We teach clients about the origins and state-of-the-art for AI models, key features and limitations, and how to integrate in a world where AI usage is rapidly becoming unavoidable. </li> 
-        <p> </p>
-        <li>We deploy philosophical and hands-on methods to teach folks how to approach AI for novel and unconventional purposes beyond basic email drafting and memo writing. </li>
-        <p> </p>
-<li>Overview: together we review key background about AI, assess your workflow and pain points, share favorite tools, and then brainstorm ways to enable you to perform feats that were previously impractical or impossible.</li>
-
+        <strong>Distilling Breakthroughs to Reach Investors & Customers:</strong> At Morpheos, we help creators, scientists, and engineers <strong>build out their vision and communicate the value of their technology</strong> to capture their audience's attention and bring them onboard with their vision.
       </p>
-      <p >
-
-      </p>
-        
-        <strong>It all starts with deep listening.</strong> At Morpheos, we listen and assess your goals, workflows, and pain points. We then tailor our training to your specific needs.
-      </h3></p>
       <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
-        <img src="banner/AI_coaching.png" alt="AI Coaching Process" class="responsive-img">
+        <img src="banner/bridge.png" alt="Bridge to Innovation" class="responsive-img">
       </div>
-
+      <p>
+        We work with scientists, engineers, and technical founders to translate complex innovations into functional applications with <strong>clear, compelling strategy</strong> and <strong>clearly defined commercial strategy</strong> that resonates with investors, partners, and customers.
+      </p>
+      <p>
+        The process starts with <strong>deep listening</strong> — we directly engage with the technical team to understand the depth of the technology and fully grasp and define the technology's <strong>unique value proposition</strong>. We then work to refine and distill that complexity into a clear and efficient narrative that can <strong>(1) unify the development team around common goals, (2) draw in customers, and (3) efficiently capture the attention of investors and potential business partners.</strong>
+      </p>
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0;">
+      <img src="banner/distill.png" alt="Distillation Process" class="responsive-img">
+    </div>
   </section>
 
   <!-- Services Section -->
   <section id="services">
     <h2 class="section-title">SERVICES</h2>
     <div class="services-content">
+  
+      <!-- Business Development -->
+      <div class="service-section">
+        <div class="service-header" data-target="biz-dev">
+          <h3 id="services-biz-dev">Business Development & Startup Coaching</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="biz-dev">
+          <ul class="services-list">
+            <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
+            <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
+            <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
+            <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
+            <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
+            <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
+          </ul>
+        </div>
+      </div>
 
-      <!-- AI Literacy & Implementation Coaching -->
+      <!-- AI Productivity & Implementation Coaching -->
       <div class="service-section">
         <div class="service-header" data-target="ai-coach">
-          <h3 id="services-ai-coach">AI Literacy & Implementation</h3>
+          <h3 id="services-ai-coach">AI Productivity & Implementation</h3>
           <span class="toggle-icon">+</span>
         </div>
         <div class="service-content" id="ai-coach">
@@ -717,24 +683,6 @@
         </div>
       </div>
     </div>
-
-          <!-- Business Development -->
-          <div class="service-section">
-            <div class="service-header" data-target="biz-dev">
-              <h3 id="services-biz-dev">Business Development & Startup Coaching</h3>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="service-content" id="biz-dev">
-              <ul class="services-list">
-                <li><strong>Strategic Collaborations:</strong> Identify and facilitate partnerships among biotech, pharma, and academia.</li>
-                <li><strong>Marketing & Pitch Materials:</strong> Craft presentations, capability decks, and messaging for investors and collaborators.</li>
-                <li><strong>Negotiations & Contracts:</strong> Manage deal structuring, contract terms, and alliance relationships.</li>
-                <li><strong>Networking & Outreach:</strong> Leverage conferences and events to build industry connections and generate leads.</li>
-                <li><strong>IP Strategy & Licensing:</strong> Drive in-licensing/out-licensing activities, shaping IP portfolios for growth.</li>
-                <li><strong>Technical Sales & Marketing:</strong> Oversee client discovery, outreach campaigns, conference sponsorships, and service offerings.</li>
-              </ul>
-            </div>
-          </div>
         <!-- Scientific Due Diligence -->
       <div class="service-section">
         <div class="service-header" data-target="sci-due">
@@ -757,25 +705,16 @@
 
   <!-- About Section -->
   <section id="about">
-    <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-      <img src="banner/Morpheos-Logo.png" alt="Morpheos Logo" class="responsive-img" style="max-width: 300px;">
-    </div>
     <h2 class="section-title">ABOUT</h2>
     <div class="about-content">
       <p>
-        <strong>Brandon Hogstad, PhD</strong> is trained as a scientist and works as an AI literacy and implementation coach for individuals and teams. He also coaches startup companies towards investor readinae as an 
-      </p>
-      <p>
-        As principal consultant and founder of Morpheos Innovation, he partners with startups, investors, and academic institutions across biotech and AI-driven platforms. He specializes in strategic commercialization, alliance management, and scientific due diligence—guiding breakthrough innovations from concept to market.
+        <strong>Brandon Hogstad, Ph.D.</strong>, is principal consultant and founder of Morpheos Innovation LLC, where he partners with startups, investors, and academic institutions across biotech and AI-driven platforms. He specializes in strategic commercialization, alliance management, and scientific due diligence—guiding breakthrough innovations from concept to market.
       </p>
       <p>
         Before launching Morpheos, Brandon led drug discovery accelerator programs and high-impact collaborations at NYU Langone Health, securing partnerships with global industry leaders like Sanofi and Pfizer (including the antiviral research that contributed to Paxlovid). He later advanced AI-driven immunotherapy initiatives at Immunai, forging strategic relationships to harness single-cell genomics for precision medicine.
       </p>
       <p>
         Brandon earned his Ph.D. in Biomedical Sciences from the Icahn School of Medicine at Mount Sinai. His contributions have appeared in top-tier journals such as Nature and the Journal of Experimental Medicine. Drawing on his broad expertise in target validation, preclinical strategy, and cutting-edge AI applications, Brandon remains committed to advancing medical science and global health through technology-driven innovation.
-      </p>
-      <p> 
-        He also co-hosts a dream interpretation podcast called "Let's Talk About Dreams," and publishes music with his brother Jonathan as The Hogstad Brothers.
       </p>
     </div>
   </section>
@@ -792,28 +731,16 @@
     // Dropdown functionality
     const servicesLink = document.getElementById('servicesLink');
     const servicesDropdown = document.getElementById('servicesDropdown');
-    const contactLink = document.getElementById('contactLink');
-    const contactDropdown = document.getElementById('contactDropdown');
 
     servicesLink.addEventListener('click', (e) => {
       e.preventDefault();
       servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
-      contactDropdown.style.display = 'none';
     });
 
-    contactLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      contactDropdown.style.display = contactDropdown.style.display === 'block' ? 'none' : 'block';
-      servicesDropdown.style.display = 'none';
-    });
-
-    // Close dropdowns when clicking outside
+    // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
       if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
         servicesDropdown.style.display = 'none';
-      }
-      if (!contactLink.contains(e.target) && !contactDropdown.contains(e.target)) {
-        contactDropdown.style.display = 'none';
       }
     });
 
