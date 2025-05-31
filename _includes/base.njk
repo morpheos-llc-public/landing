@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | Morpheos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/blog.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <video autoplay muted loop playsinline>
+            <source src="/banner/twostrands.mp4" type="video/mp4">
+        </video>
+        <h1>MORPHEOS INNOVATION</h1>
+        <p style="font-size: 1.8em;">AI Literacy & Implementation Coaching for Professionals & Teams</p>
+    </header>
+
+    <nav>
+        <a href="/" class="nav-logo">MORPHEOS</a>
+        <a href="/#method">APPROACH</a>
+        <div class="dropdown">
+            <a href="#" id="servicesLink">SERVICES</a>
+            <div class="dropdown-menu" id="servicesDropdown">
+                <a href="/#services-ai-coach">AI Literacy & Implementation Coaching</a>
+                <a href="/#services-biz-dev">Business Development for Startups</a>
+                <a href="/#services-sci-due">Scientific Due Diligence for Investors</a>
+                <a href="/#services-sci-due">Commercialization Analysis for Tech Transfer Officers</a>
+            </div>
+        </div>
+        <a href="/blog/">BLOG</a>
+        <a href="/#about">ABOUT</a>
+        <div class="dropdown">
+            <a href="#" id="contactLink">CONTACT</a>
+            <div class="dropdown-menu" id="contactDropdown">
+                <a href="mailto:brandon@morpheos.llc">Email</a>
+                <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
+                <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a 20 minute consultation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> MORPHEOS LLC. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script>
+        // Dynamically update the year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Dropdown functionality
+        const servicesLink = document.getElementById('servicesLink');
+        const servicesDropdown = document.getElementById('servicesDropdown');
+        const contactLink = document.getElementById('contactLink');
+        const contactDropdown = document.getElementById('contactDropdown');
+
+        servicesLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+            contactDropdown.style.display = 'none';
+        });
+
+        contactLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            contactDropdown.style.display = contactDropdown.style.display === 'block' ? 'none' : 'block';
+            servicesDropdown.style.display = 'none';
+        });
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
+                servicesDropdown.style.display = 'none';
+            }
+            if (!contactLink.contains(e.target) && !contactDropdown.contains(e.target)) {
+                contactDropdown.style.display = 'none';
+            }
+        });
+
+        // Logo fade-in on scroll
+        const navLogo = document.querySelector('.nav-logo');
+        const header = document.querySelector('header');
+        const headerHeight = header.offsetHeight;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > headerHeight) {
+                navLogo.classList.add('visible');
+            } else {
+                navLogo.classList.remove('visible');
+            }
+        });
+    </script>
+</body>
+</html> 

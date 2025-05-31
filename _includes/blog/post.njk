@@ -1,0 +1,17 @@
+---
+layout: base.njk
+---
+<article class="blog-post">
+    <h1>{{ title }}</h1>
+    {% if date %}
+    <div class="post-meta">
+        <time datetime="{{ date | dateIso }}">{{ date | dateReadable }}</time>
+        {% if substack_url %}
+        <span class="substack-link">
+            <a href="{{ substack_url }}" target="_blank" rel="noopener noreferrer">Read on Substack</a>
+        </span>
+        {% endif %}
+    </div>
+    {% endif %}
+    {{ content | safe }}
+</article> 

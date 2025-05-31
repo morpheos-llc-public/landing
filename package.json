@@ -1,0 +1,30 @@
+{
+  "name": "landing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx eleventy --serve",
+    "build": "npx eleventy",
+    "fetch-posts": "node scripts/fetch-substack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/morpheos-llc-public/landing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/morpheos-llc-public/landing/issues"
+  },
+  "homepage": "https://github.com/morpheos-llc-public/landing#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.0"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.0",
+    "node-fetch": "^3.3.2",
+    "rss-parser": "^3.13.0"
+  }
+}
