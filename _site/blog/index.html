@@ -44,6 +44,35 @@
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="mobile-menu">
+        <div class="mobile-menu-logo">MORPHEOS</div>
+        <a href="/#method">APPROACH</a>
+        <div class="mobile-menu-section">
+            <a href="/#services" class="mobile-menu-header">SERVICES</a>
+            <a href="/#services-ai-coach" class="mobile-menu-subitem">AI Literacy & Implementation</a>
+            <a href="/#services-biz-dev" class="mobile-menu-subitem">Business Development</a>
+            <a href="/#services-sci-due" class="mobile-menu-subitem">Scientific Due Diligence</a>
+            <a href="/#services-sci-due" class="mobile-menu-subitem">Commercialization Analysis</a>
+        </div>
+        <a href="/blog/">BLOG</a>
+        <a href="/#about">ABOUT</a>
+        <div class="mobile-menu-section">
+            <a href="#" class="mobile-menu-header">CONTACT</a>
+            <a href="mailto:brandon@morpheos.llc" class="mobile-menu-subitem">Email</a>
+            <a href="https://www.linkedin.com/in/bhogstad/" class="mobile-menu-subitem" target="_blank">LinkedIn</a>
+            <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="mobile-menu-subitem" target="_blank">Schedule a 20 minute consultation</a>
+        </div>
+    </div>
+
+    <div class="menu-overlay"></div>
+
     <main>
         <div class="blog-container">
     <h1>Blog Posts</h1>
@@ -107,6 +136,32 @@
             } else {
                 navLogo.classList.remove('visible');
             }
+        });
+
+        // Mobile menu functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const menuOverlay = document.querySelector('.menu-overlay');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        menuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
     </script>
 </body>
