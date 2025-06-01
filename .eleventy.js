@@ -22,9 +22,11 @@ module.exports = function(eleventyConfig) {
         // Extract date from filename if not set in front matter
         const match = post.fileSlug.match(/^(\d{4}-\d{2}-\d{2})/);
         if (match) {
-          post.data.date = new Date(match[1]);
-        }
-      }
+          // Create date in local timezone
+          const [year, month, day] = match[1].split('-');
+          post.data.date = new Date(year, month - 1, day);
+  }
+}
       
       // Set the layout
       post.data.layout = "blog/post";
@@ -44,7 +46,8 @@ module.exports = function(eleventyConfig) {
     return date.toLocaleDateString("en-US", {
       year: "numeric",
       month: "long",
-      day: "numeric"
+      day: "numeric",
+      timeZone: 'UTC' // Ensure consistent date display
     });
   });
 
