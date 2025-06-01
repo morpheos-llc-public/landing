@@ -26,10 +26,8 @@ module.exports = function(eleventyConfig) {
         }
       }
       
-      // Don't override the layout if it's already set in front matter
-      if (!post.data.layout) {
-        post.data.layout = "blog/post";
-      }
+      // Set the layout
+      post.data.layout = "blog/post";
       
       return post;
     }).sort((a, b) => b.date - a.date); // Sort by date, newest first

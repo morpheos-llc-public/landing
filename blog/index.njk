@@ -8,7 +8,7 @@ permalink: /blog/
     <ul class="blog-list">
     {%- for post in collections.posts | reverse -%}
         <li class="blog-item">
-            <a href="/blog/{{ post.fileSlug | replace("^\\d{4}-\\d{2}-\\d{2}-\\d{2}-", "") | replace("^\\d{4}-\\d{2}-\\d{2}-", "") }}/" class="blog-title">{{ post.data.title }}</a>
+            <a href="{{ post.url }}" class="blog-title">{{ post.data.title }}</a>
             <time datetime="{{ post.date | dateIso }}" class="blog-date">{{ post.date | dateReadable }}</time>
         </li>
     {%- endfor -%}
