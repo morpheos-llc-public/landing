@@ -4,8 +4,7 @@
 # Dependencies
 node_modules/
 
-# Generated files
-_site/
+# Cache
 .cache/
 
 # Environment files
