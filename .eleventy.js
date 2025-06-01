@@ -27,7 +27,7 @@ module.exports = function(eleventyConfig) {
         }
       }
       return post;
-    });
+    }).sort((a, b) => b.date - a.date); // Sort by date, newest first
   });
 
   // Date formatting filters
