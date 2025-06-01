@@ -50,6 +50,7 @@ module.exports = function(eleventyConfig) {
     },
     templateFormats: ["html", "md", "njk"],
     htmlTemplateEngine: "njk",
-    markdownTemplateEngine: "njk"
+    markdownTemplateEngine: "njk",
+    permalink: false
   };
 }; 
