@@ -9,7 +9,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("posts", function(collection) {
     return collection.getFilteredByGlob("_posts/**/*.md").map(post => {
       // Create a slug from the filename
-      const slug = post.fileSlug.replace(/^\d{4}-\d{2}-\d{2}-\d{2}-/, '').replace(/^\d{4}-\d{2}-\d{2}-/, '');
+      const slug = post.fileSlug
+        .replace(/^\d{4}-\d{2}-\d{2}-\d{2}-/, '')  // Remove date and sequence number
+        .replace(/^\d{4}-\d{2}-\d{2}-/, '');       // Remove date without sequence number
+      
       // Set the permalink to /blog/slug/
       post.data.permalink = `/blog/${slug}/`;
       // Set the layout to blog/post
