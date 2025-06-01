@@ -24,7 +24,9 @@
   },
   "dependencies": {
     "@11ty/eleventy": "^3.1.0",
+    "jsdom": "^26.1.0",
     "node-fetch": "^3.3.2",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "turndown": "^7.2.0"
   }
 }
