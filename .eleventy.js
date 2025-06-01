@@ -16,8 +16,7 @@ module.exports = function(eleventyConfig) {
       
       // Set the permalink to /blog/slug/
       post.data.permalink = `/blog/${slug}/`;
-      // Set the layout to blog/post
-      post.data.layout = "blog/post";
+      
       // Ensure date is properly set
       if (!post.data.date) {
         // Extract date from filename if not set in front matter
@@ -26,6 +25,12 @@ module.exports = function(eleventyConfig) {
           post.data.date = new Date(match[1]);
         }
       }
+      
+      // Don't override the layout if it's already set in front matter
+      if (!post.data.layout) {
+        post.data.layout = "blog/post";
+      }
+      
       return post;
     }).sort((a, b) => b.date - a.date); // Sort by date, newest first
   });
