@@ -1,8 +1,50 @@
 const Parser = require('rss-parser');
 const fs = require('fs');
 const path = require('path');
+const { JSDOM } = require('jsdom');
+const TurndownService = require('turndown');
 
-const parser = new Parser();
+const parser = new Parser({
+    customFields: {
+        item: [
+            ['content:encoded', 'contentEncoded']
+        ]
+    }
+});
+
+const turndownService = new TurndownService({
+    headingStyle: 'atx',
+    codeBlockStyle: 'fenced'
+});
+
+// Function to process HTML content
+async function processContent(content) {
+    const dom = new JSDOM(content);
+    const document = dom.window.document;
+    
+    // Convert HTML to Markdown
+    let markdown = turndownService.turndown(dom.serialize());
+
+    // Post-process Markdown to clean up image syntax
+    // First, remove any extra link wrappers around images
+    markdown = markdown.replace(/\[\s*!\[([^\]]*)\]\(([^)]+)\)\s*\]\([^)]+\)/g, '![$1]($2)');
+    
+    // Then, clean up any remaining Substack image URLs that might have extra parameters
+    markdown = markdown.replace(/!\[([^\]]*)\]\((https:\/\/substackcdn\.com\/image\/fetch\/[^)]+)\)/g, (match, alt, url) => {
+        // Extract the actual image URL from the Substack CDN URL
+        const actualUrl = url.match(/https%3A%2F%2F[^)]+/);
+        if (actualUrl) {
+            const decodedUrl = decodeURIComponent(actualUrl[0]);
+            return `![${alt}](${decodedUrl})`;
+        }
+        return match;
+    });
+
+    // Remove any lines that are just '](https://substackcdn.com/image/fetch/...)' to clean up extra junk
+    markdown = markdown.replace(/^\s*\]\(https:\/\/substackcdn\.com\/image\/fetch\/[^)]+\)\s*$/gm, '');
+
+    return markdown;
+}
 
 async function fetchSubstackPosts() {
     try {
@@ -33,7 +75,13 @@ async function fetchSubstackPosts() {
                 continue;
             }
 
-            // Create the markdown content with preview and link
+            // Use content:encoded if available, otherwise use content
+            const postContent = item.contentEncoded || item.content;
+            
+            // Process the content
+            const processedContent = await processContent(postContent);
+
+            // Create the markdown content
             const content = `---
 layout: blog/post
 title: ${item.title}
@@ -41,11 +89,11 @@ date: ${dateStr}
 substack_url: ${item.link}
 ---
 
-${item.content}
+${processedContent}
 
 ---
 
-*This is a preview of the full post. [Read the complete article on Substack](${item.link})*
+*This post was originally published on [Substack](${item.link})*
 `;
 
             // Write the file

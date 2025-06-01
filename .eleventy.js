@@ -3,6 +3,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("banner");
   eleventyConfig.addPassthroughCopy("blog.css");
   eleventyConfig.addPassthroughCopy("styles.css");
+  eleventyConfig.addPassthroughCopy("_posts/images");
   
   // Blog posts collection with custom permalink structure
   eleventyConfig.addCollection("posts", function(collection) {
