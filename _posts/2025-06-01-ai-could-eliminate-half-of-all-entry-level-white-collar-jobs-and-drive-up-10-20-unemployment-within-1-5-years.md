@@ -1,6 +1,6 @@
 ---
 layout: blog/post
-title: AI could eliminate half of all entry-level white-collar jobs and drive up 10-20% unemployment within 1-5 years
+title: AI could eliminate half of all entry-level white-collar jobs and drive 10-20% unemployment within 1-5 years
 date: 2025-06-01
 substack_url: https://morpheos.substack.com/p/ai-could-eliminate-half-of-all-entry
 ---
