@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Málaga Coast Beaches Map - Detailed</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        .leaflet-popup-content-wrapper {
+            max-width: 300px; /* Adjust as needed for popup width */
+            font-size: 0.9em;
+        }
+        .leaflet-popup-content b {
+            color: #0078A8; /* Style the beach name */
+            font-size: 1.1em;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .popup-category {
+            font-weight: bold;
+            margin-top: 8px;
+            padding-top: 5px;
+            border-top: 1px solid #eee;
+        }
+        .popup-category-recommended { color: green; }
+        .popup-category-avoid { color: red; }
+        .popup-category-mixed { color: orange; }
+
+        .popup-description {
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+        .popup-distance {
+            font-size: 0.85em;
+            color: #555;
+            margin-top: 8px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script>
+    // --- Map Initialization ---
+    var map = L.map('map').setView([36.7213, -4.4215], 10); // Centered near Málaga
+
+    // --- Tile Layer ---
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // --- Custom Icons ---
+    var greenIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+    });
+    var redIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+    });
+    var yellowIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-yellow.png', // Using yellow for mixed/consider
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+    });
+     var blueIcon = L.icon({ // Default for Malaga City Center
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+    });
+
+
+    // --- Beach Data with Full Descriptions and Categories ---
+    // Categories: 'recommended', 'avoid', 'mixed'
+    var beaches = [
+        // Málaga City Beaches
+        {
+            coords: [36.7180, -4.4100], name: 'La Malagueta Beach', category: 'mixed', distance: 'In Málaga City',
+            description: 'Very convenient city beach. Popular with locals (esp. weekends/after work) due to accessibility, but also very popular with tourists of all nationalities staying in Málaga. Can feel very busy. Verdict: Mixed bag - convenient, has locals, but also lots of tourists.'
+        },
+        {
+            coords: [36.7190, -4.3990], name: 'Playa De La Caleta', category: 'mixed', distance: 'In Málaga City',
+            description: 'Adjacent to La Malagueta, slightly more upscale neighbourhood behind it. Similar profile: popular with locals but also easily accessible for tourists. Maybe slightly less hectic than Malagueta at times. Verdict: Similar to Malagueta, good mix but definitely not hidden or predominantly local.'
+        },
+        {
+            coords: [36.7210, -4.3770], name: 'Playa Pedregalejo / El Palo', category: 'recommended', distance: 'Approx. 5km East',
+            description: 'Former fishing neighbourhoods with fantastic, authentic atmosphere. Small coves, houses on beach, renowned *chiringuitos* grilling *espetos* (sardines). Very popular with Malagueños, families, students. Tourists come, but feels much more local. Verdict: Highly Recommended - Great local vibe, excellent food.'
+        },
+        {
+            coords: [36.7160, -4.3600], name: 'Peñón del Cuervo', category: 'mixed', distance: 'Approx. 7km East',
+            description: 'Distinctive rock formation splits the beach. Popular with local youths and families for BBQs (designated areas). Can feel more rugged. Verdict: Good local spot, not tourist-focused, more basic.'
+        },
+
+        // East of Málaga (Axarquía / Costa Tropical Border)
+        {
+            coords: [36.7280, -4.3000], name: 'Rincón de la Victoria / Cala del Moral', category: 'mixed', distance: 'Approx. 12km East',
+            description: 'Towns east of Málaga popular with Spanish families and Malagueños. Beaches are long, less glitzy, good chiringuitos. Less dominated by international tourists than the western Costa. Verdict: Good option for a more Spanish holiday feel, accessible.'
+        },
+        {
+            coords: [36.7450, -4.1000], name: 'Torre del Mar', category: 'mixed', distance: 'Approx. 35km East',
+            description: 'Sizeable Spanish resort town. Long, wide, dark sand beaches. Busy, but with more Spanish holidaymakers than international package tourists compared to the west. Verdict: More Spanish flavour than western resorts, but still a busy town.'
+        },
+        {
+             coords: [36.7433, -3.8790], name: 'Nerja (Central Beaches - e.g., Calahonda/Salon)', category: 'mixed', distance: 'Approx. 55km East',
+            description: 'Charming coves below Balcón de Europa. Town is popular with tourists. Verdict: Picturesque but Nerja town itself is touristy.'
+        },
+        {
+            coords: [36.7480, -3.8700], name: 'Nerja (Playa Burriana)', category: 'mixed', distance: 'Approx. 56km East',
+            description: 'Nerja\'s main beach. Large, well-equipped, very popular with tourists of all nationalities. Famous paella restaurants. Can get very crowded. Verdict: Beautiful setting but expect tourist crowds.'
+        },
+        {
+            coords: [36.7530, -3.8400], name: 'Playa de Maro', category: 'recommended', distance: 'Approx. 60km East',
+            description: 'Often cited as one of the most beautiful spots. Stunning cliffs, crystal-clear water, great for kayaking/snorkeling. Takes effort to get down (steep walk/limited parking). Attracts nature lovers, mix of Spanish & informed tourists. Verdict: Highly Recommended Gem - Stunning natural beauty, less crowded due to access.'
+        },
+        {
+            coords: [36.7600, -3.8150], name: 'El Cañuelo Beach', category: 'recommended', distance: 'Approx. 65km East',
+            description: 'Near Granada province border, part of Maro-Cerro Gordo Natural Park. Access often restricted in summer (shuttle bus/walk down), keeps crowds down. Beautiful, clear water, pebble beach, feels remote. Verdict: Excellent choice for escaping - Feels wild, beautiful.'
+        },
+        {
+            coords: [36.7575, -3.7930], name: 'Cantarriján Beach', category: 'recommended', distance: 'Approx. 70km East',
+            description: 'Located in Maro-Cerro Gordo Natural Park near La Herradura. Beautiful pebble beach, cliffs, clear water. **Officially designated and primarily a naturist (nudist) beach**, especially the western part. Eastern part near popular chiringuitos often mixed. Access via shuttle/walk in summer. Attracts nature lovers, naturists, alternative crowd. Verdict: Highly Recommended - Stunning nature, avoids typical tourists, *but be aware it is predominantly clothing-optional*.'
+        },
+
+        // West of Málaga (Costa del Sol)
+        {
+            coords: [36.6600, -4.4980], name: 'Torremolinos (Bajondillo Beach)', category: 'avoid', distance: 'Approx. 15km West',
+            description: 'Major resort, high concentration of British/Northern European package tourists. Heavily geared towards international tourism. Verdict: Likely Avoid - High concentration of the tourist type you\'re trying to minimize.'
+        },
+        {
+            coords: [36.5950, -4.6200], name: 'Fuengirola (Playa de Torreblanca)', category: 'avoid', distance: 'Approx. 30km West',
+            description: 'Large resort popular with British/Scandinavian tourists. Long sands, lots of amenities, but lacks distinct local character on the main front. Verdict: Likely Avoid - Very tourist-focused.'
+        },
+         {
+            coords: [36.5400, -4.6800], name: 'La Cala de Mijas', category: 'mixed', distance: 'Approx. 38km West',
+            description: 'Smaller town feel than Fuengirola/Torremolinos, but still very popular with expats and tourists (especially British). Pleasant beach, but a well-known spot. Verdict: Better than Torremolinos/Fuengirola, but still significant tourist presence. Not a hidden gem.'
+        },
+        {
+            coords: [36.4890, -4.7400], name: 'Playa de Cabopino', category: 'mixed', distance: 'Approx. 45km West',
+            description: 'Nice marina & beach, near protected Artola Dunes. Beach by the dunes (incl. nudist section) feels wilder. Main beach near port is popular but nice. Verdict: Cabopino is worth considering, especially near the dunes, potentially fewer package tourists than big resorts.'
+        },
+        {
+            coords: [36.5080, -4.8500], name: 'Playa de Nagüeles (Marbella)', category: 'avoid', distance: 'Approx. 58km West',
+            description: 'On Marbella\'s Golden Mile. Upscale hotels, luxurious beach clubs. Attracts wealthy tourists and affluent locals. Not a \'hidden\' or typical \'local\' beach. Verdict: Avoid if seeking humble local vibes. High-end tourist/wealthy resident territory.'
+        },
+        {
+            coords: [36.4850, -4.9540], name: 'Puerto Banús Beach (Marbella)', category: 'avoid', distance: 'Approx. 65km West',
+            description: 'Famous for luxury yachts, designer shops, nightlife. Beaches attract a crowd interested in seeing and being seen. Very international, often crowded, focused on high-life/party scene. Verdict: Definitely Avoid for local, relaxed vibes.'
+        },
+        {
+            coords: [36.4370, -5.1450], name: 'Playa del Cristo (Estepona)', category: 'mixed', distance: 'Approx. 88km West',
+            description: 'Sheltered cove west of Estepona marina. Calm waters, popular with Spanish families. Estepona town itself has retained more Spanish character than some neighbours. Verdict: Good family beach, more local feel than Marbella resorts.'
+        },
+        {
+            coords: [36.4080, -5.2000], name: 'Playa Ancha (Casares Costa)', category: 'mixed', distance: 'Approx. 98km West',
+            description: 'Quieter stretch between Estepona and Manilva. Wide, uncrowded beaches. Verdict: Good for escaping crowds, quieter developed area.'
+        },
+        {
+            coords: [36.3900, -5.2300], name: 'Sabinillas / Manilva', category: 'mixed', distance: 'Approx. 100km West',
+            description: 'More residential towns, popular with Spanish locals and expats seeking quieter life. Beaches are long, functional, less hectic. Good Sunday market nearby. Verdict: Functional beaches, relaxed, local/expat residential feel.'
+        },
+        {
+            coords: [36.3750, -5.2650], name: 'Punta Chullera', category: 'mixed', distance: 'Approx. 105km West',
+            description: 'Near border with Cádiz province. More rocky coves, clearer water, good for snorkeling. Feels more rugged and less developed. Verdict: Good for nature lovers seeking rugged coast and snorkeling.'
+        }
+    ];
+
+    // --- Add Markers to Map ---
+    var malagaMarker = L.marker([36.7213, -4.4215], {icon: blueIcon}).addTo(map)
+        .bindPopup("<b>Málaga City Center</b><br>Reference Point");
+
+    beaches.forEach(function(beach) {
+        let iconChoice;
+        let categoryClass;
+        let categoryText;
+
+        switch (beach.category) {
+            case 'recommended':
+                iconChoice = greenIcon;
+                categoryClass = 'popup-category-recommended';
+                categoryText = 'Verdict: Recommended';
+                break;
+            case 'avoid':
+                iconChoice = redIcon;
+                categoryClass = 'popup-category-avoid';
+                categoryText = 'Verdict: Avoid (for local vibes)';
+                break;
+            case 'mixed':
+            default: // Default to mixed/yellow
+                iconChoice = yellowIcon;
+                categoryClass = 'popup-category-mixed';
+                categoryText = 'Verdict: Mixed / Consider';
+                break;
+        }
+
+        var marker = L.marker(beach.coords, {icon: iconChoice}).addTo(map);
+
+        marker.bindPopup(
+            "<b>" + beach.name + "</b>" +
+            "<div class='popup-description'>" + beach.description + "</div>" +
+            "<div class='popup-category " + categoryClass + "'>" + categoryText + "</div>" +
+            "<div class='popup-distance'>" + beach.distance + " from Málaga</div>"
+        );
+    });
+
+</script>
+
+</body>
+</html>
