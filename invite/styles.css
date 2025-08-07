@@ -15,6 +15,7 @@ body {
   animation: gradient 15s ease infinite;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
+  padding-bottom: 200px; /* Added extra space for photo timeline */
 }
 
 @keyframes gradient {
@@ -106,6 +107,8 @@ body {
   text-align: center;
   color: #333;
   font-size: 5em;
+  margin-top: 10px; /* Reduced top margin */
+  margin-bottom: 10px; /* Reduced bottom margin */
 }
 
 .details-section {
@@ -160,7 +163,7 @@ body {
 }
 
 .container {
-  flex: 0 0 350px; /* Fixed width for each timeline item */
+  flex: 0 0 550px; /* Fixed width for each timeline item */
   margin: 0 15px; /* Spacing between items */
   padding: 20px;
   position: relative;
@@ -235,12 +238,12 @@ body {
 .image-gallery {
   position: relative;
   margin-top: 10px;
-  min-height: 200px; /* Ensure the gallery has some height */
+  min-height: 300px; /* Ensure the gallery has some height */
 }
 
 .image-gallery img {
   position: absolute;
-  max-width: 150px; /* Set a max-width for the polaroids */
+  max-width: 200px; /* Set a max-width for the polaroids */
   height: auto;
   object-fit: cover; /* Use cover to fill the polaroid frame */
   background-color: #fff;

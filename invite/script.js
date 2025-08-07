@@ -49,7 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
       while (!placed && retries < 100) {
         const angle = Math.random() * 30 - 15;
         const x = Math.random() * (gallery.offsetWidth - image.width);
-        const y = Math.random() * (gallery.offsetHeight - image.height);
+        const verticalSpreadFactor = 0.6; // Adjust this value to control vertical spread (0.0 to 1.0)
+        const y = Math.random() * (gallery.offsetHeight * verticalSpreadFactor - image.height);
 
         image.style.transform = `rotate(${angle}deg)`;
         image.style.left = `${x}px`;
@@ -81,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
         image.style.cursor = 'grabbing';
         // Store the initial rotation to combine with translation
         initialRotation = image.style.transform.includes('rotate') ? image.style.transform.split('rotate(')[1].split(')')[0] : '0deg';
+        galleryRectCache = gallery.getBoundingClientRect(); // Cache gallery bounding rect on mousedown
+        initialRotationCache = initialRotation; // Cache initial rotation for the dragged image
       });
 
       image.style.cursor = 'grab';
@@ -105,13 +108,17 @@ document.addEventListener('DOMContentLoaded', function() {
       if (newX + currentDraggedImage.offsetWidth > gallery.offsetWidth) newX = gallery.offsetWidth - currentDraggedImage.offsetWidth;
       if (newY + currentDraggedImage.offsetHeight > gallery.offsetHeight) newY = gallery.offsetHeight - currentDraggedImage.offsetHeight;
 
-      currentDraggedImage.style.transform = `translate(${newX}px, ${newY}px) rotate(${initialRotationCache})`;
+      currentDraggedImage.style.left = `${newX}px`;
+      currentDraggedImage.style.top = `${newY}px`;
+      // Reapply initial rotation, but do not apply translate here
+      currentDraggedImage.style.transform = `rotate(${initialRotationCache})`;
     }
   });
 
   document.addEventListener('mouseup', () => {
     if (currentDraggedImage) {
       currentDraggedImage.style.cursor = 'grab';
+      currentDraggedImage.classList.add('is-dragged'); // Add class when dragging stops
       currentDraggedImage = null;
     }
   });
@@ -134,14 +141,22 @@ document.addEventListener('DOMContentLoaded', function() {
       const containerCenter = containerRect.left - timelineRect.left + containerRect.width / 2;
       const distance = Math.abs(timelineCenter - containerCenter);
       
-      const scale = Math.max(1, 1.5 - distance / timelineCenter);
-      container.style.transform = `scale(${scale}) translateY(${container.style.transform.includes('translateY') ? container.style.transform.split('translateY(')[1].split(')')[0] : '0px'})`;
+      const scale = Math.max(1, 1.3 - distance / timelineCenter);
+      container.style.transform = `translateY(${container.style.transform.includes('translateY') ? container.style.transform.split('translateY(')[1].split(')')[0] : '0px'})`;
+
+      const imageGallery = container.querySelector('.image-gallery');
+      if (imageGallery) {
+        imageGallery.style.transform = `scale(${scale})`;
+      }
 
       const images = container.querySelectorAll('.image-gallery img');
       images.forEach((image, index) => {
-        const spread = (1.5 - scale) * 50 * (index % 2 === 0 ? 1 : -1);
-        const originalTransform = image.style.transform.split(' ').filter(t => t.startsWith('rotate')).join(' ');
-        image.style.transform = `${originalTransform} translateX(${spread}px)`;
+        // Only apply translateX if the image is not currently being dragged and has not been manually dragged before
+        if (image !== currentDraggedImage && !image.classList.contains('is-dragged')) {
+          const spread = (1.5 - scale) * 75 * (index % 2 === 0 ? 1 : -1);
+          const originalTransform = image.style.transform.split(' ').filter(t => t.startsWith('rotate')).join(' ');
+          image.style.transform = `${originalTransform} translateX(${spread}px)`;
+        }
       });
     });
   }
