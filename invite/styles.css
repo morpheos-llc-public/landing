@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+
+@font-face {
+    font-family: 'Brush Script MT', cursive;
+    src: local('Brush Script MT'), local('BrushScriptMT'), url(https://fonts.cdnfonts.com/s/15381/BrushScriptMT.woff) format('woff');}
+
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap');
+
+body {
+  font-family: 'verdana', 'Trebuchet MS', 'Arial', sans-serif;
+  color: #444;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1em; /* Increased base font size */
+  animation: gradient 15s ease infinite;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.hero-section {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  padding-top: 10px; /* Add some padding to the top */
+  padding-bottom: 10px; /* Add some padding to the bottom */
+}
+
+.hero-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 80%; /* Adjust as needed to control the image size */
+  height: auto;
+  padding-top: 10px; /* Add some space above the image */
+  padding-bottom: 10px; /* Add some space below the image */
+}
+
+.hero-content {
+  max-width: 800px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.hero-content h1 {
+  font-family:  Geneva, sans-serif; /* 'Trebuchet MS', Helvetica, sans-serif; /*'Impact', sans-serif; */
+  font-size: 3.5em;
+  margin-bottom: 15px;
+}
+
+.hero-content p {
+  font-size: 1.2em;
+  line-height: 1.6;
+}
+
+.photo-section {
+  text-align: center;
+  padding: 10px 10px;
+}
+
+.polaroid-photo {
+  display: inline-block;
+  background-color: #fff;
+  border: 15px solid #fff;
+  border-bottom-width: 60px;
+  box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+  max-width: 52%;
+  height: auto;
+  transform: rotate(-2deg);
+  transition: transform 0.3s ease-in-out;
+}
+
+.polaroid-photo:hover {
+  transform: rotate(2deg) scale(1.05);
+}
+
+.text-section {
+  padding: 20px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.0);
+  border-radius: 8px;
+  position: relative;
+  z-index: 2;
+  color: #333;
+  font-size: 1.1em; /* Ensure text section is larger */
+}
+
+.text-section h2 {
+  font-family: 'brush script mt', cursive;
+  text-align: center;
+  color: #333;
+  font-size: 5em;
+}
+
+.details-section {
+  padding: 20px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.0);
+  border-radius: 1px;
+  position: relative;
+  z-index: 2;
+  color: #333;
+  font-size: 1.1em; /* Ensure details section is larger */
+}
+
+/* .details-section h2 {
+  font-family: 'Ostrich Sans Inline', sans-serif;
+  text-align: center;
+  color: #333;
+  font-size: 3em;
+} */
+
+.title {
+  font-family: 'brush script mt', cursive;
+  text-align: center;
+  padding: 10px 0 20px;
+  font-size: 5em;
+  color: #333;
+  position: relative; /* Ensure z-index works */
+  z-index: 0; /* Move behind timeline content */
+}
+
+.timeline {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 10px;
+  margin: 20 auto;
+  max-width: 100%; /* Allow it to take full width for horizontal scroll */
+  -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+  position: relative;
+}
+
+.timeline.active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.timeline::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, and Opera */
+}
+
+.container {
+  flex: 0 0 350px; /* Fixed width for each timeline item */
+  margin: 0 15px; /* Spacing between items */
+  padding: 20px;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.0); /* 0% transparent white */
+  z-index: 1;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  display: inline-block; /* For older browser compatibility with white-space: nowrap */
+  vertical-align: top; /* Align items to the top */
+  border-radius: 20px; /* Very rounded corners */
+  /* font-size: 5em; */
+}
+
+.container:nth-child(even) {
+  transform: translateY(20px);
+}
+
+.container:nth-child(odd) {
+  transform: translateY(-20px);
+}
+
+/* Remove vertical timeline specific styles */
+.timeline::after,
+.left::before,
+.right::before,
+.container::after {
+  display: none;
+}
+
+.left, .right {
+  /* These classes are still used on the containers, so we should not hide them. */
+  /* We can remove the left positioning properties though. */
+  left: auto;
+}
+
+.content {
+  padding: 10px;
+  background-color: transparent;
+  position: relative;
+  z-index: 3; /* Bring the content, including the year, to the front */
+  border-radius: 20px; /* Very rounded corners */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.1); */
+}
+
+.content h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.4em;
+  text-align: center;
+}
+
+.content p {
+  margin: 10px 0;
+  line-height: 1.5;
+  font-size: 1.1em; /* Ensure timeline content paragraphs are larger */
+}
+
+/* 1. Make the image a block element so margin:auto works */
+.block-party-image {
+  display: block;                 /* removes the inline‑gap below the image   */
+  margin-left: auto;              /* horizontally center it */
+  margin-right: auto;
+  
+  /* 2. Keep it inside the viewport */
+  max-width: 100%;                /* never wider than its container */
+  height: auto;                   
+  width: 100%; 
+}
+
+
+.image-gallery {
+  position: relative;
+  margin-top: 10px;
+  min-height: 200px; /* Ensure the gallery has some height */
+}
+
+.image-gallery img {
+  position: absolute;
+  max-width: 150px; /* Set a max-width for the polaroids */
+  height: auto;
+  object-fit: cover; /* Use cover to fill the polaroid frame */
+  background-color: #fff;
+  border: 10px solid #fff;
+  border-bottom-width: 45px;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease-in-out;
+  border-radius: 0; /* Remove the previous border-radius */;
+}
+
+.image-gallery img:hover {
+  transform: rotate(3deg);
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex: 0 0 80%; /* Adjust width for smaller screens */
+    margin: 0 10px;
+  }
+}
+
+.ocean {
+  height: 5%;
+  width:100%;
+  position:absolute;
+  bottom:0;
+  left:0;
+  background: #2c003e;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.wave {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
+  position: absolute;
+  top: -198px;
+  width: 6400px;
+  height: 198px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
+  filter: hue-rotate(100deg) saturate(1.5); /* Make it pinkish/purple */
+}
+
+.wave:nth-of-type(2) {
+  top: -175px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) -.125s infinite, swell 7s ease -1.25s infinite;
+  opacity: 1;
+  filter: saturate(2); /* Make it a more vibrant blue */
+}
+
+@keyframes wave {
+  0% {
+    margin-left: 0;
+  }
+  100% {
+    margin-left: -1600px;
+  }
+}
+
+@keyframes swell {
+  0%, 100% {
+    transform: translate3d(0,-25px,0);
+  }
+  50% {
+    transform: translate3d(0,5px,0);
+  }
+}
