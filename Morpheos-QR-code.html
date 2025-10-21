@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branded QR Code Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .form-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px dashed #dee2e6;
+        }
+
+        .form-section h2 {
+            font-size: 1.2em;
+            color: #495057;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #495057;
+            font-weight: 500;
+            font-size: 0.9em;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            font-family: inherit;
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-upload input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: white;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .file-upload-label:hover {
+            background: #f0f2ff;
+            border-color: #764ba2;
+        }
+
+        .logo-preview {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .logo-preview img {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 30px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result-section {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+
+        .result-section.active {
+            display: block;
+        }
+
+        #finalCanvas {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            margin: 20px 0;
+        }
+
+        .download-btn {
+            padding: 14px 40px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+
+        .download-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message.active {
+            display: block;
+        }
+
+        .color-swatches {
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .swatch-container {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .color-swatch {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .color-swatch.selected {
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Branded QR Code Generator</h1>
+        <p class="subtitle">Create custom QR codes that match your brand's color palette</p>
+
+        <div class="error-message" id="errorMessage"></div>
+
+        <div class="form-grid">
+            <div class="form-section">
+                <h2>📱 QR Code Content</h2>
+                <div class="form-group">
+                    <label for="qrType">QR Code Type</label>
+                    <select id="qrType" onchange="updateFormFields()">
+                        <option value="url">Website URL</option>
+                        <option value="text">Plain Text</option>
+                        <option value="email">Email Address</option>
+                        <option value="phone">Phone Number</option>
+                        <option value="vcard">Contact Card (vCard)</option>
+                    </select>
+                </div>
+                <div class="form-group" id="simpleContentGroup">
+                    <label for="qrContent">Content</label>
+                    <textarea id="qrContent" placeholder="Enter URL, text, email, or phone number..."></textarea>
+                </div>
+                
+                <!-- vCard specific fields -->
+                <div id="vcardFields" style="display: none;">
+                    <div class="form-group">
+                        <label for="vcardFirstName">First Name *</label>
+                        <input type="text" id="vcardFirstName" placeholder="John">
+                    </div>
+                    <div class="form-group">
+                        <label for="vcardLastName">Last Name *</label>
+                        <input type="text" id="vcardLastName" placeholder="Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="vcardPhone">Phone Number</label>
+                        <input type="tel" id="vcardPhone" placeholder="+1-555-123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="vcardEmail">Email</label>
+                        <input type="email" id="vcardEmail" placeholder="john@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="vcardCompany">Company</label>
+                        <input type="text" id="vcardCompany" placeholder="Acme Inc.">
+                    </div>
+                    <div class="form-group">
+                        <label for="vcardTitle">Job Title</label>
+                        <input type="text" id="vcardTitle" placeholder="CEO">
+                    </div>
+                    <div class="form-group">
+                        <label for="vcardWebsite">Website</label>
+                        <input type="url" id="vcardWebsite" placeholder="https://example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="vcardAddress">Address</label>
+                        <input type="text" id="vcardAddress" placeholder="123 Main St, City, State 12345">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="displayUrl">Display Text/URL (optional)</label>
+                    <input type="text" id="displayUrl" placeholder="www.yourcompany.com">
+                    <small style="color: #6c757d; font-size: 0.85em;">This text will appear below the QR code</small>
+                    <div id="textColorSwatches" class="color-swatches" style="display: none; margin-top: 10px;">
+                        <small style="color: #6c757d; display: block; margin-bottom: 5px;">Text Color:</small>
+                        <div class="swatch-container"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="qrColorStyle">QR Code Style</label>
+                    <select id="qrColorStyle">
+                        <option value="solid">Solid Color</option>
+                        <option value="gradient">Gradient (Top to Bottom)</option>
+                        <option value="gradient-reverse">Gradient - Reverse (Bottom to Top)</option>
+                    </select>
+                    <div id="qrColorSwatches" class="color-swatches" style="display: none; margin-top: 10px;">
+                        <small style="color: #6c757d; display: block; margin-bottom: 5px;">QR Code Color:</small>
+                        <div class="swatch-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>🎨 Brand Logo</h2>
+                <div class="form-group">
+                    <label>Upload Your Logo</label>
+                    <div class="file-upload">
+                        <input type="file" id="logoUpload" accept="image/*">
+                        <label for="logoUpload" class="file-upload-label">
+                            📤 Click to upload logo<br>
+                            <small style="color: #6c757d;">PNG, JPG, or SVG</small>
+                        </label>
+                    </div>
+                    <div class="logo-preview" id="logoPreview"></div>
+                </div>
+            </div>
+        </div>
+
+        <button class="generate-btn" id="generateBtn">✨ Generate Branded QR Code</button>
+
+        <div class="result-section" id="resultSection">
+            <h2 style="margin-bottom: 20px; color: #333;">Your Branded QR Code</h2>
+            <canvas id="finalCanvas"></canvas>
+            <div>
+                <button class="download-btn" id="downloadPng">⬇️ Download PNG</button>
+                <button class="download-btn" id="downloadSvg" style="background: #007bff;">⬇️ Download SVG</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/qrcode.min.js"></script>
+    <script>
+        let uploadedLogo = null;
+        let logoImage = null;
+        let currentBrandColors = [];
+        let currentQRColors = { fgColor: null, fgColor2: null, bgColor: null, isDarkLogo: false };
+        let currentQRImg = null;
+        let currentDisplayUrl = '';
+        let selectedTextColorIndex = 0;
+        let currentQRContent = '';
+        let selectedQRColorIndex = 0;
+
+        // Update form fields based on QR type
+        function updateFormFields() {
+            const qrType = document.getElementById('qrType').value;
+            const simpleContent = document.getElementById('simpleContentGroup');
+            const vcardFields = document.getElementById('vcardFields');
+            const qrContentTextarea = document.getElementById('qrContent');
+
+            // Update placeholder text based on type
+            const placeholders = {
+                'url': 'Type website URL here... (e.g., https://www.morpheos.llc)',
+                'text': 'Enter text here...',
+                'email': 'Type email address here... (e.g., contact@morpheos.llc)',
+                'phone': 'Type phone number here... (e.g., +1-555-123-4567)',
+                'vcard': ''
+            };
+
+            qrContentTextarea.placeholder = placeholders[qrType] || 'Enter content...';
+
+            if (qrType === 'vcard') {
+                simpleContent.style.display = 'none';
+                vcardFields.style.display = 'block';
+            } else {
+                simpleContent.style.display = 'block';
+                vcardFields.style.display = 'none';
+            }
+        }
+
+        // Generate vCard format
+        function generateVCard() {
+            const firstName = document.getElementById('vcardFirstName').value.trim();
+            const lastName = document.getElementById('vcardLastName').value.trim();
+            const phone = document.getElementById('vcardPhone').value.trim();
+            const email = document.getElementById('vcardEmail').value.trim();
+            const company = document.getElementById('vcardCompany').value.trim();
+            const title = document.getElementById('vcardTitle').value.trim();
+            const website = document.getElementById('vcardWebsite').value.trim();
+            const address = document.getElementById('vcardAddress').value.trim();
+
+            if (!firstName || !lastName) {
+                throw new Error('First name and last name are required for contact cards');
+            }
+
+            let vcard = 'BEGIN:VCARD\n';
+            vcard += 'VERSION:3.0\n';
+            vcard += `N:${lastName};${firstName};;;\n`;
+            vcard += `FN:${firstName} ${lastName}\n`;
+            
+            if (company) vcard += `ORG:${company}\n`;
+            if (title) vcard += `TITLE:${title}\n`;
+            if (phone) vcard += `TEL;TYPE=CELL:${phone}\n`;
+            if (email) vcard += `EMAIL:${email}\n`;
+            if (website) vcard += `URL:${website}\n`;
+            if (address) vcard += `ADR;TYPE=WORK:;;${address};;;;\n`;
+            
+            vcard += 'END:VCARD';
+
+            return vcard;
+        }
+
+        // Handle logo upload
+        document.getElementById('logoUpload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    uploadedLogo = event.target.result;
+                    const img = new Image();
+                    img.onload = function() {
+                        logoImage = img;
+                        document.getElementById('logoPreview').innerHTML = `<img src="${uploadedLogo}" alt="Logo preview">`;
+                    };
+                    img.src = uploadedLogo;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Handle QR style dropdown change
+        document.getElementById('qrColorStyle').addEventListener('change', handleQRStyleChange);
+
+        // Extract dominant colors from image
+        function extractColors(img, numColors = 5) {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const pixels = imageData.data;
+            const colorMap = {};
+            let whitePixelCount = 0;
+            let totalOpaquePixels = 0;
+
+            // Sample pixels (every 10th pixel for performance)
+            for (let i = 0; i < pixels.length; i += 40) {
+                const r = pixels[i];
+                const g = pixels[i + 1];
+                const b = pixels[i + 2];
+                const a = pixels[i + 3];
+
+                // Skip transparent pixels
+                if (a < 128) continue;
+
+                totalOpaquePixels++;
+
+                // Count white/very light pixels separately
+                if (r > 240 && g > 240 && b > 240) {
+                    whitePixelCount++;
+                    continue;
+                }
+
+                const key = `${Math.floor(r/10)*10},${Math.floor(g/10)*10},${Math.floor(b/10)*10}`;
+                colorMap[key] = (colorMap[key] || 0) + 1;
+            }
+
+            // Sort by frequency and get top colors
+            const sortedColors = Object.entries(colorMap)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, numColors)
+                .map(([color]) => {
+                    const [r, g, b] = color.split(',').map(Number);
+                    return { r, g, b };
+                });
+
+            // Calculate if majority is white
+            const whiteMajority = totalOpaquePixels > 0 && (whitePixelCount / totalOpaquePixels) > 0.5;
+
+            return { colors: sortedColors, hasWhiteBackground: whiteMajority };
+        }
+
+        // Analyze logo and determine optimal QR colors
+        function getOptimalQRColors(colors, hasWhiteBackground) {
+            // If logo has white background, force light theme
+            if (hasWhiteBackground) {
+                // Find darkest and second darkest colors for gradient
+                const sortedByDarkness = [...colors].sort((a, b) => {
+                    const lightnessA = (a.r + a.g + a.b) / 3;
+                    const lightnessB = (b.r + b.g + b.b) / 3;
+                    return lightnessA - lightnessB;
+                });
+
+                let darkest = sortedByDarkness[0];
+                let secondDarkest = sortedByDarkness[1] || sortedByDarkness[0];
+                
+                const minLightness = (darkest.r + darkest.g + darkest.b) / 3;
+
+                // If darkest is still too light, darken it more
+                let fgColor, fgColor2;
+                if (minLightness > 100) {
+                    fgColor = {
+                        r: Math.max(0, darkest.r - 60),
+                        g: Math.max(0, darkest.g - 60),
+                        b: Math.max(0, darkest.b - 60)
+                    };
+                    fgColor2 = {
+                        r: Math.max(0, secondDarkest.r - 40),
+                        g: Math.max(0, secondDarkest.g - 40),
+                        b: Math.max(0, secondDarkest.b - 40)
+                    };
+                } else {
+                    fgColor = darkest;
+                    fgColor2 = secondDarkest;
+                }
+
+                return {
+                    fgColor,
+                    fgColor2,
+                    bgColor: { r: 255, g: 255, b: 255 },
+                    isDarkLogo: false
+                };
+            }
+
+            // Calculate average lightness of the palette
+            const avgLightness = colors.reduce((sum, color) => {
+                return sum + (color.r + color.g + color.b) / 3;
+            }, 0) / colors.length;
+
+            const isDarkLogo = avgLightness < 128;
+
+            let fgColor, fgColor2, bgColor;
+
+            if (isDarkLogo) {
+                // Dark logo: use light QR on dark background
+                // Sort colors by lightness for gradient
+                const sortedByLightness = [...colors].sort((a, b) => {
+                    const lightnessA = (a.r + a.g + a.b) / 3;
+                    const lightnessB = (b.r + b.g + b.b) / 3;
+                    return lightnessB - lightnessA;
+                });
+
+                let lightest = sortedByLightness[0];
+                let secondLightest = sortedByLightness[1] || sortedByLightness[0];
+                
+                const maxLightness = (lightest.r + lightest.g + lightest.b) / 3;
+
+                // Find the darkest color for background
+                let darkest = colors[0];
+                let minLightness = 255;
+
+                colors.forEach(color => {
+                    const lightness = (color.r + color.g + color.b) / 3;
+                    if (lightness < minLightness) {
+                        minLightness = lightness;
+                        darkest = color;
+                    }
+                });
+
+                // Ensure sufficient contrast
+                bgColor = darkest;
+                fgColor = maxLightness > 150 ? lightest : { r: 255, g: 255, b: 255 };
+                fgColor2 = maxLightness > 150 ? secondLightest : { r: 240, g: 240, b: 240 };
+
+            } else {
+                // Light logo: use dark QR on light background
+                // Sort colors by darkness for gradient
+                const sortedByDarkness = [...colors].sort((a, b) => {
+                    const lightnessA = (a.r + a.g + a.b) / 3;
+                    const lightnessB = (b.r + b.g + b.b) / 3;
+                    return lightnessA - lightnessB;
+                });
+
+                let darkest = sortedByDarkness[0];
+                let secondDarkest = sortedByDarkness[1] || sortedByDarkness[0];
+                
+                const minLightness = (darkest.r + darkest.g + darkest.b) / 3;
+
+                // If darkest is still too light, darken it more
+                if (minLightness > 100) {
+                    fgColor = {
+                        r: Math.max(0, darkest.r - 60),
+                        g: Math.max(0, darkest.g - 60),
+                        b: Math.max(0, darkest.b - 60)
+                    };
+                    fgColor2 = {
+                        r: Math.max(0, secondDarkest.r - 40),
+                        g: Math.max(0, secondDarkest.g - 40),
+                        b: Math.max(0, secondDarkest.b - 40)
+                    };
+                } else {
+                    fgColor = darkest;
+                    fgColor2 = secondDarkest;
+                }
+
+                bgColor = { r: 255, g: 255, b: 255 };
+            }
+
+            return { fgColor, fgColor2, bgColor, isDarkLogo };
+        }
+
+        // Generate QR code with custom colors or gradient
+        function generateQRCode(content, fgColor, bgColor, gradientType = 'solid', fgColor2 = null) {
+            return new Promise((resolve) => {
+                const tempDiv = document.createElement('div');
+                tempDiv.style.display = 'none';
+                document.body.appendChild(tempDiv);
+
+                // Create QR with base foreground color
+                const qr = new QRCode(tempDiv, {
+                    text: content,
+                    width: 512,
+                    height: 512,
+                    colorDark: fgColor,
+                    colorLight: bgColor,
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+                setTimeout(() => {
+                    const qrImg = tempDiv.querySelector('img');
+                    const img = new Image();
+                    img.onload = function() {
+                        const isGradient = gradientType === 'gradient' || gradientType === 'gradient-reverse';
+                        
+                        if (isGradient && fgColor2) {
+                            // Apply gradient to QR code
+                            const canvas = document.createElement('canvas');
+                            canvas.width = 512;
+                            canvas.height = 512;
+                            const ctx = canvas.getContext('2d');
+                            
+                            // Draw original QR
+                            ctx.drawImage(img, 0, 0);
+                            
+                            // Get image data
+                            const imageData = ctx.getImageData(0, 0, 512, 512);
+                            const pixels = imageData.data;
+                            
+                            // Parse RGB colors from string
+                            const parseRGB = (colorStr) => {
+                                const match = colorStr.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+                                return match ? { 
+                                    r: parseInt(match[1]), 
+                                    g: parseInt(match[2]), 
+                                    b: parseInt(match[3]) 
+                                } : { r: 0, g: 0, b: 0 };
+                            };
+                            
+                            let color1 = parseRGB(fgColor);
+                            let color2 = parseRGB(fgColor2);
+                            
+                            // Swap colors for reverse gradient
+                            if (gradientType === 'gradient-reverse') {
+                                [color1, color2] = [color2, color1];
+                            }
+                            
+                            // Parse background color to detect QR pixels
+                            const bgColorParsed = parseRGB(bgColor);
+                            
+                            // Apply gradient to each pixel
+                            for (let i = 0; i < pixels.length; i += 4) {
+                                const pixelIndex = i / 4;
+                                const y = Math.floor(pixelIndex / 512);
+                                const ratio = y / 511; // 0 at top, 1 at bottom
+                                
+                                const r = pixels[i];
+                                const g = pixels[i + 1];
+                                const b = pixels[i + 2];
+                                
+                                // Check if pixel is NOT background (i.e., it's part of QR code)
+                                const isBg = Math.abs(r - bgColorParsed.r) < 30 && 
+                                            Math.abs(g - bgColorParsed.g) < 30 && 
+                                            Math.abs(b - bgColorParsed.b) < 30;
+                                
+                                if (!isBg) {
+                                    // Apply gradient
+                                    pixels[i] = Math.round(color1.r + (color2.r - color1.r) * ratio);
+                                    pixels[i + 1] = Math.round(color1.g + (color2.g - color1.g) * ratio);
+                                    pixels[i + 2] = Math.round(color1.b + (color2.b - color1.b) * ratio);
+                                }
+                            }
+                            
+                            ctx.putImageData(imageData, 0, 0);
+                            
+                            const gradientImg = new Image();
+                            gradientImg.onload = function() {
+                                document.body.removeChild(tempDiv);
+                                resolve(gradientImg);
+                            };
+                            gradientImg.src = canvas.toDataURL();
+                        } else {
+                            document.body.removeChild(tempDiv);
+                            resolve(img);
+                        }
+                    };
+                    img.src = qrImg.src;
+                }, 100);
+            });
+        }
+
+        // Create final branded image
+        async function createBrandedQR(logoImg, qrImg, displayUrl, colorData, isDarkLogo, textColorIndex = 0) {
+            const brandColors = Array.isArray(colorData) ? colorData : colorData.colors;
+            const canvas = document.getElementById('finalCanvas');
+            const ctx = canvas.getContext('2d');
+
+            const padding = 60;
+            const maxWidth = 800;
+            
+            // Calculate dimensions
+            const logoHeight = Math.min(300, maxWidth * 0.35);
+            const logoAspect = logoImg.width / logoImg.height;
+            const logoWidth = logoHeight * logoAspect;
+            
+            const qrSize = Math.min(logoWidth, maxWidth * 0.4);
+            const urlTextHeight = displayUrl ? 60 : 0;
+
+            canvas.width = Math.max(logoWidth, qrSize) + padding * 2;
+            canvas.height = logoHeight + qrSize + urlTextHeight + padding * 4;
+
+            // Fill background - adapt to logo style
+            const bgColor = isDarkLogo ? brandColors[0] : { r: 255, g: 255, b: 255 };
+            ctx.fillStyle = `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw logo centered
+            const logoX = (canvas.width - logoWidth) / 2;
+            ctx.drawImage(logoImg, logoX, padding, logoWidth, logoHeight);
+
+            // Draw QR code centered
+            const qrX = (canvas.width - qrSize) / 2;
+            const qrY = logoHeight + padding * 2;
+            ctx.drawImage(qrImg, qrX, qrY, qrSize, qrSize);
+
+            // Draw display URL if provided
+            if (displayUrl) {
+                const textY = qrY + qrSize + padding;
+                
+                // Get available text colors
+                const textColors = getTextColorOptions(brandColors, isDarkLogo);
+                const textColor = textColors[textColorIndex % textColors.length];
+                
+                ctx.fillStyle = `rgb(${textColor.r}, ${textColor.g}, ${textColor.b})`;
+                ctx.font = 'bold 28px Arial, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(displayUrl, canvas.width / 2, textY);
+            }
+
+            return canvas;
+        }
+
+        // Get text color options
+        function getTextColorOptions(brandColors, isDarkLogo) {
+            let colors = [];
+            
+            if (isDarkLogo) {
+                // For dark logos, return light colors
+                const lightColors = brandColors.filter(c => (c.r + c.g + c.b) / 3 > 150);
+                colors = [...lightColors];
+                
+                // Always add white if not present
+                const hasWhite = colors.some(c => c.r > 240 && c.g > 240 && c.b > 240);
+                if (!hasWhite) {
+                    colors.push({ r: 255, g: 255, b: 255 });
+                }
+            } else {
+                // For light logos, return all brand colors
+                colors = [...brandColors];
+                
+                // Always add black if not present
+                const hasBlack = colors.some(c => c.r < 20 && c.g < 20 && c.b < 20);
+                if (!hasBlack) {
+                    colors.push({ r: 0, g: 0, b: 0 });
+                }
+                
+                // Always add white if not present
+                const hasWhite = colors.some(c => c.r > 240 && c.g > 240 && c.b > 240);
+                if (!hasWhite) {
+                    colors.push({ r: 255, g: 255, b: 255 });
+                }
+            }
+            
+            return colors;
+        }
+
+        // Get QR color options (all brand colors)
+        function getQRColorOptions(brandColors) {
+            return brandColors;
+        }
+
+        // Display color swatches for text only
+        function displayColorSwatches(brandColors, isDarkLogo) {
+            // Text color swatches
+            const textColorContainer = document.querySelector('#textColorSwatches .swatch-container');
+            const textColors = getTextColorOptions(brandColors, isDarkLogo);
+            textColorContainer.innerHTML = '';
+            
+            textColors.forEach((color, index) => {
+                const swatch = document.createElement('div');
+                swatch.className = 'color-swatch' + (index === selectedTextColorIndex ? ' selected' : '');
+                swatch.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                swatch.title = `Color ${index + 1}`;
+                swatch.onclick = () => {
+                    selectedTextColorIndex = index;
+                    regenerateWithNewTextColor();
+                };
+                textColorContainer.appendChild(swatch);
+            });
+
+            document.getElementById('textColorSwatches').style.display = 'block';
+
+            // QR color swatches (only for solid mode)
+            updateQRColorSwatches(brandColors, isDarkLogo);
+        }
+
+        // Update QR color swatches based on current style
+        function updateQRColorSwatches(brandColors, isDarkLogo) {
+            const qrColorStyle = document.getElementById('qrColorStyle').value;
+            const qrSwatchesDiv = document.getElementById('qrColorSwatches');
+            
+            if (qrColorStyle === 'solid') {
+                // Show QR color swatches for solid mode
+                const qrColorContainer = document.querySelector('#qrColorSwatches .swatch-container');
+                const qrColors = getQRColorOptions(brandColors, isDarkLogo);
+                qrColorContainer.innerHTML = '';
+                
+                qrColors.forEach((color, index) => {
+                    const swatch = document.createElement('div');
+                    swatch.className = 'color-swatch' + (index === selectedQRColorIndex ? ' selected' : '');
+                    swatch.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                    swatch.title = `Color ${index + 1}`;
+                    swatch.onclick = () => {
+                        selectedQRColorIndex = index;
+                        regenerateWithNewQRColor();
+                    };
+                    qrColorContainer.appendChild(swatch);
+                });
+
+                qrSwatchesDiv.style.display = 'block';
+            } else {
+                // Hide QR color swatches for gradient modes
+                qrSwatchesDiv.style.display = 'none';
+            }
+        }
+
+        // Get QR color options with black and white always included
+        function getQRColorOptions(brandColors, isDarkLogo) {
+            let colors = [...brandColors];
+            
+            if (isDarkLogo) {
+                // For dark logos, add white if not present
+                const hasWhite = colors.some(c => c.r > 240 && c.g > 240 && c.b > 240);
+                if (!hasWhite) {
+                    colors.push({ r: 255, g: 255, b: 255 });
+                }
+            } else {
+                // For light logos, add black and white if not present
+                const hasBlack = colors.some(c => c.r < 20 && c.g < 20 && c.b < 20);
+                if (!hasBlack) {
+                    colors.push({ r: 0, g: 0, b: 0 });
+                }
+                
+                const hasWhite = colors.some(c => c.r > 240 && c.g > 240 && c.b > 240);
+                if (!hasWhite) {
+                    colors.push({ r: 255, g: 255, b: 255 });
+                }
+            }
+            
+            return colors;
+        }
+
+        // Regenerate with new QR color (for solid mode)
+        async function regenerateWithNewQRColor() {
+            if (!currentQRContent || !logoImage || currentBrandColors.length === 0) return;
+
+            const { isDarkLogo, bgColor } = currentQRColors;
+            const qrColors = getQRColorOptions(currentBrandColors, isDarkLogo);
+            const selectedColor = qrColors[selectedQRColorIndex % qrColors.length];
+
+            // Adjust color for contrast if needed
+            let fgColor;
+            if (isDarkLogo) {
+                // For dark logos, ensure light colors
+                const lightness = (selectedColor.r + selectedColor.g + selectedColor.b) / 3;
+                fgColor = lightness > 150 ? selectedColor : { r: 255, g: 255, b: 255 };
+            } else {
+                // For light logos, darken if needed
+                const lightness = (selectedColor.r + selectedColor.g + selectedColor.b) / 3;
+                if (lightness > 100) {
+                    fgColor = {
+                        r: Math.max(0, selectedColor.r - 60),
+                        g: Math.max(0, selectedColor.g - 60),
+                        b: Math.max(0, selectedColor.b - 60)
+                    };
+                } else {
+                    fgColor = selectedColor;
+                }
+            }
+
+            console.log('Regenerating with QR color:', fgColor);
+
+            try {
+                // Regenerate QR with new color
+                const newQRImg = await generateQRCode(
+                    currentQRContent,
+                    `rgb(${fgColor.r}, ${fgColor.g}, ${fgColor.b})`,
+                    `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
+                    'solid',
+                    null
+                );
+
+                currentQRImg = newQRImg;
+
+                // Redraw canvas
+                await createBrandedQR(logoImage, newQRImg, currentDisplayUrl, { colors: currentBrandColors }, isDarkLogo, selectedTextColorIndex);
+
+                // Update swatch selections
+                document.querySelectorAll('#qrColorSwatches .color-swatch').forEach((sw, i) => {
+                    sw.classList.toggle('selected', i === selectedQRColorIndex);
+                });
+            } catch (error) {
+                console.error('Error regenerating QR color:', error);
+                showError('Error updating QR color: ' + error.message);
+            }
+        }
+
+        // Regenerate only the text color (redraw canvas)
+        async function regenerateWithNewTextColor() {
+            if (!currentQRImg || !logoImage || currentBrandColors.length === 0) return;
+
+            const { isDarkLogo } = currentQRColors;
+
+            // Redraw canvas with new text color
+            await createBrandedQR(logoImage, currentQRImg, currentDisplayUrl, { colors: currentBrandColors }, isDarkLogo, selectedTextColorIndex);
+
+            // Update swatch selections
+            document.querySelectorAll('#textColorSwatches .color-swatch').forEach((sw, i) => {
+                sw.classList.toggle('selected', i === selectedTextColorIndex);
+            });
+        }
+
+        // Handle QR style dropdown change
+        async function handleQRStyleChange() {
+            // Update QR color swatches visibility
+            if (currentBrandColors.length > 0) {
+                updateQRColorSwatches(currentBrandColors, currentQRColors.isDarkLogo);
+            }
+
+            // Only regenerate if a QR code has already been generated
+            if (!currentQRImg || !logoImage || currentBrandColors.length === 0 || !currentQRContent) {
+                console.log('Not ready to regenerate:', {
+                    hasQRImg: !!currentQRImg,
+                    hasLogoImage: !!logoImage,
+                    hasBrandColors: currentBrandColors.length > 0,
+                    hasQRContent: !!currentQRContent
+                });
+                return;
+            }
+
+            const { fgColor, fgColor2, bgColor, isDarkLogo } = currentQRColors;
+            const qrColorStyle = document.getElementById('qrColorStyle').value;
+
+            console.log('Regenerating with style:', qrColorStyle);
+
+            // Show generating indicator
+            const generateBtn = document.getElementById('generateBtn');
+            const originalText = generateBtn.textContent;
+            generateBtn.textContent = '⏳ Updating style...';
+            generateBtn.disabled = true;
+
+            try {
+                // Regenerate QR with new style
+                const newQRImg = await generateQRCode(
+                    currentQRContent,
+                    `rgb(${fgColor.r}, ${fgColor.g}, ${fgColor.b})`,
+                    `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
+                    qrColorStyle,
+                    `rgb(${fgColor2.r}, ${fgColor2.g}, ${fgColor2.b})`
+                );
+
+                currentQRImg = newQRImg;
+
+                // Redraw canvas with new QR
+                await createBrandedQR(logoImage, newQRImg, currentDisplayUrl, { colors: currentBrandColors }, isDarkLogo, selectedTextColorIndex);
+                
+                console.log('Successfully regenerated');
+            } catch (error) {
+                console.error('Error regenerating:', error);
+                showError('Error updating QR style: ' + error.message);
+            } finally {
+                generateBtn.textContent = originalText;
+                generateBtn.disabled = false;
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.add('active');
+            setTimeout(() => errorDiv.classList.remove('active'), 5000);
+        }
+
+        // Generate button click handler
+        document.getElementById('generateBtn').addEventListener('click', async function() {
+            const qrType = document.getElementById('qrType').value;
+            const displayUrl = document.getElementById('displayUrl').value.trim();
+
+            let qrContent, formattedContent;
+
+            // Handle vCard separately
+            if (qrType === 'vcard') {
+                try {
+                    formattedContent = generateVCard();
+                } catch (error) {
+                    showError(error.message);
+                    return;
+                }
+            } else {
+                qrContent = document.getElementById('qrContent').value.trim();
+                
+                // Validation
+                if (!qrContent) {
+                    showError('Please enter content for the QR code');
+                    return;
+                }
+
+                // Format content based on type
+                formattedContent = qrContent;
+                if (qrType === 'email' && !qrContent.startsWith('mailto:')) {
+                    formattedContent = 'mailto:' + qrContent;
+                } else if (qrType === 'phone' && !qrContent.startsWith('tel:')) {
+                    formattedContent = 'tel:' + qrContent.replace(/\D/g, '');
+                }
+            }
+
+            if (!uploadedLogo) {
+                showError('Please upload a logo');
+                return;
+            }
+
+            // Disable button during generation
+            this.disabled = true;
+            this.textContent = '⏳ Generating...';
+
+            try {
+                // Extract colors from logo
+                const colorData = extractColors(logoImage, 5);
+                const brandColors = colorData.colors;
+                const hasWhiteBackground = colorData.hasWhiteBackground;
+                
+                const { fgColor, fgColor2, bgColor, isDarkLogo } = getOptimalQRColors(brandColors, hasWhiteBackground);
+
+                // Store current settings
+                currentBrandColors = brandColors;
+                currentQRColors = { fgColor, fgColor2, bgColor, isDarkLogo };
+                currentDisplayUrl = displayUrl;
+                currentQRContent = formattedContent;
+                selectedTextColorIndex = 0;
+
+                // Check gradient type
+                const qrColorStyle = document.getElementById('qrColorStyle').value;
+
+                // Generate QR code with brand colors
+                const qrImg = await generateQRCode(
+                    formattedContent,
+                    `rgb(${fgColor.r}, ${fgColor.g}, ${fgColor.b})`,
+                    `rgb(${bgColor.r}, ${bgColor.g}, ${bgColor.b})`,
+                    qrColorStyle,
+                    `rgb(${fgColor2.r}, ${fgColor2.g}, ${fgColor2.b})`
+                );
+
+                // Store QR image
+                currentQRImg = qrImg;
+
+                // Create final branded image
+                await createBrandedQR(logoImage, qrImg, displayUrl, colorData, isDarkLogo, 0);
+
+                // Display color swatches
+                displayColorSwatches(brandColors, isDarkLogo);
+
+                // Show result
+                document.getElementById('resultSection').classList.add('active');
+                document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+
+            } catch (error) {
+                showError('Error generating QR code: ' + error.message);
+            } finally {
+                this.disabled = false;
+                this.textContent = '✨ Generate Branded QR Code';
+            }
+        });
+
+        // Download PNG
+        document.getElementById('downloadPng').addEventListener('click', function() {
+            const canvas = document.getElementById('finalCanvas');
+            const link = document.createElement('a');
+            link.download = 'branded-qr-code.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+
+        // Download SVG (converts canvas to SVG-wrapped image)
+        document.getElementById('downloadSvg').addEventListener('click', function() {
+            const canvas = document.getElementById('finalCanvas');
+            const imgData = canvas.toDataURL('image/png');
+            
+            const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg width="${canvas.width}" height="${canvas.height}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <image width="${canvas.width}" height="${canvas.height}" xlink:href="${imgData}"/>
+</svg>`;
+
+            const blob = new Blob([svg], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.download = 'branded-qr-code.svg';
+            link.href = url;
+            link.click();
+            URL.revokeObjectURL(url);
+        });
+    </script>
+</body>
+</html>
