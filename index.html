@@ -508,6 +508,207 @@
       transition: max-height 0.5s ease-in;
     }
 
+    /* TESTIMONIALS, CLIENTS, PARTNERS */
+    #testimonials, #clients, #partners {
+      padding: 60px 20px;
+      border-top: 1px solid #222;
+    }
+
+    #testimonials .section-title,
+    #clients .section-title,
+    #partners .section-title {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .testimonial-carousel {
+      position: relative;
+      overflow: hidden;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 10px 40px;
+    }
+
+    .testimonial-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.55s ease;
+    }
+
+    .testimonial-card {
+      min-width: 100%;
+      background: #0f0f0f;
+      border: 1px solid #1f1f1f;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .testimonial-card .quote {
+      font-size: 1.2em;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-card .name {
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .testimonial-card .title {
+      color: #cccccc;
+      font-size: 0.95em;
+    }
+
+    .testimonial-nav,
+    .client-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid #2a2a2a;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .testimonial-nav:hover,
+    .client-nav:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .testimonial-nav.prev,
+    .client-nav.prev {
+      left: 0;
+    }
+
+    .testimonial-nav.next,
+    .client-nav.next {
+      right: 0;
+    }
+
+    .testimonial-dots,
+    .client-dots {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .testimonial-dots button,
+    .client-dots button {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: #444;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .testimonial-dots button.active,
+    .client-dots button.active {
+      background: #fff;
+      transform: scale(1.15);
+    }
+
+    .client-carousel {
+      position: relative;
+      overflow: hidden;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 40px;
+    }
+
+    .client-track {
+      display: flex;
+      gap: 24px;
+      transition: transform 0.55s ease;
+    }
+
+    .client-card {
+      flex: 0 0 calc(50% - 12px);
+      background: #ffffff;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 150px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    .client-card img {
+      max-height: 120px;
+      max-width: 100%;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 24px;
+      align-items: center;
+      justify-items: center;
+    }
+
+    .logo-grid img {
+      max-height: 72px;
+      max-width: 180px;
+      width: auto;
+      height: auto;
+      filter: none;
+      opacity: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .logo-grid img:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Partner logo override to enlarge beyond default logo-grid sizing */
+    #partners .logo-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .logo-grid img.partner-logo-large {
+      max-height: 200px;
+      max-width: 480px;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 16px;
+      background: #ffffff;
+      padding: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
+    }
+
+    @media (max-width: 768px) {
+      .testimonial-carousel {
+        padding: 10px 10px 30px;
+      }
+
+      .testimonial-card {
+        min-width: 100%;
+      }
+
+      .testimonial-nav {
+        display: none;
+      }
+
+      .client-card {
+        flex: 0 0 100%;
+      }
+
+      .client-nav {
+        display: none;
+      }
+    }
+
     /* FOOTER */
     footer {
       background: #000000;
@@ -779,6 +980,72 @@
 
   </section>
 
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <h2 class="section-title">TESTIMONIALS</h2>
+    <div class="testimonial-carousel" data-autoplay="true" data-interval="5500">
+      <button class="testimonial-nav prev" aria-label="Previous testimonial">‹</button>
+      <div class="testimonial-track">
+        <article class="testimonial-card">
+          <p class="quote">“Brandon is an AI expert who explains complex ideas and tools in clear, everyday language. He was incredibly helpful in showing me how to leverage AI in my business to deliver better results for clients and improve my bottom line. In our very first session, we identified three concrete initiatives to expand my work and streamline my operations. He’s smart, focused, and a very creative thinker. Highly recommended as an AI advisor and strategist for any business owner who wants to use AI to grow revenue and work more efficiently.”</p>
+          <p class="name"><a href="https://www.linkedin.com/in/tony-jenkins-b1b177/" target="_blank" rel="noopener">Tony Jenkins</a></p>
+          <p class="title">Executive Coach</p>
+        </article>
+        <article class="testimonial-card">
+          <p class="quote">“Brandon helped our team move beyond off-the-shelf tools and ship a custom workflow in weeks.”</p>
+          <p class="name">Alex Kim</p>
+          <p class="title">Head of Product, Early-Stage SaaS</p>
+        </article>
+        <article class="testimonial-card">
+          <p class="quote">“The AI playbooks and training sessions created immediate efficiency gains for our BD team.”</p>
+          <p class="name">Priya Patel</p>
+          <p class="title">VP Business Development, Healthtech</p>
+        </article>
+        <article class="testimonial-card">
+          <p class="quote">“Clear, actionable guidance on where to invest and where not to—saved us weeks of diligence.”</p>
+          <p class="name">Jordan Lee</p>
+          <p class="title">Partner, Seed Fund</p>
+        </article>
+      </div>
+      <button class="testimonial-nav next" aria-label="Next testimonial">›</button>
+      <div class="testimonial-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Clients -->
+  <section id="clients">
+    <h2 class="section-title">CLIENTS</h2>
+    <div class="client-carousel" data-autoplay="true" data-interval="4800">
+      <button class="client-nav prev" aria-label="Previous client">‹</button>
+      <div class="client-track">
+        <div class="client-card">
+          <img src="partners/client-logos/-DirectSeq_LogoRGB_Final__Stacked_FullColor.png" alt="DirectSeq logo">
+        </div>
+        <div class="client-card">
+          <img src="partners/client-logos/PsiLife Logos_Primary Logo.png" alt="PsiLife logo">
+        </div>
+        <div class="client-card">
+          <img src="partners/client-logos/SocializeLA-logo.png" alt="SocializeLA logo">
+        </div>
+        <div class="client-card">
+          <img src="partners/client-logos/UAlbanyMark_F_S02A_HEX_Gold_Black.png" alt="UAlbany logo">
+        </div>
+      </div>
+      <button class="client-nav next" aria-label="Next client">›</button>
+      <div class="client-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Partners -->
+  <section id="partners">
+    <h2 class="section-title">PARTNERS</h2>
+    <div class="logo-grid">
+      <a href="https://savageai.com/" target="_blank" rel="noopener">
+        <img class="partner-logo-large" src="partners/partner-logos/SavageAI-logo.png" alt="Savage AI logo">
+      </a>
+    </div>
+  </section>
+
   <!-- About Section -->
   <section id="about">
     <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
@@ -904,6 +1171,164 @@
         list.classList.toggle('active');
       });
     });
+
+    // Testimonials carousel
+    const carousel = document.querySelector('.testimonial-carousel');
+    if (carousel) {
+      const track = carousel.querySelector('.testimonial-track');
+      const cards = Array.from(track.children);
+      const prevBtn = carousel.querySelector('.testimonial-nav.prev');
+      const nextBtn = carousel.querySelector('.testimonial-nav.next');
+      const dots = carousel.querySelector('.testimonial-dots');
+      let index = 0;
+      let intervalId;
+
+      cards.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.addEventListener('click', () => goTo(i));
+        dots.appendChild(dot);
+      });
+
+      const update = () => {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        dots.querySelectorAll('button').forEach((btn, i) => btn.classList.toggle('active', i === index));
+      };
+
+      const goTo = (i) => {
+        index = (i + cards.length) % cards.length;
+        update();
+      };
+
+      const next = () => goTo(index + 1);
+      const prev = () => goTo(index - 1);
+
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+
+      const autoplay = carousel.dataset.autoplay === 'true';
+      const interval = Number(carousel.dataset.interval) || 5500;
+      const startAuto = () => autoplay && (intervalId = setInterval(next, interval));
+      const stopAuto = () => intervalId && clearInterval(intervalId);
+
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', () => {
+        stopAuto();
+        startAuto();
+      });
+
+      update();
+      startAuto();
+
+      let startX = null;
+      carousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        stopAuto();
+      });
+
+      carousel.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const delta = e.changedTouches[0].clientX - startX;
+        if (Math.abs(delta) > 50) {
+          delta < 0 ? next() : prev();
+        }
+        startX = null;
+        startAuto();
+      });
+    }
+
+    // Clients carousel (shows two at a time on desktop, one on mobile)
+    const clientCarousel = document.querySelector('.client-carousel');
+    if (clientCarousel) {
+      const track = clientCarousel.querySelector('.client-track');
+      const cards = Array.from(track.children);
+      const prevBtn = clientCarousel.querySelector('.client-nav.prev');
+      const nextBtn = clientCarousel.querySelector('.client-nav.next');
+      const dots = clientCarousel.querySelector('.client-dots');
+      const autoplay = clientCarousel.dataset.autoplay === 'true';
+      const interval = Number(clientCarousel.dataset.interval) || 4800;
+      let index = 0;
+      let intervalId;
+      let visibleCount = window.innerWidth <= 768 ? 1 : 2;
+
+      const getMaxIndex = () => Math.max(cards.length - visibleCount, 0);
+
+      const buildDots = () => {
+        dots.innerHTML = '';
+        for (let i = 0; i <= getMaxIndex(); i++) {
+          const dot = document.createElement('button');
+          dot.addEventListener('click', () => goTo(i));
+          dots.appendChild(dot);
+        }
+      };
+
+      const updateDots = () => {
+        const max = getMaxIndex();
+        dots.querySelectorAll('button').forEach((btn, i) => btn.classList.toggle('active', i === Math.min(index, max)));
+      };
+
+      const updatePosition = () => {
+        const offset = cards[index].offsetLeft;
+        track.style.transform = `translateX(-${offset}px)`;
+      };
+
+      const goTo = (i) => {
+        const max = getMaxIndex();
+        if (max === 0) {
+          index = 0;
+        } else {
+          if (i > max) index = 0;
+          else if (i < 0) index = max;
+          else index = i;
+        }
+        updatePosition();
+        updateDots();
+      };
+
+      const next = () => goTo(index + 1);
+      const prev = () => goTo(index - 1);
+
+      const startAuto = () => autoplay && (intervalId = setInterval(next, interval));
+      const stopAuto = () => intervalId && clearInterval(intervalId);
+
+      buildDots();
+      goTo(0);
+      startAuto();
+
+      nextBtn.addEventListener('click', next);
+      prevBtn.addEventListener('click', prev);
+
+      clientCarousel.addEventListener('mouseenter', stopAuto);
+      clientCarousel.addEventListener('mouseleave', () => {
+        stopAuto();
+        startAuto();
+      });
+
+      // Swipe support
+      let startX = null;
+      clientCarousel.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        stopAuto();
+      });
+
+      clientCarousel.addEventListener('touchend', (e) => {
+        if (startX === null) return;
+        const delta = e.changedTouches[0].clientX - startX;
+        if (Math.abs(delta) > 50) {
+          delta < 0 ? next() : prev();
+        }
+        startX = null;
+        startAuto();
+      });
+
+      window.addEventListener('resize', () => {
+        const newVisible = window.innerWidth <= 768 ? 1 : 2;
+        if (newVisible !== visibleCount) {
+          visibleCount = newVisible;
+          buildDots();
+        }
+        goTo(Math.min(index, getMaxIndex()));
+      });
+    }
 
     // Parallax effect for hero video
     window.addEventListener('scroll', () => {
