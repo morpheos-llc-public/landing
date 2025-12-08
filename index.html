@@ -374,6 +374,155 @@
       transform: translateZ(0);
     }
 
+    /* Chat demo box */
+    .chat-demo {
+      max-width: 960px;
+      margin: 30px auto 10px;
+      padding: 28px 22px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .chat-demo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .chat-demo h3 {
+      font-size: 1.5em;
+      margin-bottom: 4px;
+    }
+
+    .chat-demo .chat-subtitle {
+      font-size: 0.95em;
+      color: #E0E0E0;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .chat-demo .chat-badge {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.9em;
+      color: #FFFFFF;
+      white-space: nowrap;
+    }
+
+    .chat-window {
+      background: #0B0B0B;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .chat-messages {
+      min-height: 200px;
+      max-height: 320px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding-right: 4px;
+    }
+
+    .chat-message {
+      padding: 12px 14px;
+      border-radius: 14px;
+      line-height: 1.5;
+      font-weight: 300;
+      max-width: 85%;
+      word-break: break-word;
+    }
+
+    .chat-message.bot {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      align-self: flex-start;
+    }
+
+    .chat-message.user {
+      background: linear-gradient(135deg, #FFFFFF, #C5C5C5);
+      color: #000000;
+      align-self: flex-end;
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .chat-suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chat-suggestion {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFFFF;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+
+    .chat-suggestion:hover {
+      background: #FFFFFF;
+      color: #000000;
+      transform: translateY(-1px);
+    }
+
+    .chat-input-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 999px;
+      padding: 8px 12px;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      padding: 10px;
+      font-size: 1em;
+      outline: none;
+    }
+
+    .chat-input-row button {
+      background: #FFFFFF;
+      color: #000000;
+      border: none;
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .chat-input-row button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+    }
+
+    .chat-status {
+      font-size: 0.9em;
+      color: #CCCCCC;
+      min-height: 18px;
+    }
+
     /* CTA Button Styles */
     .cta-button {
       display: inline-block;
@@ -860,6 +1009,19 @@
       header {
         background: #000000;
       }
+
+      .chat-demo {
+        margin: 20px 12px 0;
+        padding: 22px 18px;
+      }
+
+      .chat-window {
+        max-height: none;
+      }
+
+      .chat-messages {
+        max-height: 260px;
+      }
     }
   </style>
 </head>
@@ -935,10 +1097,37 @@
     </video>
     <h1>AI is here. Empower yourself & your team.</h1>
     <p style="font-size: 1.4em;">
-      Step beyond basics to unlock AI's true potential for you and your team. We'll help you navigate the complexities of AI and empower you with custom tools tailored to meet your team's specific needs.
+      We don't just tell you what's possible - we build the tools that make it real. We'll help you navigate the complexities of AI and empower you with custom tools, governance, and training tailored to meet your team's specific needs.
     </p>
     <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
   </div>
+
+  <section class="chat-demo" aria-labelledby="chat-demo-title">
+    <div class="chat-demo-header">
+      <div>
+        <h3 id="chat-demo-title">Try the Morpheos AI concierge</h3>
+        <p class="chat-subtitle">Chat with our AI assistant—ask about AI strategy, governance, or custom builds. Click a prompt or type your own.</p>
+      </div>
+      <div class="chat-badge">Live demo</div>
+    </div>
+    <div class="chat-window">
+      <div class="chat-messages" id="chat-messages" aria-live="polite">
+        <div class="chat-message bot">Welcome to Morpheos! How can I help you today?</div>
+      </div>
+      <div class="chat-suggestions">
+        <button type="button" class="chat-suggestion">My organization needs help developing AI governance and policy.</button>
+        <button type="button" class="chat-suggestion">My team needs faster research tools and competitive intelligence insights.</button>
+        <button type="button" class="chat-suggestion">I need a custom database to track my clients and competitors.</button>
+        <button type="button" class="chat-suggestion">I want to explore workflow automations to improve efficiency for my team.</button>
+        <button type="button" class="chat-suggestion">I need you to build me custom AI agents to enable previously impossible tasks.</button>
+      </div>
+      <form class="chat-input-row" id="chat-form">
+        <input type="text" id="chat-input" placeholder="Ask me about AI strategy, governance, or automation..." autocomplete="off">
+        <button type="submit">Send</button>
+      </form>
+      <div class="chat-status" id="chat-status"></div>
+    </div>
+  </section>
 
   <div style="display: flex; justify-content: center; align-items: center; margin: 5px 0;">
       <picture>
@@ -1048,21 +1237,7 @@
           <p class="name"><a href="https://www.linkedin.com/in/tony-jenkins-b1b177/" target="_blank" rel="noopener">Tony Jenkins</a></p>
           <p class="title">Executive Coach</p>
         </article>
-        <article class="testimonial-card">
-          <p class="quote">“Brandon helped our team move beyond off-the-shelf tools and ship a custom workflow in weeks.”</p>
-          <p class="name">Alex Kim</p>
-          <p class="title">Head of Product, Early-Stage SaaS</p>
-        </article>
-        <article class="testimonial-card">
-          <p class="quote">“The AI playbooks and training sessions created immediate efficiency gains for our BD team.”</p>
-          <p class="name">Priya Patel</p>
-          <p class="title">VP Business Development, Healthtech</p>
-        </article>
-        <article class="testimonial-card">
-          <p class="quote">“Clear, actionable guidance on where to invest and where not to—saved us weeks of diligence.”</p>
-          <p class="name">Jordan Lee</p>
-          <p class="title">Partner, Seed Fund</p>
-        </article>
+    
       </div>
       <button class="testimonial-nav next" aria-label="Next testimonial">›</button>
       <div class="testimonial-dots" aria-hidden="true"></div>
@@ -1228,6 +1403,89 @@
         list.classList.toggle('active');
       });
     });
+
+    // Chat demo logic (powered by the test_client chat endpoint)
+    const chatMessagesEl = document.getElementById('chat-messages');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatStatus = document.getElementById('chat-status');
+    const chatSuggestions = document.querySelectorAll('.chat-suggestion');
+    const chatSuggestionsWrap = document.querySelector('.chat-suggestions');
+
+    if (chatMessagesEl && chatForm && chatInput) {
+      const generateSessionId = () => 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      });
+
+      const sessionId = `${new Date().toISOString().split('T')[0]}-${generateSessionId()}`;
+
+      const appendChatMessage = (text, sender) => {
+        const bubble = document.createElement('div');
+        bubble.className = `chat-message ${sender}`;
+        bubble.textContent = text;
+        chatMessagesEl.appendChild(bubble);
+        chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+      };
+
+      const setStatus = (text) => {
+        if (chatStatus) {
+          chatStatus.textContent = text || '';
+        }
+      };
+
+      const hideSuggestions = () => {
+        if (chatSuggestionsWrap) {
+          chatSuggestionsWrap.style.display = 'none';
+        }
+      };
+
+      const sendChat = async (presetText) => {
+        const text = (presetText ?? chatInput.value).trim();
+        if (!text) return;
+
+        appendChatMessage(text, 'user');
+        chatInput.value = '';
+        hideSuggestions();
+        setStatus('Thinking...');
+
+        try {
+          const response = await fetch('https://chat.morpheos.llc/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              message: text,
+              session_id: sessionId
+            })
+          });
+
+          if (!response.ok) {
+            throw new Error(response.statusText || 'Server error');
+          }
+
+          const data = await response.json();
+          appendChatMessage(data.response || 'No response from the assistant just yet.', 'bot');
+        } catch (error) {
+          appendChatMessage('Unable to reach the assistant right now. Please try again soon.', 'bot');
+          console.error('Chat error:', error);
+        } finally {
+          setStatus('');
+        }
+      };
+
+      chatForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        sendChat();
+      });
+
+      chatSuggestions.forEach((button) => {
+        button.addEventListener('click', () => {
+          chatInput.value = button.textContent;
+          sendChat(button.textContent);
+        });
+      });
+    }
 
     // Testimonials carousel
     const carousel = document.querySelector('.testimonial-carousel');
