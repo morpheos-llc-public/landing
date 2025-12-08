@@ -687,6 +687,46 @@
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.22);
     }
 
+    /* Approach cards */
+    .approach-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .approach-card {
+      background: #0b0b0b;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 180px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .approach-phase {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.4em;
+      letter-spacing: 0.02em;
+    }
+
+    .approach-activities {
+      font-size: 1em;
+      color: #e0e0e0;
+      line-height: 1.5;
+    }
+
+    .approach-tagline {
+      font-style: italic;
+      color: #f1f1f1;
+      padding-left: 10px;
+      border-left: 3px solid rgba(255, 255, 255, 0.35);
+    }
+
     @media (max-width: 768px) {
       .testimonial-carousel {
         padding: 10px 10px 30px;
@@ -706,6 +746,10 @@
 
       .client-nav {
         display: none;
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -837,10 +881,9 @@
     <div class="dropdown">
       <a href="#" id="servicesLink">SERVICES</a>
       <div class="dropdown-menu" id="servicesDropdown">
-        <a href="#services-ai-coach">AI Adoption & Custom Implementation Coaching</a>
-        <a href="#services-biz-dev">Business Development for Startups</a>
-        <a href="#services-sci-due">Scientific Due Diligence for Investors</a>
-        <a href="#services-sci-due">Commercialization Analysis for Tech Transfer Officers</a>
+        <a href="#services-ai-strategy">AI Strategy, Governance & Compliance</a>
+        <a href="#services-system-design">System Design & Implementation</a>
+        <a href="#services-biotech">Biotech & Commercialization Expertise</a>
       </div>
     </div>
     <a href="/blog/">BLOG</a>
@@ -867,10 +910,9 @@
     <a href="#method">APPROACH</a>
     <div class="mobile-menu-section">
       <a href="#services" class="mobile-menu-header">SERVICES</a>
-      <a href="#services-ai-coach" class="mobile-menu-subitem">AI Adoption & Implementation</a>
-      <a href="#services-biz-dev" class="mobile-menu-subitem">Business Development</a>
-      <a href="#services-sci-due" class="mobile-menu-subitem">Scientific Due Diligence</a>
-      <a href="#services-sci-due" class="mobile-menu-subitem">Commercialization Analysis</a>
+      <a href="#services-ai-strategy" class="mobile-menu-subitem">AI Strategy, Governance & Compliance</a>
+      <a href="#services-system-design" class="mobile-menu-subitem">System Design & Implementation</a>
+      <a href="#services-biotech" class="mobile-menu-subitem">Biotech & Commercialization</a>
     </div>
     <a href="/blog/">BLOG</a>
     <a href="#about">ABOUT</a>
@@ -908,25 +950,37 @@
     <section id="method">
       <h2 class="section-title">APPROACH</h2>
       <div class="about-content">
-        <h3>
-        <p>
-          <li>As AI is embedding into all industries, working knowledge about AI is now becoming a necessity in the workplace.</li>
-          <p> </p>
-          <li>Morpheos offers AI adoption and implementation consulting for teams and executives. We assess workflows and develop custom tools and databases to meet you team's specific needs. When off-the-shelf tools meet only 40-60% of your needs, we develop custom tools for automation, competitive intelligence, customer discovery, and more.</li> 
-          <p> </p>
-          <li>In coaching and training sessions, we assess an individual or team's current AI tool usage and we provide practical examples to take clients to the next stage of capability and understanding. We teach clients new perspectives for how to leverage AI for novel and unconventional purposes beyond just basic email drafting and memo writing. </li>
-          <p> </p>
-  <li>Session Overview: Together we review key background about AI, assess your workflow and pain points, share favorite tools, and then brainstorm ways to enable you to perform feats that were previously impractical or impossible.</li>
-        </p> <p >
-           <p> </p>
-        </h3></p>
-        <div style="display: flex; justify-content: center; align-items: center; margin: 5px 0;">
-          <img src="banner/Outside-the-box.png" alt="Thinking outside the box" class="responsive-img rounded-img">
-        </div><br>
-         <div style="text-align: center;">
+        <p>It starts with deep listening. Before recommending tools or strategies, I immerse myself in how your organization actually operates. That understanding shapes everything that follows: strategy, implementation, and beyond as the AI landscape continuously evolves.</p>
+      </div>
+      <div class="approach-grid">
+        <div class="approach-card">
+          <div class="approach-phase">DISCOVER</div>
+          <div class="approach-activities">Map workflows, analyze known problems, surface hidden ones.</div>
+          <div class="approach-tagline">Understand where you are—and what's been hiding in plain sight.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-phase">DESIGN</div>
+          <div class="approach-activities">Develop strategy &amp; policy. Identify software, hardware, &amp; training needs.</div>
+          <div class="approach-tagline">Define what to build, what to buy, and what to skip.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-phase">DEPLOY</div>
+          <div class="approach-activities">Implement policy, tools, and training.</div>
+          <div class="approach-tagline">Put it into practice—with guardrails that actually work.</div>
+        </div>
+        <div class="approach-card">
+          <div class="approach-phase">EVOLVE</div>
+          <div class="approach-activities">Measure outcomes, observe trends, respond to changes as the field develops.</div>
+          <div class="approach-tagline">Morpheos is your ongoing partner to help you adapt as the landscape rapidly shifts.</div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center; margin: 24px 0 16px;">
+        <img src="banner/Outside-the-box.png" alt="Thinking outside the box" class="responsive-img rounded-img" style="max-width: 420px;">
+      </div>
+      <div style="text-align: center;">
         <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
-</div>
-      </section>
+      </div>
+    </section>
 
 
     <!-- Services Section -->
@@ -934,50 +988,53 @@
     <h2 class="section-title">SERVICES</h2>
     <div class="services-content">
 
-      <!-- AI Adoption & Implementation Coaching -->
+      <!-- AI Strategy, Governance & Compliance -->
       <div class="service-section">
-        <div class="service-header" data-target="ai-coach">
-          <h3 id="services-ai-coach">AI Adoption & Implementation</h3>
+        <div class="service-header" data-target="ai-strategy">
+          <h3 id="services-ai-strategy">AI Strategy, Governance & Compliance</h3>
           <span class="toggle-icon">+</span>
         </div>
-        <div class="service-content" id="ai-coach">
+        <div class="service-content" id="ai-strategy">
           <ul class="services-list">
-            <h2><strong>AI Workflow Audit & Roadmap:</strong> Rapid assessment that pinpoints high-impact wins and enable previously impossible feats.</h2>
-            <h2><strong>Hands-On Training:</strong> Live, role-specific coaching that makes teams fluent in today's top AI tools.</h2>
-            <h2><strong>Prototype-to-Production Support:</strong> Build custom scripts or mini-apps and keep them current as models evolve.</h2>          
+            <h2><strong>Workflow, Data & Risk Assessments:</strong> Map real operational processes and data flows to uncover bottlenecks, inefficiencies, compliance exposure, and high-leverage opportunities for AI.</h2>
+            <h2><strong>AI Strategy & Roadmapping:</strong> Define what should be automated, what shouldn't, and how to roll out AI in a way that scales without chaos.</h2>
+            <h2><strong>AI Governance, Privacy & Compliance:</strong> Develop responsible-use policies, privacy documentation, internal data standards, approval paths, and risk controls. Support BAA negotiation and design HIPAA-safe workflows.</h2>
+            <h2><strong>Organizational AI Operating Models:</strong> Establish clear roles, workflow standards, and cross-functional alignment to prevent AI sprawl and tool creep.</h2>
           </ul>
         </div>
       </div>
-    </div>
 
-          <!-- Business Development -->
-          <div class="service-section">
-            <div class="service-header" data-target="biz-dev">
-              <h3 id="services-biz-dev">Business Development & Startup Coaching</h3>
-              <span class="toggle-icon">+</span>
-            </div>
-            <div class="service-content" id="biz-dev">
-              <ul class="services-list">
-                <h2><strong>Partnership & Deal Strategy:</strong> Source partners, structure terms, and manage alliances end-to-end.</h2>
-                <h2><strong>Investor-Ready Storytelling:</strong> Craft decks, narratives, and data rooms that close capital and customers.</h2>
-                <h2><strong>Go-to-Market Execution:</strong> Drive lead gen, conference outreach, and early sales traction.</h2>                           </ul>
-            </div>
-          </div>
-        <!-- Scientific Due Diligence -->
+      <!-- System Design & Implementation -->
       <div class="service-section">
-        <div class="service-header" data-target="sci-due">
-          <h3 id="services-sci-due">Scientific Due Diligence & Commercialization Analysis</h3>
+        <div class="service-header" data-target="system-design">
+          <h3 id="services-system-design">System Design & Implementation</h3>
           <span class="toggle-icon">+</span>
         </div>
-        <div class="service-content" id="sci-due">
+        <div class="service-content" id="system-design">
           <ul class="services-list">
-            <h2><strong>Data-Driven Diligence:</strong> Deliver clear, critical reviews of preclinical/clinical evidence and study design.</h2>
-            <h2><strong>Market & Competitive Analysis:</strong> Define go-to-market strategy, whitespace, IP position, and regulatory hurdles.</h2>
-            <h2><strong>Clinic-Ready Roadmaps:</strong> Build step-by-step plans from target validation through IND filing, enriched with KOL input.</h2>
-                    </ul>
+            <h2><strong>Custom AI Tool Development:</strong> Build structured data pipelines, custom AI tools, AI agents, and automation architectures that deliver predictable, high-quality outputs.</h2>
+            <h2><strong>Team Training & Change Management:</strong> Train teams to use AI effectively, consistently, and safely—without fragile prompt chains or ad-hoc workarounds.</h2>
+            <h2><strong>Prototype-to-Production Support:</strong> Design and prototype AI-native applications when off-the-shelf solutions can't meet operational or compliance requirements.</h2>
+          </ul>
         </div>
       </div>
 
+      <!-- Biotech & Commercialization -->
+      <div class="service-section">
+        <div class="service-header" data-target="biotech">
+          <h3 id="services-biotech">Biotech & Commercialization Expertise</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="biotech">
+          <ul class="services-list">
+            <h2><strong>Market Strategy & Competitive Analysis:</strong> Consult with startups and venture groups on market positioning, competitive intelligence, and deep-tech commercialization.</h2>
+            <h2><strong>Scientific Due Diligence:</strong> Deliver clear, critical reviews of preclinical/clinical evidence and study design for investors and tech transfer offices.</h2>
+            <h2><strong>Go-to-Market Roadmaps:</strong> Build step-by-step plans from target validation through IND filing, enriched with KOL input.</h2>
+          </ul>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- Testimonials -->
