@@ -159,15 +159,6 @@
     text-decoration: underline;
 }
 
-/* Mobile Menu Toggle - Hidden by default */
-.menu-toggle {
-    display: none;
-}
-
-.menu-overlay {
-    display: none;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
     .blog-container, .blog-post {

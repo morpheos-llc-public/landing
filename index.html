@@ -374,6 +374,11 @@
       transform: translateZ(0);
     }
 
+    /* Offset anchor targets to clear sticky nav */
+    section, h2[id], h3[id] {
+      scroll-margin-top: 90px;
+    }
+
     /* Chat demo box */
     .chat-demo {
       max-width: 960px;
@@ -585,28 +590,11 @@
       display: block;
     }
 
-    .services-list h2 {
+    .services-list li {
       margin-bottom: 15px;
       font-size: 1.2em;
       font-weight: 400;
       line-height: 1.6;
-      position: relative;
-      padding-left: 20px;
-    }
-
-    .services-list h2:before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      color: #FFFFFF;
-    }
-
-    .services-list h2:last-child {
-      margin-bottom: 0;
-    }
-
-    .services-list li {
-      margin-bottom: 15px;
       padding-left: 20px;
       position: relative;
     }
@@ -616,6 +604,10 @@
       position: absolute;
       left: 0;
       color: #FFFFFF;
+    }
+
+    .services-list li:last-child {
+      margin-bottom: 0;
     }
 
     /* Service header styling */
@@ -1033,7 +1025,7 @@
       <source src="banner/twostrands.mp4" type="video/mp4">
     </video>
     <h1>MORPHEOS INNOVATION</h1>
-    <p style="font-size: 1.8em;">AI Adoption & Custom Implementation Consulting</p>
+    <p style="font-size: 1.8em;">AI Strategy & Custom Implementation Consulting</p>
   </header>
 
   <!-- Navigation -->
@@ -1095,9 +1087,9 @@
     <video autoplay muted loop playsinline>
       <source src="banner/loop2.mp4" type="video/mp4">
     </video>
-    <h1>AI is here. Empower yourself & your team.</h1>
+    <h1>The right strategy. The right tools.</h1>
     <p style="font-size: 1.4em;">
-      We don't just tell you what's possible - we build the tools that make it real. We'll help you navigate the complexities of AI and empower you with custom tools, governance, and training tailored to meet your team's specific needs.
+      We don't just tell you what's possible - we build the tools that make it real. We'll help you navigate the complexities of AI and empower you with the right tools, governance, and training tailored to meet your team's specific needs.
     </p>
     <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
   </div>
@@ -1126,6 +1118,9 @@
         <button type="submit">Send</button>
       </form>
       <div class="chat-status" id="chat-status"></div>
+    </div>
+    <div style="text-align: center; margin-top: 16px;">
+      <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
     </div>
   </section>
 
@@ -1185,10 +1180,10 @@
         </div>
         <div class="service-content" id="ai-strategy">
           <ul class="services-list">
-            <h2><strong>Workflow, Data & Risk Assessments:</strong> Map real operational processes and data flows to uncover bottlenecks, inefficiencies, compliance exposure, and high-leverage opportunities for AI.</h2>
-            <h2><strong>AI Strategy & Roadmapping:</strong> Define what should be automated, what shouldn't, and how to roll out AI in a way that scales without chaos.</h2>
-            <h2><strong>AI Governance, Privacy & Compliance:</strong> Develop responsible-use policies, privacy documentation, internal data standards, approval paths, and risk controls. Support BAA negotiation and design HIPAA-safe workflows.</h2>
-            <h2><strong>Organizational AI Operating Models:</strong> Establish clear roles, workflow standards, and cross-functional alignment to prevent AI sprawl and tool creep.</h2>
+            <li><strong>Workflow, Data & Risk Assessments:</strong> Map real operational processes and data flows to uncover bottlenecks, inefficiencies, compliance exposure, and high-leverage opportunities for AI.</li>
+            <li><strong>AI Strategy & Roadmapping:</strong> Define what should be automated, what shouldn't, and how to roll out AI in a way that scales without chaos.</li>
+            <li><strong>AI Governance, Privacy & Compliance:</strong> Develop responsible-use policies, privacy documentation, internal data standards, approval paths, and risk controls. Support BAA negotiation and design HIPAA-safe workflows.</li>
+            <li><strong>Organizational AI Operating Models:</strong> Establish clear roles, workflow standards, and cross-functional alignment to reduce AI slop and inefficiencies.</li>
           </ul>
         </div>
       </div>
@@ -1201,9 +1196,10 @@
         </div>
         <div class="service-content" id="system-design">
           <ul class="services-list">
-            <h2><strong>Custom AI Tool Development:</strong> Build structured data pipelines, custom AI tools, AI agents, and automation architectures that deliver predictable, high-quality outputs.</h2>
-            <h2><strong>Team Training & Change Management:</strong> Train teams to use AI effectively, consistently, and safely—without fragile prompt chains or ad-hoc workarounds.</h2>
-            <h2><strong>Prototype-to-Production Support:</strong> Design and prototype AI-native applications when off-the-shelf solutions can't meet operational or compliance requirements.</h2>
+            <li><strong>Custom AI Tool Development:</strong> Build structured data pipelines, custom AI tools, AI agents, and automation architectures that deliver predictable, high-quality outputs.</li>
+            <li><strong>Competitive Intelligence:</strong> Customized market intelligence research tools and databases to track competitors, discover new customers, and identify strategic opportunities</li>
+            <li><strong>Team Training & Rollout Management:</strong> Train teams to use AI effectively, consistently, and safely—without fragile prompt chains or ad-hoc workarounds.</li>
+            <li><strong>Prototype-to-Deployment Support:</strong> Design and prototype AI-native applications when off-the-shelf solutions can't meet operational or compliance requirements.</li>
           </ul>
         </div>
       </div>
@@ -1216,9 +1212,9 @@
         </div>
         <div class="service-content" id="biotech">
           <ul class="services-list">
-            <h2><strong>Market Strategy & Competitive Analysis:</strong> Consult with startups and venture groups on market positioning, competitive intelligence, and deep-tech commercialization.</h2>
-            <h2><strong>Scientific Due Diligence:</strong> Deliver clear, critical reviews of preclinical/clinical evidence and study design for investors and tech transfer offices.</h2>
-            <h2><strong>Go-to-Market Roadmaps:</strong> Build step-by-step plans from target validation through IND filing, enriched with KOL input.</h2>
+            <li><strong>Market Strategy & Competitive Analysis:</strong> Consult with startups and venture groups on market positioning, competitive intelligence, and deep-tech commercialization.</li>
+            <li><strong>Scientific Due Diligence:</strong> Deliver clear, critical reviews of preclinical/clinical evidence and study design for investors and tech transfer offices.</li>
+            <li><strong>Go-to-Market Roadmaps:</strong> Build step-by-step plans from target validation through IND filing, enriched with KOL input.</li>
           </ul>
         </div>
       </div>
@@ -1403,6 +1399,32 @@
         list.classList.toggle('active');
       });
     });
+
+    // Auto-expand service accordions when navigating via hash links
+    const openServiceById = (targetId) => {
+      const header = document.querySelector(`.service-header[data-target="${targetId}"]`);
+      const content = document.getElementById(targetId);
+      if (!header || !content) return;
+
+      header.classList.add('active');
+      content.classList.add('active');
+
+      const icon = header.querySelector('.toggle-icon');
+      if (icon) icon.textContent = '−';
+
+      const list = content.querySelector('.services-list');
+      if (list) list.classList.add('active');
+    };
+
+    const handleServiceHash = () => {
+      const hash = window.location.hash || '';
+      if (!hash.startsWith('#services-')) return;
+      const targetId = hash.replace('#services-', '');
+      openServiceById(targetId);
+    };
+
+    window.addEventListener('hashchange', handleServiceHash);
+    handleServiceHash();
 
     // Chat demo logic (powered by the test_client chat endpoint)
     const chatMessagesEl = document.getElementById('chat-messages');
