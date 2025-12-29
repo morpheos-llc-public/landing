@@ -7,10 +7,99 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Who needs an AI implementation consultant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I work with mid-sized companies, venture-backed startups, and enterprise teams—particularly those in biotech, healthcare, professional services, and knowledge-intensive operations. If your team handles complex workflows, sensitive data, or is exploring AI for the first time, we're likely a good fit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between AI strategy consulting and AI implementation?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I do both. Strategy defines what to automate, what to skip, and how to roll out AI without chaos. Implementation is building the actual tools, workflows, and governance frameworks. Many clients engage me for end-to-end work: discovery through deployment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I hire an AI consultant or a developer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Off-the-shelf tools solve generic problems. Developers build what you spec—but someone has to define the right spec. I bridge strategy and execution: I understand your operations deeply, then design and build solutions that fit your workflows and compliance requirements."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does an AI consulting engagement include?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most engagements start with a discovery phase (2-4 weeks) where I map workflows, identify high-leverage opportunities, and surface hidden risks. From there, we scope strategy, implementation, or both—depending on what you need."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do AI consultants handle HIPAA compliance and data privacy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I design workflows with privacy and compliance baked in from the start—not bolted on later. For healthcare and biotech clients, that includes HIPAA-safe architectures, BAA negotiation support, and clear data governance policies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is my organization's AI adoption failing?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most organizations adopt AI tools without a clear operational strategy, then wonder why adoption stalls or outputs are inconsistent. I audit what you have, identify gaps, and either optimize your current setup or recommend what to replace."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does AI implementation take?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Discovery typically surfaces actionable insights within 2-4 weeks. Implementation timelines vary—a focused automation might take 2-3 weeks; a full governance framework or custom tool suite might take 2-3 months."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does AI consulting cost?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I work on a project basis with clear scopes and milestones—not open-ended hourly billing. Discovery engagements start at $3,500. Implementation and custom builds are scoped based on complexity."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I look for in an AI consultant?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Look for someone who understands both strategy and implementation. The best AI consultants map your actual workflows before recommending tools, prioritize governance and compliance from day one, and can build or customize solutions rather than just pointing you to off-the-shelf products."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between AI strategy and AI governance?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI strategy defines what to automate, when, and how to roll it out. AI governance defines the rules—who can use what tools, how data flows, what's compliant, and what's not. Most organizations need both, but governance is especially critical in regulated industries."
+          }
+        }
+      ]
+    }
+  </script>
   <style>
     /* CSS Reset */
     html {
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
     *, *:before, *:after {
       box-sizing: inherit;
@@ -187,6 +276,24 @@
 
     nav a:hover {
       background-color: #111111;
+    }
+
+    .nav-cta {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px 18px;
+      border: 1px solid #FFFFFF;
+      border-radius: 999px;
+      font-size: 0.95em;
+      letter-spacing: 0.03em;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background-color: #FFFFFF;
+      color: #000000;
     }
 
     /* Dropdown styling */
@@ -535,6 +642,7 @@
       color: #000000;
       padding: 15px 30px;
       border-radius: 5px;
+      border: 1px solid #FFFFFF;
       text-decoration: none;
       font-weight: 600;
       font-size: 1.1em;
@@ -548,6 +656,28 @@
       background-color: #F0F0F0;
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button.outline {
+      background-color: transparent;
+      color: #FFFFFF;
+    }
+
+    .cta-button.outline:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cta-group .cta-button {
+      margin-top: 0;
     }
 
     /* SECTIONS */
@@ -649,13 +779,14 @@
       transition: max-height 0.5s ease-in;
     }
 
-    /* TESTIMONIALS, CLIENTS, PARTNERS */
-    #testimonials, #clients, #partners {
+    /* TESTIMONIALS, FAQ, CLIENTS, PARTNERS */
+    #testimonials, #faq, #clients, #partners {
       padding: 60px 20px;
       border-top: 1px solid #222;
     }
 
     #testimonials .section-title,
+    #faq .section-title,
     #clients .section-title,
     #partners .section-title {
       margin-bottom: 30px;
@@ -698,6 +829,14 @@
     .testimonial-card .title {
       color: #cccccc;
       font-size: 0.95em;
+    }
+
+    .faq-list li {
+      padding-left: 0;
+    }
+
+    .faq-list li:before {
+      content: "";
     }
 
     .testimonial-nav,
@@ -876,10 +1015,10 @@
     .contact-subtitle {
       text-align: center;
       color: #CCCCCC;
-      font-size: 0.85em;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      margin-top: -20px;
+      font-size: 1.05em;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      margin-top: -10px;
       margin-bottom: 32px;
     }
 
@@ -892,6 +1031,15 @@
       display: flex;
       flex-direction: column;
       gap: 18px;
+      scroll-margin-top: 110px;
+    }
+
+    .contact-form-title {
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4em;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
     }
 
     .form-group label {
@@ -956,6 +1104,16 @@
 
     .contact-alternative a {
       color: #FFFFFF;
+    }
+
+    .mobile-cta {
+      margin: 12px 0 8px;
+      text-align: center;
+      border: 1px solid #FFFFFF;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
     }
 
     @media (max-width: 768px) {
@@ -1110,7 +1268,7 @@
 <body>
 
   <!-- Header -->
-  <header>
+  <header id="top">
     <video autoplay muted loop playsinline>
       <source src="banner/twostrands.mp4" type="video/mp4">
     </video>
@@ -1120,7 +1278,7 @@
 
   <!-- Navigation -->
   <nav>
-    <a href="#" class="nav-logo">MORPHEOS</a>
+    <a href="#top" class="nav-logo">MORPHEOS</a>
     <a href="#method">APPROACH</a>
     <div class="dropdown">
       <a href="#" id="servicesLink">SERVICES</a>
@@ -1130,16 +1288,10 @@
         <a href="#services-biotech">Biotech & Commercialization Expertise</a>
       </div>
     </div>
-    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="#faq">FAQ</a>
     <a href="#about">ABOUT</a>
-    <div class="dropdown">
-      <a href="#" id="contactLink">CONTACT</a>
-      <div class="dropdown-menu" id="contactDropdown">
-        <a href="#contact">Submit Inquiry</a>
-        <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-        <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a 20 minute diagnostic call</a>
-      </div>
-    </div>
+    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
   </nav>
 
   <!-- Mobile Menu -->
@@ -1158,16 +1310,10 @@
       <a href="#services-system-design" class="mobile-menu-subitem">System Design & Implementation</a>
       <a href="#services-biotech" class="mobile-menu-subitem">Biotech & Commercialization</a>
     </div>
-    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="#faq">FAQ</a>
     <a href="#about">ABOUT</a>
-    <div class="dropdown">
-      <a href="#" id="contactLink">CONTACT</a>
-      <div class="dropdown-menu" id="contactDropdown">
-        <a href="#contact">Submit Inquiry</a>
-        <a href="https://www.linkedin.com/in/bhogstad/" target="_blank">LinkedIn</a>
-        <a href="https://calendly.com/brandon-hogstad/20-minute-call" target="_blank">Schedule a 20 minute diagnostic call</a>
-      </div>
-    </div>
+    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="#contact" class="mobile-cta">Get in Touch</a>
   </div>
 
   <div class="menu-overlay"></div>
@@ -1181,7 +1327,10 @@
     <p style="font-size: 1.4em;">
       We don't just tell you what's possible - we build the tools that make it real. We'll help you navigate the complexities of AI and empower you with the right tools, governance, and training tailored to meet your team's specific needs.
     </p>
-    <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
+    <div class="cta-group">
+      <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+      <a href="#contact-form" class="cta-button outline">Send a Message</a>
+    </div>
   </div>
 
   <section class="chat-demo" aria-labelledby="chat-demo-title">
@@ -1210,7 +1359,10 @@
       <div class="chat-status" id="chat-status"></div>
     </div>
     <div style="text-align: center; margin-top: 16px;">
-      <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
+      <div class="cta-group">
+        <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+        <a href="#contact-form" class="cta-button outline">Send a Message</a>
+      </div>
     </div>
   </section>
 
@@ -1252,7 +1404,10 @@
         <img src="banner/Outside-the-box.png" alt="Thinking outside the box" class="responsive-img rounded-img" style="max-width: 420px;">
       </div>
       <div style="text-align: center;">
-        <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
+        <div class="cta-group">
+          <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+          <a href="#contact-form" class="cta-button outline">Send a Message</a>
+        </div>
       </div>
     </section>
 
@@ -1330,6 +1485,132 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 class="section-title">FREQUENTLY ASKED QUESTIONS</h2>
+    <div class="services-content">
+      <div class="service-section">
+        <div class="service-header" data-target="faq-organizations">
+          <h3>Who needs an AI implementation consultant?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-organizations">
+          <ul class="services-list faq-list">
+            <li>I work with mid-sized companies, venture-backed startups, and enterprise teams—particularly those in biotech, healthcare, professional services, and knowledge-intensive operations. If your team handles complex workflows, sensitive data, or is exploring AI for the first time, we're likely a good fit.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-build">
+          <h3>What's the difference between AI strategy consulting and AI implementation?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-build">
+          <ul class="services-list faq-list">
+            <li>I do both. Strategy defines what to automate, what to skip, and how to roll out AI without chaos. Implementation is building the actual tools, workflows, and governance frameworks. Many clients engage me for end-to-end work: discovery through deployment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-different">
+          <h3>Should I hire an AI consultant or a developer?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-different">
+          <ul class="services-list faq-list">
+            <li>Off-the-shelf tools solve generic problems. Developers build what you spec—but someone has to define the right spec. I bridge strategy and execution: I understand your operations deeply, then design and build solutions that fit your workflows and compliance requirements.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-engagement">
+          <h3>What does an AI consulting engagement include?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-engagement">
+          <ul class="services-list faq-list">
+            <li>Most engagements start with a discovery phase (2-4 weeks) where I map workflows, identify high-leverage opportunities, and surface hidden risks. From there, we scope strategy, implementation, or both—depending on what you need.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-compliance">
+          <h3>How do AI consultants handle HIPAA compliance and data privacy?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-compliance">
+          <ul class="services-list faq-list">
+            <li>I design workflows with privacy and compliance baked in from the start—not bolted on later. For healthcare and biotech clients, that includes HIPAA-safe architectures, BAA negotiation support, and clear data governance policies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-tools">
+          <h3>Why is my organization's AI adoption failing?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-tools">
+          <ul class="services-list faq-list">
+            <li>Most organizations adopt AI tools without a clear operational strategy, then wonder why adoption stalls or outputs are inconsistent. I audit what you have, identify gaps, and either optimize your current setup or recommend what to replace.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-results">
+          <h3>How long does AI implementation take?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-results">
+          <ul class="services-list faq-list">
+            <li>Discovery typically surfaces actionable insights within 2-4 weeks. Implementation timelines vary—a focused automation might take 2-3 weeks; a full governance framework or custom tool suite might take 2-3 months.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-pricing">
+          <h3>How much does AI consulting cost?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-pricing">
+          <ul class="services-list faq-list">
+            <li>I work on a project basis with clear scopes and milestones—not open-ended hourly billing. Discovery engagements start at $3,500. Implementation and custom builds are scoped based on complexity.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-criteria">
+          <h3>What should I look for in an AI consultant?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-criteria">
+          <ul class="services-list faq-list">
+            <li>Look for someone who understands both strategy and implementation. The best AI consultants map your actual workflows before recommending tools, prioritize governance and compliance from day one, and can build or customize solutions rather than just pointing you to off-the-shelf products.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-section">
+        <div class="service-header" data-target="faq-governance">
+          <h3>What's the difference between AI strategy and AI governance?</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="faq-governance">
+          <ul class="services-list faq-list">
+            <li>AI strategy defines what to automate, when, and how to roll it out. AI governance defines the rules—who can use what tools, how data flows, what's compliant, and what's not. Most organizations need both, but governance is especially critical in regulated industries.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Clients -->
   <section id="clients">
     <h2 class="section-title">CLIENTS</h2>
@@ -1364,10 +1645,17 @@
     </div>
   </section>
 
+  <div style="text-align: center; margin: 30px auto 10px;">
+    <div class="cta-group">
+      <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+      <a href="#contact-form" class="cta-button outline">Send a Message</a>
+    </div>
+  </div>
+
   <!-- About Section -->
   <section id="about">
     <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 40px;">
-      <img src="banner/Morpheos-Logo.png" alt="Morpheos Logo" class="responsive-img" style="max-width: 300px;">
+      <img src="banner/Morpheos-HiRes-Logo.png" alt="Morpheos Logo" class="responsive-img" style="max-width: 300px;">
     </div>
     <h2 class="section-title">ABOUT</h2>
     <div class="about-content">
@@ -1387,19 +1675,21 @@
           Brandon earned his PhD in Biomedical Sciences from the <strong>Icahn School of Medicine at Mount Sinai</strong>; his work has appeared in <em>Nature</em> and the <em>Journal of Experimental Medicine</em>. Outside of consulting and coaching, he co-hosts the dream-interpretation podcast <em>Let's Talk About Dreams</em> and releases music with his brother as <em>The Hogstad Brothers</em>.
         </p>
     </div>
-             <div style="text-align: center;">
-        <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank">Book a free 20 minute diagnostic call</a>
-</div>
   </section>
 
   <!-- Contact Section -->
   <section id="contact">
-    <h2 class="section-title">CONTACT</h2>
-    <p class="contact-subtitle">Let's Talk</p>
+    <h2 class="section-title">Ready to Talk?</h2>
+    <p class="contact-subtitle">Book a 20-minute diagnostic call, or send a message and I'll get back to you within one business day.</p>
     <div class="contact-container">
-      <form class="contact-form" action="https://formsubmit.co/brandon@morpheos.llc" method="POST">
+      <div class="cta-group" style="margin-bottom: 28px;">
+        <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+        <a href="#contact-form" class="cta-button outline">Send a Message</a>
+      </div>
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/brandon@morpheos.llc" method="POST">
         <input type="hidden" name="_subject" value="New Morpheos Inquiry">
         <input type="hidden" name="_captcha" value="false">
+        <h3 class="contact-form-title">Send a Message</h3>
         <div class="form-group">
           <label for="contact-name">Name</label>
           <input type="text" id="contact-name" name="name" required>
@@ -1436,28 +1726,16 @@
     // Dropdown functionality
     const servicesLink = document.getElementById('servicesLink');
     const servicesDropdown = document.getElementById('servicesDropdown');
-    const contactLink = document.getElementById('contactLink');
-    const contactDropdown = document.getElementById('contactDropdown');
 
     servicesLink.addEventListener('click', (e) => {
       e.preventDefault();
       servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
-      contactDropdown.style.display = 'none';
-    });
-
-    contactLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      contactDropdown.style.display = contactDropdown.style.display === 'block' ? 'none' : 'block';
-      servicesDropdown.style.display = 'none';
     });
 
     // Close dropdowns when clicking outside
     document.addEventListener('click', (e) => {
       if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
         servicesDropdown.style.display = 'none';
-      }
-      if (!contactLink.contains(e.target) && !contactDropdown.contains(e.target)) {
-        contactDropdown.style.display = 'none';
       }
     });
 
