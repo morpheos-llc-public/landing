@@ -573,11 +573,11 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
+      justify-content: flex-end;
     }
 
     .chat-suggestion {
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(255, 255, 255, 0.08);
+      border: none;
       color: #FFFFFF;
       padding: 10px 14px;
       border-radius: 999px;
@@ -587,10 +587,16 @@
       font-size: 0.95em;
     }
 
+    .chat-suggestion:nth-child(1) { background: linear-gradient(135deg, #FF1493, #6A2040); }
+    .chat-suggestion:nth-child(2) { background: linear-gradient(135deg, #E040A0, #5A2050); }
+    .chat-suggestion:nth-child(3) { background: linear-gradient(135deg, #C050C0, #4A2060); }
+    .chat-suggestion:nth-child(4) { background: linear-gradient(135deg, #8040E0, #3A2060); }
+    .chat-suggestion:nth-child(5) { background: linear-gradient(135deg, #4060F0, #2A2A3A); }
+
     .chat-suggestion:hover {
-      background: #FFFFFF;
-      color: #000000;
       transform: translateY(-1px);
+      filter: brightness(1.15);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.12);
     }
 
     .chat-input-row {
