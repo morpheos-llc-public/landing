@@ -1007,6 +1007,41 @@
       border-left: 3px solid rgba(255, 255, 255, 0.35);
     }
 
+    /* Engagement cards */
+    .engagements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .engagement-card {
+      background: #0f0f0f;
+      border: 1px solid #1f1f1f;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .engagement-card h3 {
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    .engagement-card p {
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    .engagement-tags {
+      font-size: 0.85em;
+      color: #aaa;
+      letter-spacing: 0.02em;
+    }
+
     /* Contact */
     #contact {
       border-bottom: none;
@@ -1273,7 +1308,7 @@
       <source src="banner/twostrands.mp4" type="video/mp4">
     </video>
     <h1>MORPHEOS INNOVATION</h1>
-    <p style="font-size: 1.8em;">AI Strategy & Custom Implementation Consulting</p>
+    <p style="font-size: 1.8em;">AI Strategy · Custom Tools · Knowledge Systems</p>
   </header>
 
   <!-- Navigation -->
@@ -1286,6 +1321,7 @@
         <a href="#services-ai-strategy">AI Strategy, Governance & Compliance</a>
         <a href="#services-system-design">System Design & Implementation</a>
         <a href="#services-biotech">Biotech & Commercialization Expertise</a>
+        <a href="#services-speaking">Speaking, Workshops & Training</a>
       </div>
     </div>
     <a href="#faq">FAQ</a>
@@ -1310,6 +1346,7 @@
       <a href="#services-ai-strategy" class="mobile-menu-subitem">AI Strategy, Governance & Compliance</a>
       <a href="#services-system-design" class="mobile-menu-subitem">System Design & Implementation</a>
       <a href="#services-biotech" class="mobile-menu-subitem">Biotech & Commercialization</a>
+      <a href="#services-speaking" class="mobile-menu-subitem">Speaking, Workshops & Training</a>
     </div>
     <a href="#faq">FAQ</a>
     <a href="#about">ABOUT</a>
@@ -1444,6 +1481,7 @@
         <div class="service-content" id="system-design">
           <ul class="services-list">
             <li><strong>Custom AI Tool Development:</strong> Build structured data pipelines, custom AI tools, AI agents, and automation architectures that deliver predictable, high-quality outputs.</li>
+            <li><strong>Knowledge Management & Platform Migration:</strong> Consolidate institutional knowledge scattered across tools, documents, and tribal memory into structured, searchable systems. Design and execute migrations into platforms like Jira, Confluence, Notion, and custom databases — with taxonomies and workflows built around how your team actually operates.</li>
             <li><strong>Competitive Intelligence:</strong> Customized market intelligence research tools and databases to track competitors, discover new customers, and identify strategic opportunities</li>
             <li><strong>Team Training & Rollout Management:</strong> Train teams to use AI effectively, consistently, and safely—without fragile prompt chains or ad-hoc workarounds.</li>
             <li><strong>Prototype-to-Deployment Support:</strong> Design and prototype AI-native applications when off-the-shelf solutions can't meet operational or compliance requirements.</li>
@@ -1466,6 +1504,21 @@
         </div>
       </div>
 
+      <!-- Speaking, Workshops & Training -->
+      <div class="service-section">
+        <div class="service-header" data-target="speaking">
+          <h3 id="services-speaking">Speaking, Workshops & Training</h3>
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="service-content" id="speaking">
+          <ul class="services-list">
+            <li><strong>Executive AI Briefings:</strong> Keynote-style presentations for leadership teams covering the current state of AI, agentic systems, and practical adoption strategy — tailored to your industry and maturity level.</li>
+            <li><strong>Team Training & Enablement Workshops:</strong> Hands-on sessions that move teams from curiosity to competence — covering prompt engineering, tool selection, workflow integration, and responsible use.</li>
+            <li><strong>AI Adoption Coaching:</strong> Ongoing support for teams navigating cultural and operational change during AI rollout — including change management strategy and adoption metrics.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1476,7 +1529,12 @@
       <button class="testimonial-nav prev" aria-label="Previous testimonial">‹</button>
       <div class="testimonial-track">
         <article class="testimonial-card">
-          <p class="quote">“Brandon is an AI expert who explains complex ideas and tools in clear, everyday language. He was incredibly helpful in showing me how to leverage AI in my business to deliver better results for clients and improve my bottom line. In our very first session, we identified three concrete initiatives to expand my work and streamline my operations. He’s smart, focused, and a very creative thinker. Highly recommended as an AI advisor and strategist for any business owner who wants to use AI to grow revenue and work more efficiently.”</p>
+          <p class="quote">"I came into the session already using a ton of AI tools, but everything felt duct-taped together. In one call, Brandon helped me untangle the mess and sketch out a 'daily life dump' flow that actually fits how my brain works. Instead of generic advice, he plugged into the tools I already use and showed me how to connect them in a way that feels realistic — not aspirational. I left with a clear plan, concrete next steps, and way less anxiety about my system. Would absolutely recommend if you're deep in AI already but your setup feels chaotic."</p>
+          <p class="name">Adrien Lacquemant</p>
+          <p class="title">Software Engineer at Datadog</p>
+        </article>
+        <article class="testimonial-card">
+          <p class="quote">"Brandon is an AI expert who explains complex ideas and tools in clear, everyday language. He was incredibly helpful in showing me how to leverage AI in my business to deliver better results for clients and improve my bottom line. In our very first session, we identified three concrete initiatives to expand my work and streamline my operations. He's smart, focused, and a very creative thinker. Highly recommended as an AI advisor and strategist for any business owner who wants to use AI to grow revenue and work more efficiently."</p>
           <p class="name"><a href="https://www.linkedin.com/in/tony-jenkins-b1b177/" target="_blank" rel="noopener">Tony Jenkins</a></p>
           <p class="title">Executive Coach</p>
         </article>
@@ -1484,6 +1542,28 @@
       </div>
       <button class="testimonial-nav next" aria-label="Next testimonial">›</button>
       <div class="testimonial-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- Recent Engagements -->
+  <section id="engagements">
+    <h2 class="section-title">RECENT ENGAGEMENTS</h2>
+    <div class="engagements-grid">
+      <div class="engagement-card">
+        <h3>AI Leadership Retreat — National Consulting Firm</h3>
+        <p>Delivered a keynote presentation to senior leadership on the current state of AI and agentic systems in 2026, including practical frameworks for organizational adoption, risk mitigation, and competitive positioning. The session shaped the firm's AI strategy roadmap for the year ahead.</p>
+        <div class="engagement-tags">Executive Briefing · Strategy · Agentic AI</div>
+      </div>
+      <div class="engagement-card">
+        <h3>Research Intelligence Platform — Social Impact Nonprofit</h3>
+        <p>Built a custom AI-powered research tool enabling a national nonprofit's team to monitor their competitive ecosystem, track industry trends, and surface strategic partnership opportunities — consolidating fragmented data sources into a single, searchable intelligence hub.</p>
+        <div class="engagement-tags">Custom Tool Development · Database Architecture · Strategic Intelligence</div>
+      </div>
+      <div class="engagement-card">
+        <h3>AI Governance & Policy Framework — Financial Services Firm</h3>
+        <p>Developed a comprehensive AI governance framework including responsible-use policies, data handling protocols, client-confidentiality-compliant workflows, and internal approval processes for AI tool adoption across the organization.</p>
+        <div class="engagement-tags">Governance · Policy Development · Data Privacy</div>
+      </div>
     </div>
   </section>
 
@@ -1666,7 +1746,7 @@
         </p>
         
         <p>
-          Through his firm <strong>Morpheos Innovation</strong>, Brandon also serves as a consultant and entrepreneur-in-residence, guiding venture-backed startups and academic spin-outs across biotech, health-tech, and deep-tech. He specializes in strategic commercialization, partnerships, competitive intelligence, and scientific due diligence—bridging the gap between cutting-edge research and market-ready products.
+          Through his firm <strong>Morpheos Innovation</strong>, Brandon also serves as a consultant and entrepreneur-in-residence, guiding venture-backed startups and academic spin-outs across biotech, health-tech, and deep-tech. He specializes in strategic commercialization, partnerships, competitive intelligence, and scientific due diligence—bridging the gap between cutting-edge research and market-ready products. Brandon is also an in-demand speaker on AI strategy and adoption, delivering executive briefings and keynote presentations to leadership teams navigating the rapidly evolving AI landscape.
         </p>
         
         <p>
