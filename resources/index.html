@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Strategy &amp; Implementation Resources | Morpheos</title>
+  <meta name="description" content="Guides and frameworks for AI strategy, governance, implementation, and consulting. Learn how to adopt AI effectively and avoid common pitfalls." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "AI Strategy & Implementation Resources",
+      "description": "Guides and frameworks for AI strategy, governance, implementation, and consulting. Learn how to adopt AI effectively and avoid common pitfalls.",
+      "url": "https://www.morpheos.llc/resources",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Morpheos",
+        "url": "https://www.morpheos.llc/"
+      },
+      "hasPart": [
+        {
+          "@type": "Article",
+          "name": "How to Build an AI Roadmap for Your Organization",
+          "url": "https://www.morpheos.llc/resources/how-to-build-an-ai-roadmap-for-your-organization",
+          "description": "A step-by-step framework for aligning AI initiatives with business goals, readiness, and risk tolerance."
+        },
+        {
+          "@type": "Article",
+          "name": "AI Strategy vs. AI Tactics: What Leaders Get Wrong",
+          "url": "https://www.morpheos.llc/resources/ai-strategy-vs-ai-tactics-what-leaders-get-wrong",
+          "description": "Learn how to avoid tool-first decision making and build a strategy that supports long-term adoption."
+        },
+        {
+          "@type": "Article",
+          "name": "When to Build, Buy, or Skip AI Tools",
+          "url": "https://www.morpheos.llc/resources/when-to-build-buy-or-skip-ai-tools",
+          "description": "A decision checklist for evaluating custom builds, off-the-shelf platforms, and no-code options."
+        },
+        {
+          "@type": "Article",
+          "name": "5 Signs Your Organization Is Ready for AI Implementation",
+          "url": "https://www.morpheos.llc/resources/5-signs-your-organization-is-ready-for-ai-implementation",
+          "description": "Spot the readiness signals across data, leadership, and workflows before investing in AI rollout."
+        },
+        {
+          "@type": "Article",
+          "name": "AI Governance 101: What Every Executive Needs to Know",
+          "url": "https://www.morpheos.llc/resources/ai-governance-101-what-every-executive-needs-to-know",
+          "description": "A practical overview of governance basics, from risk tiers to oversight models."
+        },
+        {
+          "@type": "Article",
+          "name": "How to Create an AI Acceptable Use Policy",
+          "url": "https://www.morpheos.llc/resources/how-to-create-an-ai-acceptable-use-policy",
+          "description": "Template-driven guidance for defining approved tools, data handling rules, and user responsibilities."
+        },
+        {
+          "@type": "Article",
+          "name": "HIPAA and AI: What Healthcare Organizations Must Consider",
+          "url": "https://www.morpheos.llc/resources/hipaa-and-ai-what-healthcare-organizations-must-consider",
+          "description": "Key compliance checkpoints for PHI, vendor vetting, and AI workflow design."
+        },
+        {
+          "@type": "Article",
+          "name": "Data Privacy Frameworks for AI Implementation",
+          "url": "https://www.morpheos.llc/resources/data-privacy-frameworks-for-ai-implementation",
+          "description": "Compare leading privacy frameworks and map them to AI development and deployment."
+        },
+        {
+          "@type": "Article",
+          "name": "Why Most AI Implementations Fail (And How to Avoid It)",
+          "url": "https://www.morpheos.llc/resources/why-most-ai-implementations-fail-and-how-to-avoid-it",
+          "description": "Common pitfalls across data, adoption, and governance with corrective action plans."
+        },
+        {
+          "@type": "Article",
+          "name": "How to Measure ROI on AI Investments",
+          "url": "https://www.morpheos.llc/resources/how-to-measure-roi-on-ai-investments",
+          "description": "Define value metrics, baseline costs, and a reporting cadence that leadership trusts."
+        },
+        {
+          "@type": "Article",
+          "name": "Change Management for AI Adoption: A Practical Guide",
+          "url": "https://www.morpheos.llc/resources/change-management-for-ai-adoption-a-practical-guide",
+          "description": "A phased rollout approach to training, enablement, and sustained usage across teams."
+        },
+        {
+          "@type": "Article",
+          "name": "Custom AI Tools vs. Off-the-Shelf: How to Decide",
+          "url": "https://www.morpheos.llc/resources/custom-ai-tools-vs-off-the-shelf-how-to-decide",
+          "description": "Evaluate customization needs, integration complexity, and long-term cost of ownership."
+        },
+        {
+          "@type": "Article",
+          "name": "AI Applications in Drug Discovery and Development",
+          "url": "https://www.morpheos.llc/resources/ai-applications-in-drug-discovery-and-development",
+          "description": "Where AI accelerates target identification, candidate screening, and trial planning."
+        },
+        {
+          "@type": "Article",
+          "name": "Competitive Intelligence Tools for Biotech Startups",
+          "url": "https://www.morpheos.llc/resources/competitive-intelligence-tools-for-biotech-startups",
+          "description": "Build a repeatable intelligence workflow for market mapping and partnership strategy."
+        },
+        {
+          "@type": "Article",
+          "name": "AI Due Diligence: What Investors Should Look For",
+          "url": "https://www.morpheos.llc/resources/ai-due-diligence-what-investors-should-look-for",
+          "description": "A diligence checklist spanning data provenance, model risk, and operational readiness."
+        },
+        {
+          "@type": "Article",
+          "name": "Building HIPAA-Compliant AI Workflows",
+          "url": "https://www.morpheos.llc/resources/building-hipaa-compliant-ai-workflows",
+          "description": "Design patterns and guardrails for HIPAA-safe AI use in clinical and operational settings."
+        },
+        {
+          "@type": "Article",
+          "name": "What to Look for When Hiring an AI Consultant",
+          "url": "https://www.morpheos.llc/resources/what-to-look-for-when-hiring-an-ai-consultant",
+          "description": "Key criteria for evaluating expertise, delivery approach, and governance readiness."
+        },
+        {
+          "@type": "Article",
+          "name": "AI Consultant vs. Developer vs. Agency: Which Do You Need?",
+          "url": "https://www.morpheos.llc/resources/ai-consultant-vs-developer-vs-agency-which-do-you-need",
+          "description": "Clarify roles and outcomes so you can hire the right partner for your AI goals."
+        },
+        {
+          "@type": "Article",
+          "name": "How to Scope an AI Consulting Engagement",
+          "url": "https://www.morpheos.llc/resources/how-to-scope-an-ai-consulting-engagement",
+          "description": "A scoping framework for discovery, implementation, and governance deliverables."
+        },
+        {
+          "@type": "Article",
+          "name": "Questions to Ask Before Signing an AI Consulting Contract",
+          "url": "https://www.morpheos.llc/resources/questions-to-ask-before-signing-an-ai-consulting-contract",
+          "description": "Protect your organization with the right questions about security, IP, and accountability."
+        }
+      ]
+    }
+  </script>
+  <style>
+    header.resources-header {
+      background: radial-gradient(circle at top, rgba(57, 92, 255, 0.25), rgba(0, 0, 0, 0.92) 60%), #000000;
+      padding: 80px 20px 60px;
+    }
+
+    .nav-cta {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 8px 18px;
+      border: 1px solid #FFFFFF;
+      border-radius: 999px;
+      font-size: 0.95em;
+      letter-spacing: 0.03em;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+
+    .resources-header h1 {
+      font-size: 2.8em;
+    }
+
+    .resources-header p {
+      max-width: 780px;
+      margin: 0 auto;
+      font-size: 1.2em;
+    }
+
+    .resource-section {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 22px;
+    }
+
+    .resource-card {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 22px;
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .resource-card h3 {
+      margin: 0;
+      font-size: 1.15em;
+    }
+
+    .resource-card a {
+      color: #FFFFFF;
+    }
+
+    .resource-meta {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .badge {
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 0.75em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #FFFFFF;
+    }
+
+    .mobile-cta {
+      margin: 12px 0 8px;
+      text-align: center;
+      border: 1px solid #FFFFFF;
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .resources-cta {
+      text-align: center;
+      border-bottom: none;
+      padding-bottom: 80px;
+    }
+
+    .cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .cta-button.outline {
+      background-color: transparent;
+      color: #FFFFFF;
+      border: 1px solid #FFFFFF;
+    }
+
+    .cta-button.outline:hover {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+
+    @media (max-width: 720px) {
+      .resources-header h1 {
+        font-size: 2.2em;
+      }
+
+      .resources-header p {
+        font-size: 1.05em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="resources-header" id="top">
+    <h1>AI Strategy &amp; Implementation Resources</h1>
+    <p>Guides, frameworks, and insights to help you navigate AI adoption, governance, and implementation.</p>
+  </header>
+
+  <nav>
+    <a href="/" class="nav-logo">MORPHEOS</a>
+    <a href="/#method">APPROACH</a>
+    <div class="dropdown">
+      <a href="/#services" id="servicesLink">SERVICES</a>
+      <div class="dropdown-menu" id="servicesDropdown">
+        <a href="/#services-ai-strategy">AI Strategy, Governance &amp; Compliance</a>
+        <a href="/#services-system-design">System Design &amp; Implementation</a>
+        <a href="/#services-biotech">Biotech &amp; Commercialization Expertise</a>
+      </div>
+    </div>
+    <a href="/#faq">FAQ</a>
+    <a href="/#about">ABOUT</a>
+    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="/resources">RESOURCES</a>
+    <a href="/#contact" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <div class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-logo">MORPHEOS</div>
+    <a href="/#method">APPROACH</a>
+    <div class="mobile-menu-section">
+      <a href="/#services" class="mobile-menu-header">SERVICES</a>
+      <a href="/#services-ai-strategy" class="mobile-menu-subitem">AI Strategy, Governance &amp; Compliance</a>
+      <a href="/#services-system-design" class="mobile-menu-subitem">System Design &amp; Implementation</a>
+      <a href="/#services-biotech" class="mobile-menu-subitem">Biotech &amp; Commercialization</a>
+    </div>
+    <a href="/#faq">FAQ</a>
+    <a href="/#about">ABOUT</a>
+    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="/resources">RESOURCES</a>
+    <a href="/#contact" class="mobile-cta">Get in Touch</a>
+  </div>
+
+  <div class="menu-overlay"></div>
+
+  <main>
+    <section class="resource-section" aria-labelledby="strategy-roadmapping">
+      <h2 class="section-title" id="strategy-roadmapping">AI Strategy &amp; Roadmapping</h2>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/how-to-build-an-ai-roadmap-for-your-organization">How to Build an AI Roadmap for Your Organization</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Map AI use cases to strategic goals and build a phased rollout that leadership and teams can support.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/ai-strategy-vs-ai-tactics-what-leaders-get-wrong">AI Strategy vs. AI Tactics: What Leaders Get Wrong</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Learn the difference between tactical experimentation and an enterprise AI strategy that sticks.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/when-to-build-buy-or-skip-ai-tools">When to Build, Buy, or Skip AI Tools</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Decide when custom development makes sense and when off-the-shelf tools are enough.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/5-signs-your-organization-is-ready-for-ai-implementation">5 Signs Your Organization Is Ready for AI Implementation</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Assess readiness across data, leadership, and workflow maturity before investing heavily.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="resource-section" aria-labelledby="governance-compliance">
+      <h2 class="section-title" id="governance-compliance">AI Governance &amp; Compliance</h2>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/ai-governance-101-what-every-executive-needs-to-know">AI Governance 101: What Every Executive Needs to Know</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Get the essentials on oversight, accountability, and policy design for AI programs.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/how-to-create-an-ai-acceptable-use-policy">How to Create an AI Acceptable Use Policy</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Create a clear policy that defines approved tools, data handling, and user responsibilities.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/hipaa-and-ai-what-healthcare-organizations-must-consider">HIPAA and AI: What Healthcare Organizations Must Consider</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Key compliance considerations for PHI, vendor vetting, and AI workflow design.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/data-privacy-frameworks-for-ai-implementation">Data Privacy Frameworks for AI Implementation</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Compare leading privacy frameworks and align them to your AI deployment model.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="resource-section" aria-labelledby="implementation-adoption">
+      <h2 class="section-title" id="implementation-adoption">AI Implementation &amp; Adoption</h2>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/why-most-ai-implementations-fail-and-how-to-avoid-it">Why Most AI Implementations Fail (And How to Avoid It)</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Learn why adoption stalls and how to design a rollout that actually scales.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/how-to-measure-roi-on-ai-investments">How to Measure ROI on AI Investments</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Set measurable outcomes, baseline costs, and a reporting cadence leaders trust.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/change-management-for-ai-adoption-a-practical-guide">Change Management for AI Adoption: A Practical Guide</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Follow a phased change plan to drive sustained AI usage across teams.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/custom-ai-tools-vs-off-the-shelf-how-to-decide">Custom AI Tools vs. Off-the-Shelf: How to Decide</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Balance customization, integration, and total cost of ownership before committing.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="resource-section" aria-labelledby="biotech-healthcare">
+      <h2 class="section-title" id="biotech-healthcare">AI for Biotech &amp; Healthcare</h2>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/ai-applications-in-drug-discovery-and-development">AI Applications in Drug Discovery and Development</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Explore where AI accelerates discovery, candidate selection, and trial planning.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/competitive-intelligence-tools-for-biotech-startups">Competitive Intelligence Tools for Biotech Startups</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Set up a repeatable intelligence workflow for market mapping and partner strategy.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/ai-due-diligence-what-investors-should-look-for">AI Due Diligence: What Investors Should Look For</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Use a diligence checklist that covers data provenance, model risk, and readiness.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/building-hipaa-compliant-ai-workflows">Building HIPAA-Compliant AI Workflows</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Design workflows that keep PHI protected while enabling AI-driven efficiency.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="resource-section" aria-labelledby="hiring-consultants">
+      <h2 class="section-title" id="hiring-consultants">Hiring &amp; Working with AI Consultants</h2>
+      <div class="resource-grid">
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/what-to-look-for-when-hiring-an-ai-consultant">What to Look for When Hiring an AI Consultant</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Identify the expertise, delivery model, and governance mindset your team needs.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/ai-consultant-vs-developer-vs-agency-which-do-you-need">AI Consultant vs. Developer vs. Agency: Which Do You Need?</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Clarify roles and outcomes so you can hire the right AI partner with confidence.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/how-to-scope-an-ai-consulting-engagement">How to Scope an AI Consulting Engagement</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Build a scope that covers discovery, implementation, and governance deliverables.</p>
+        </article>
+        <article class="resource-card">
+          <div class="resource-meta">
+            <h3><a href="/resources/questions-to-ask-before-signing-an-ai-consulting-contract">Questions to Ask Before Signing an AI Consulting Contract</a></h3>
+            <span class="badge">Coming Soon</span>
+          </div>
+          <p>Ask the right questions about security, IP, and accountability before you sign.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="resources-cta" aria-labelledby="resources-cta-title">
+      <h2 class="section-title" id="resources-cta-title">Need Help with AI Strategy or Implementation?</h2>
+      <p>Book a diagnostic call or send a message to discuss your organization's needs.</p>
+      <div class="cta-group">
+        <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+        <a href="/#contact" class="cta-button outline">Send a Message</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> MORPHEOS LLC. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const servicesLink = document.getElementById('servicesLink');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+
+    servicesLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
+        servicesDropdown.style.display = 'none';
+      }
+    });
+
+    const navLogo = document.querySelector('.nav-logo');
+    const header = document.querySelector('header');
+    const headerHeight = header.offsetHeight;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > headerHeight) {
+        navLogo.classList.add('visible');
+      } else {
+        navLogo.classList.remove('visible');
+      }
+    });
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    });
+
+    menuOverlay.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+    });
+  </script>
+</body>
+</html>

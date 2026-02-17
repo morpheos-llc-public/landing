@@ -17,3 +17,10 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local documentation
+morpheos-website-update-instructions.md
+CLAUDE.md
+
+# Local inspiration assets
+inspo\ (ignore)/
