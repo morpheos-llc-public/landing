@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NYC Events Radar | Morpheos</title>
+  <meta name="description" content="Weekly curated NYC events for founders, operators, and AI practitioners. Free digest by Morpheos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    .landing-header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: radial-gradient(ellipse at center, rgba(0,240,255,0.08) 0%, transparent 70%);
+      border-bottom: 1px solid #FFFFFF;
+    }
+    .landing-header h1 {
+      font-size: 2.8em;
+      color: #00F0FF;
+      margin-bottom: 12px;
+    }
+    .landing-header .subtitle {
+      font-size: 1.2em;
+      color: #E0E0E0;
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .landing-section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .landing-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: #00F0FF;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    /* Email capture */
+    .email-capture {
+      text-align: center;
+    }
+    .email-capture p {
+      color: #BBB;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+    .email-capture iframe {
+      width: 100%;
+      max-width: 480px;
+      height: 160px;
+      border: none;
+      background: transparent;
+    }
+
+    /* Featured report card */
+    .featured-card {
+      background: #1A1A1A;
+      border: 2px solid #00F0FF;
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+    }
+    .featured-label {
+      display: inline-block;
+      background: #00F0FF;
+      color: #000;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .featured-card h3 {
+      font-size: 1.3em;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+    }
+    .featured-card .featured-pick {
+      color: #BBB;
+      font-size: 0.95em;
+      margin-bottom: 20px;
+    }
+    .featured-card .featured-link {
+      display: inline-block;
+      background: #00F0FF;
+      color: #000;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.95em;
+      padding: 10px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+    }
+    .featured-card .featured-link:hover {
+      background: #33F5FF;
+    }
+
+    /* Archive list */
+    .archive-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .archive-list li {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .archive-list li:last-child {
+      border-bottom: none;
+    }
+    .archive-list a {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 8px;
+      color: #E0E0E0;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .archive-list a:hover {
+      background: rgba(0,240,255,0.04);
+    }
+    .archive-date {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.9em;
+      color: #00F0FF;
+      white-space: nowrap;
+      min-width: 100px;
+    }
+    .archive-pick {
+      color: #BBB;
+      font-size: 0.9em;
+    }
+
+    /* CTA */
+    .landing-cta {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .landing-cta h2 {
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
+    .landing-cta p {
+      color: #BBB;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    @media (max-width: 768px) {
+      .landing-header { padding: 60px 16px 40px; }
+      .landing-header h1 { font-size: 2em; }
+      .landing-section { padding: 30px 16px; }
+      .featured-card { padding: 24px 20px; }
+      .archive-list a { flex-direction: column; gap: 4px; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="/" class="nav-logo">MORPHEOS</a>
+    <a href="/#method">APPROACH</a>
+    <div class="dropdown">
+      <a href="/#services" id="servicesLink">SERVICES</a>
+      <div class="dropdown-menu" id="servicesDropdown">
+        <a href="/#services-ai-strategy">AI Strategy, Governance &amp; Compliance</a>
+        <a href="/#services-system-design">System Design &amp; Implementation</a>
+        <a href="/#services-biotech">Biotech &amp; Commercialization Expertise</a>
+      </div>
+    </div>
+    <a href="/#faq">FAQ</a>
+    <a href="/#about">ABOUT</a>
+    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="/resources">RESOURCES</a>
+    <a href="/events-radar" style="color:#00F0FF;">EVENTS RADAR</a>
+    <a href="/#contact" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-logo">MORPHEOS</div>
+    <a href="/#method">APPROACH</a>
+    <div class="mobile-menu-section">
+      <a href="/#services" class="mobile-menu-header">SERVICES</a>
+      <a href="/#services-ai-strategy" class="mobile-menu-subitem">AI Strategy, Governance &amp; Compliance</a>
+      <a href="/#services-system-design" class="mobile-menu-subitem">System Design &amp; Implementation</a>
+      <a href="/#services-biotech" class="mobile-menu-subitem">Biotech &amp; Commercialization</a>
+    </div>
+    <a href="/#faq">FAQ</a>
+    <a href="/#about">ABOUT</a>
+    <a href="https://insights.morpheos.llc">BLOG</a>
+    <a href="/resources">RESOURCES</a>
+    <a href="/events-radar" style="color:#00F0FF;">EVENTS RADAR</a>
+    <a href="/#contact" class="mobile-cta">Get in Touch</a>
+  </div>
+
+  <div class="menu-overlay"></div>
+
+  <!-- Header -->
+  <div class="landing-header">
+    <h1>NYC Events Radar</h1>
+    <div class="subtitle">Weekly curated events for founders, operators, and AI practitioners in NYC</div>
+  </div>
+
+  <!-- Email Capture -->
+  <div class="landing-section email-capture">
+    <div class="section-label">Get this in your inbox every Monday</div>
+    <p>Free weekly digest — no spam, just signal.</p>
+    <iframe src="https://insights.morpheos.llc/embed" frameborder="0" scrolling="no" loading="lazy"></iframe>
+  </div>
+
+  <!-- Featured Report -->
+  <div class="landing-section">
+    <div class="section-label">This Week</div>
+    <div class="featured-card">
+      <div class="featured-label">Latest Report</div>
+      <h3>Week of 3 Mar 2026</h3>
+      <div class="featured-pick">Brandon's Pick: Startups and Operators Pitch Night in NYC Manhattan</div>
+      <a href="/events-radar/2026-03-03/" class="featured-link">Read This Week's Report &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Archive -->
+  <div class="landing-section">
+    <div class="section-label">All Reports</div>
+    <ul class="archive-list">
+      <li>
+        <a href="/events-radar/2026-03-03/">
+          <span class="archive-date">3 Mar 2026</span>
+          <span class="archive-pick">Brandon's Pick: Startups and Operators Pitch Night in NYC Manhattan</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- CTA Section -->
+  <div class="landing-cta">
+    <h2>Need help navigating the NYC ecosystem?</h2>
+    <p>We help founders and operators build the right connections through AI strategy and hands-on support.</p>
+    <div class="cta-group">
+      <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+      <a href="mailto:brandon@morpheos.llc" class="cta-button outline">Send a Message</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> MORPHEOS LLC. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dropdown toggle
+    const servicesLink = document.getElementById('servicesLink');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    if (servicesLink && servicesDropdown) {
+      servicesLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', (e) => {
+        if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
+          servicesDropdown.style.display = 'none';
+        }
+      });
+    }
+
+    // Nav logo fade on scroll
+    const navLogo = document.querySelector('.nav-logo');
+    if (navLogo) {
+      window.addEventListener('scroll', () => {
+        navLogo.classList.toggle('visible', window.scrollY > 200);
+      });
+    }
+
+    // Mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    if (menuToggle && mobileMenu && menuOverlay) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      menuOverlay.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+  </script>
+</body>
+</html>
