@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-This repository is a static marketing site for Morpheos LLC. Primary pages live at the repository root, including `index.html`, `startups.html`, `Morpheos-QR-code.html`, `styles.css`, and `blog.css`. Static media and brand assets are in `banner/`; partner and resource pages are in `partners/` and `resources/`; wedding/invite pages are isolated under `invite/`. Event digests live in dated folders under `events-radar/`, with each digest containing `index.html` and optional metadata such as `meta.json`.
+This repository is a static marketing site for Morpheos LLC. Primary pages live at the repository root, including `index.html`, `startups.html`, `Morpheos-QR-code.html`, `styles.css`, and `blog.css`. Static media and brand assets are in `banner/`; partner and resource pages are in `partners/` and `resources/`; wedding/invite pages are isolated under `invite/`.
 
 ## Build, Test, and Development Commands
 
@@ -13,7 +13,7 @@ There is no Node build step, package manager workflow, or automated test command
 
 ## Coding Style & Naming Conventions
 
-Use plain HTML and CSS unless a framework is explicitly introduced. Match the existing style: two-space indentation in HTML, four-space indentation in CSS, semantic sectioning, and descriptive class names. Keep shared site styling in `styles.css`; use page-specific styles only when isolation is necessary, such as `invite/styles.css` or `blog.css`. Prefer lowercase, hyphenated names for new folders and content paths, for example `events-radar/2026-03-03/`.
+Use plain HTML and CSS unless a framework is explicitly introduced. Match the existing style: two-space indentation in HTML, four-space indentation in CSS, semantic sectioning, and descriptive class names. Keep shared site styling in `styles.css`; use page-specific styles only when isolation is necessary, such as `invite/styles.css` or `blog.css`. Prefer lowercase, hyphenated names for new folders and content paths, for example `partners/client-logos/`.
 
 ## Testing Guidelines
 
