@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NYC Events Radar — 3 Mar 2026 | Morpheos</title>
+  <meta name="description" content="Curated NYC events for founders, operators, and AI practitioners — week of 3 Mar 2026" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../styles.css" />
+  <style>
+    /* Radar page-specific styles */
+    .radar-header {
+      text-align: center;
+      padding: 80px 20px 60px;
+      background: radial-gradient(ellipse at center, rgba(0,240,255,0.08) 0%, transparent 70%);
+      border-bottom: 1px solid #FFFFFF;
+    }
+    .radar-header h1 {
+      font-size: 2.6em;
+      color: #00F0FF;
+      margin-bottom: 8px;
+    }
+    .radar-header .subtitle {
+      font-size: 1.15em;
+      color: #E0E0E0;
+      font-weight: 300;
+    }
+    .radar-header .date-range {
+      margin-top: 12px;
+      font-size: 0.95em;
+      color: #888;
+    }
+
+    .digest-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .digest-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6em;
+      font-weight: 600;
+      color: #00F0FF;
+      margin-bottom: 30px;
+    }
+
+    /* Brandon's Pick */
+    .pick-card {
+      background: #1A1A1A;
+      border: 2px solid #00F0FF;
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+    }
+    .pick-badge {
+      display: inline-block;
+      background: #00F0FF;
+      color: #000;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.75em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .pick-card h3 {
+      font-size: 1.5em;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+    .pick-card h3 a {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    .pick-card h3 a:hover {
+      color: #00F0FF;
+    }
+    .pick-meta {
+      color: #BBB;
+      font-size: 0.95em;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .pick-meta span {
+      display: block;
+    }
+    .pick-commentary {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 20px;
+      color: #E0E0E0;
+      font-style: italic;
+      line-height: 1.7;
+      font-size: 1.05em;
+    }
+    .pick-commentary::before {
+      content: '\201C';
+      font-size: 2em;
+      color: #00F0FF;
+      line-height: 0;
+      vertical-align: -0.3em;
+      margin-right: 4px;
+    }
+
+    /* Radar Card Grid */
+    .radar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .radar-card {
+      background: #1A1A1A;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s ease;
+    }
+    .radar-card:hover {
+      border-color: rgba(0,240,255,0.3);
+    }
+    .radar-card h4 {
+      font-size: 1.1em;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+    .radar-card h4 a {
+      color: #FFFFFF;
+      text-decoration: none;
+    }
+    .radar-card h4 a:hover {
+      color: #00F0FF;
+    }
+    .radar-card .card-meta {
+      font-size: 0.9em;
+      color: #BBB;
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .radar-card .card-meta span {
+      display: block;
+    }
+    .radar-card .one-liner {
+      font-size: 0.9em;
+      color: #E0E0E0;
+      line-height: 1.5;
+    }
+    .track-badge {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    .track-A { background: rgba(255,0,255,0.15); color: #FF00FF; border: 1px solid rgba(255,0,255,0.3); }
+    .track-B { background: rgba(0,240,255,0.15); color: #00F0FF; border: 1px solid rgba(0,240,255,0.3); }
+    .track-C { background: rgba(0,255,128,0.15); color: #00FF80; border: 1px solid rgba(0,255,128,0.3); }
+    .track-D { background: rgba(255,200,0,0.15); color: #FFC800; border: 1px solid rgba(255,200,0,0.3); }
+
+    /* Horizon Table */
+    .horizon-table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .horizon-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95em;
+    }
+    .horizon-table th {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.8em;
+      letter-spacing: 0.5px;
+      color: #888;
+      text-align: left;
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+    .horizon-table td {
+      padding: 14px 16px;
+      color: #E0E0E0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: top;
+    }
+    .horizon-table tr:nth-child(even) td {
+      background: rgba(255,255,255,0.02);
+    }
+    .horizon-table tr:hover td {
+      background: rgba(0,240,255,0.04);
+    }
+    .horizon-table td a {
+      color: #00F0FF;
+    }
+    .horizon-table td a:hover {
+      text-decoration: underline;
+    }
+    .horizon-table .track-badge {
+      font-size: 0.65em;
+      padding: 2px 8px;
+    }
+
+    /* Back link */
+    .back-link {
+      display: inline-block;
+      color: #00F0FF;
+      text-decoration: none;
+      font-size: 0.95em;
+      margin-bottom: 40px;
+      padding: 0 20px;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* CTA Section */
+    .digest-cta {
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    .digest-cta h2 {
+      font-size: 1.8em;
+      margin-bottom: 12px;
+    }
+    .digest-cta p {
+      color: #BBB;
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    /* Subscribe Banner */
+    .subscribe-banner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #1A1A1A;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      z-index: 9999;
+      font-size: 0.95em;
+    }
+    .subscribe-banner.hidden {
+      display: none;
+    }
+    .subscribe-banner p {
+      margin: 0;
+      color: #E0E0E0;
+      font-weight: 300;
+    }
+    .subscribe-banner .subscribe-btn {
+      display: inline-block;
+      background: #00F0FF;
+      color: #000;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.85em;
+      padding: 8px 20px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .subscribe-banner .subscribe-btn:hover {
+      background: #33F5FF;
+    }
+    .subscribe-banner .banner-close {
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.2em;
+      cursor: pointer;
+      padding: 4px 8px;
+      line-height: 1;
+    }
+    .subscribe-banner .banner-close:hover {
+      color: #FFF;
+    }
+
+    /* Body padding to prevent banner from covering content */
+    body {
+      padding-bottom: 60px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .radar-header { padding: 60px 16px 40px; }
+      .radar-header h1 { font-size: 1.8em; }
+      .digest-section { padding: 30px 16px; }
+      .radar-grid { grid-template-columns: 1fr; }
+      .pick-card { padding: 24px 20px; }
+      .subscribe-banner { flex-wrap: wrap; gap: 10px; padding: 12px 16px; }
+      .subscribe-banner p { font-size: 0.85em; text-align: center; flex-basis: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="/" class="nav-logo">MORPHEOS</a>
+    <a href="/#method">APPROACH</a>
+    <div class="dropdown">
+      <a href="/#services" id="servicesLink">SERVICES</a>
+      <div class="dropdown-menu" id="servicesDropdown">
+        <a href="/#services-ai-strategy">AI Strategy, Governance &amp; Compliance</a>
+        <a href="/#services-system-design">System Design &amp; Implementation</a>
+        <a href="/#services-biotech">Biotech &amp; Commercialization Expertise</a>
+      </div>
+    </div>
+    <a href="/#faq">FAQ</a>
+    <a href="/#about">ABOUT</a>
+    <a href="https://dispatch.morpheos.llc">BLOG</a>
+    <a href="/resources">RESOURCES</a>
+    <a href="/events-radar" style="color:#00F0FF;">EVENTS RADAR</a>
+    <a href="/#contact" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="menu-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <div class="mobile-menu">
+    <div class="mobile-menu-logo">MORPHEOS</div>
+    <a href="/#method">APPROACH</a>
+    <div class="mobile-menu-section">
+      <a href="/#services" class="mobile-menu-header">SERVICES</a>
+      <a href="/#services-ai-strategy" class="mobile-menu-subitem">AI Strategy, Governance &amp; Compliance</a>
+      <a href="/#services-system-design" class="mobile-menu-subitem">System Design &amp; Implementation</a>
+      <a href="/#services-biotech" class="mobile-menu-subitem">Biotech &amp; Commercialization</a>
+    </div>
+    <a href="/#faq">FAQ</a>
+    <a href="/#about">ABOUT</a>
+    <a href="https://dispatch.morpheos.llc">BLOG</a>
+    <a href="/resources">RESOURCES</a>
+    <a href="/events-radar" style="color:#00F0FF;">EVENTS RADAR</a>
+    <a href="/#contact" class="mobile-cta">Get in Touch</a>
+  </div>
+
+  <div class="menu-overlay"></div>
+
+  <!-- Radar Header -->
+  <div class="radar-header">
+    <h1>NYC Events Radar</h1>
+    <div class="subtitle">Weekly curated events for founders, operators, and AI practitioners</div>
+    <div class="date-range">Week of 3 Mar 2026 &middot; Mar 3 – Mar 17</div>
+  </div>
+
+  <!-- Brandon's Pick -->
+  <div class="digest-section">
+    <div class="section-label">Brandon's Pick of the Week</div>
+    <div class="pick-card">
+      <div class="pick-badge">Brandon's Pick</div>
+      <span class="track-badge track-A">Operators &amp; Networking</span>
+      <h3><a href="https://www.eventbrite.com/e/startups-and-operators-pitch-night-in-nyc-manhattan-tickets-1982428120875" target="_blank" rel="noopener">Startups and Operators Pitch Night in NYC Manhattan</a></h3>
+      <div class="pick-meta">
+        <span>Wednesday, 11 Mar 2026 · 6:00–9:00 PM ET</span>
+        <span>Whiskey Cellar NYC · East Village (Manhattan)</span>
+        <span>$0–$45 · In-person · Pitch night + networking</span>
+      </div>
+      <div class="pick-commentary">I keep coming back to this one because it actually delivers. The Whiskey Cellar crew runs this monthly and they've dialed in the formula — 50 to 80 people max, real angel investors and VC partners in the room, and they'll hand you a pitch slot if you ask for one. Most pitch nights in this city are either too packed for a real conversation or too gatekept to get on stage. This one threads the needle. Show up at six, work the room before pitches kick off, and you'll walk out with warm intros you couldn't buy at a $500 conference.</div>
+    </div>
+  </div>
+
+  <!-- This Week's Radar -->
+  <div class="digest-section">
+    <div class="section-label">This Week's Radar</div>
+    <div class="radar-grid">
+      <div class="radar-card">
+        <span class="track-badge track-C">Startup / VC / Founder</span>
+        <h4><a href="https://www.meetup.com/startup-grind-nyc/" target="_blank" rel="noopener">Startup Grind NYC: How2Scale — Access Enterprise Customers Through Partnerships</a></h4>
+        <div class="card-meta">
+          <span>Tuesday, 3 Mar 2026 · 6:00–8:30 PM ET</span>
+          <span>NYC (venue via Meetup RSVP)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Free panel with execs from Microsoft, Adobe, and Plug &amp; Play on how startups land Fortune 500 partnerships.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-B">AI / ML / Dev</span>
+        <h4><a href="https://luma.com/w6av7nwf" target="_blank" rel="noopener">VoiceAI in the Wild: Building with EliseAI &amp; ElevenLabs</a></h4>
+        <div class="card-meta">
+          <span>Monday, 3 Mar 2026 · 6:00–9:00 PM ET</span>
+          <span>Manhattan (address on registration)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Hands-on voice AI workshop with EliseAI and ElevenLabs — high-value if you're building anything voice-enabled.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-D">Industry-Specific</span>
+        <h4><a href="https://plusweb.org/events/conference-symposia/plus-cyber-symposium/" target="_blank" rel="noopener">PLUS Cyber Symposium 2026</a></h4>
+        <div class="card-meta">
+          <span>Monday–Tuesday, 3–4 Mar 2026 · All day</span>
+          <span>New York Marriott Marquis · Times Square (Manhattan)</span>
+          <span>TBA (20% off with code FPEvents2026)</span>
+        </div>
+        <div class="one-liner">Premier cyber liability insurance symposium bringing together insurance and cybersecurity decision-makers.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-A">Operators &amp; Networking</span>
+        <h4><a href="https://www.eventbrite.com/e/nyc-networking-night-tickets-1982298840193" target="_blank" rel="noopener">NYC Networking Night</a></h4>
+        <div class="card-meta">
+          <span>Wednesday, 4 Mar 2026 · 6:30–8:30 PM ET</span>
+          <span>Tap Haus 33 · Midtown (Manhattan)</span>
+          <span>$18.58</span>
+        </div>
+        <div class="one-liner">Cross-industry mixer with icebreakers and name-badge labels; 60–100 attendees, 75% arrive solo.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-C">Startup / VC / Founder</span>
+        <h4><a href="https://www.garysguide.com/events/g92lx7n/VentureCrushFG" target="_blank" rel="noopener">VentureCrushFG</a></h4>
+        <div class="card-meta">
+          <span>Wednesday, 4 Mar 2026 · 5:00 PM ET</span>
+          <span>NYC (venue TBA)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Legendary tech investor Esther Dyson headlines this free investor-founder mixer — rare access to an original Silicon Alley angel.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-A">Operators &amp; Networking</span>
+        <h4><a href="https://www.ffcfemalefoundersday.com/" target="_blank" rel="noopener">Female Founders Day</a></h4>
+        <div class="card-meta">
+          <span>Thursday, 5 Mar 2026 · 7:00 AM – 7:00 PM ET</span>
+          <span>Industry City · Sunset Park (Brooklyn)</span>
+          <span>$369</span>
+        </div>
+        <div class="one-liner">Full-day conference with keynotes, 12+ workshops, networking sessions, and open-bar happy hour at Industry City.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-B">AI / ML / Dev</span>
+        <h4><a href="https://www.garysguide.com/events/8xzs1vo/NYC-AI-Demos" target="_blank" rel="noopener">NYC AI Demos</a></h4>
+        <div class="card-meta">
+          <span>Thursday, 5 Mar 2026 · 6:00 PM ET</span>
+          <span>The Refinery at Domino · Williamsburg (Brooklyn)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Local AI builders demo live products in Williamsburg — great for seeing what's shipping and meeting practitioners.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-C">Startup / VC / Founder</span>
+        <h4><a href="https://www.meetup.com/startup-plus/events/313393788/" target="_blank" rel="noopener">Tech &amp; Startup Mixer — Tech, Drinks and Startups!</a></h4>
+        <div class="card-meta">
+          <span>Thursday, 5 Mar 2026 · 5:00–7:00 PM ET</span>
+          <span>Sugar Mouse · East Village (Manhattan)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Free no-presentations mixer for founders, engineers, and investors — up to 200 attendees, pre-registration required.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-B">AI / ML / Dev</span>
+        <h4><a href="https://www.meetup.com/techeventnyc/events/312964121/" target="_blank" rel="noopener">LLMday: Large Language Models, AI and ML Conference</a></h4>
+        <div class="card-meta">
+          <span>Friday, 6 Mar 2026 · 9:00 AM – 5:00 PM ET</span>
+          <span>VIAM Robotics · Upper West Side (Manhattan)</span>
+          <span>Paid (50% off with code MEETUP50)</span>
+        </div>
+        <div class="one-liner">Full-day AI conference with 10+ speakers on LLMs, agents, and applied ML — half off with promo code MEETUP50.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-C">Startup / VC / Founder</span>
+        <h4><a href="https://www.garysguide.com/events/j3ydrai/Advanced-Founder-Roundtable-Lunch-Series-A-Scaling" target="_blank" rel="noopener">Advanced Founder Roundtable Lunch — Series A+ and Scaling</a></h4>
+        <div class="card-meta">
+          <span>Friday, 6 Mar 2026 · 12:00–2:00 PM ET</span>
+          <span>A private members club · Gramercy Park (Manhattan)</span>
+          <span>$100</span>
+        </div>
+        <div class="one-liner">Closed-door 24-person lunch for post-PMF founders ($15M+ revenue/funding) discussing scaling challenges at a Gramercy private club.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-B">AI / ML / Dev</span>
+        <h4><a href="https://www.meetup.com/gdgnyc/events/313516041/" target="_blank" rel="noopener">NYC Build With AI Hackathon — Google Cloud Labs x Columbia Business School</a></h4>
+        <div class="card-meta">
+          <span>Saturday–Sunday, 7–8 Mar 2026 · Day 1: 7:00–9:00 PM · Day 2: 9:30 AM – 5:00 PM ET</span>
+          <span>Columbia Business School · Morningside Heights (Manhattan)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Free Google Cloud hackathon with $30K in cloud credits and Google I/O 2026 tickets up for grabs.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-B">AI / ML / Dev</span>
+        <h4><a href="https://www.nytech.org/events" target="_blank" rel="noopener">NY Tech Meetup: Space Tech Edition</a></h4>
+        <div class="card-meta">
+          <span>Monday, 9 Mar 2026 · 6:00–9:30 PM ET</span>
+          <span>Civic Hall · Union Square (Manhattan)</span>
+          <span>$20</span>
+        </div>
+        <div class="one-liner">The world's largest Meetup group (60K+ members) hosts five frontier tech demos covering robotics, energy, and deep space.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-D">Industry-Specific</span>
+        <h4><a href="https://www.event.law.com/legalweek" target="_blank" rel="noopener">Legalweek New York 2026</a></h4>
+        <div class="card-meta">
+          <span>Monday–Thursday, 9–12 Mar 2026 · All day</span>
+          <span>North Javits Center · Hudson Yards (Manhattan)</span>
+          <span>$1,895+</span>
+        </div>
+        <div class="one-liner">The premier legal tech conference — 6,000+ attendees, 400+ speakers, 142 exhibitors across AI, compliance, and e-discovery.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-A">Operators &amp; Networking</span>
+        <h4><a href="https://www.eventbrite.com/e/brooklyn-big-professional-networking-affair-game-changers-professionals-tickets-1357259803609" target="_blank" rel="noopener">Brooklyn Big Professional Networking Affair</a></h4>
+        <div class="card-meta">
+          <span>Tuesday, 10 Mar 2026 · 7:00–9:00 PM ET</span>
+          <span>Berry Park · Williamsburg (Brooklyn)</span>
+          <span>$0–$23.18</span>
+        </div>
+        <div class="one-liner">Brooklyn's biggest professional mixer — 100–200 entrepreneurs, creatives, and founders on a Williamsburg rooftop.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-C">Startup / VC / Founder</span>
+        <h4><a href="https://www.garysguide.com/events/jrrbccx/Women-Led-Companies-Founder-Showcase" target="_blank" rel="noopener">Women-Led Companies — Founder Showcase</a></h4>
+        <div class="card-meta">
+          <span>Tuesday, 11 Mar 2026 · 6:00 PM ET</span>
+          <span>SVB · Midtown (Manhattan)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Female-founded startups present at Silicon Valley Bank's NYC office — free entry, strong investor presence.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-B">AI / ML / Dev</span>
+        <h4><a href="https://www.garysguide.com/events/x358a9c/Arize-Builders-Boosting-Claude-Code-Performance-w-Prompt-Learning" target="_blank" rel="noopener">Arize Builders — Boosting Claude Code Performance w/ Prompt Learning</a></h4>
+        <div class="card-meta">
+          <span>Thursday, 12 Mar 2026 · 6:00 PM ET</span>
+          <span>Betaworks · Meatpacking District (Manhattan)</span>
+          <span>Free</span>
+        </div>
+        <div class="one-liner">Hands-on workshop on optimizing Claude Code through prompt engineering at Betaworks — essential for AI agent builders.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-D">Industry-Specific</span>
+        <h4><a href="https://www.bisnow.com/events/new-york/multifamily/new-york-multifamily-development-investment-conference-10169" target="_blank" rel="noopener">Bisnow: Multifamily Development &amp; Investment Conference</a></h4>
+        <div class="card-meta">
+          <span>Thursday, 12 Mar 2026 · 8:00 AM ET</span>
+          <span>etc.venues · Midtown East (Manhattan)</span>
+          <span>Tiered (check Bisnow)</span>
+        </div>
+        <div class="one-liner">Multifamily development, financing, and construction pipelines — high density of developers, investors, and capital partners.</div>
+      </div>
+      <div class="radar-card">
+        <span class="track-badge track-A">Operators &amp; Networking</span>
+        <h4><a href="https://www.eventbrite.com/e/nyc-real-estate-construction-business-and-startups-networking-event-tickets-1982276053036" target="_blank" rel="noopener">NYC Real Estate &amp; Construction Business and Startups Networking Event</a></h4>
+        <div class="card-meta">
+          <span>Monday, 16 Mar 2026 · 7:00–10:00 PM ET</span>
+          <span>The Laurels · East Village (Manhattan)</span>
+          <span>$9.85–$39.19</span>
+        </div>
+        <div class="one-liner">Developers, contractors, and PropTech founders — 1-min elevator pitches, structured conversations, and a WhatsApp group for follow-ups.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- On the Horizon -->
+  <div class="digest-section">
+    <div class="section-label">On the Horizon</div>
+    <div class="horizon-table-wrap">
+      <table class="horizon-table">
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Price</th>
+            <th>Track</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://www.meetup.com/open-data-science-ny-odsc/" target="_blank" rel="noopener">MCP in the Wild: Future of Data Agents in Production (ODSC)</a><br><span style="font-size:0.85em;color:#888;">Speakers from Snowflake, Block, CrewAI, and OpenBB on Model Context Protocol and data agents in production.</span></td>
+            <td>2 Apr 2026</td>
+            <td>NYC (venue via Meetup)</td>
+            <td>Free</td>
+            <td><span class="track-badge track-B">AI / ML / Dev</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://techsponyc.com/" target="_blank" rel="noopener">TECHSPO New York 2026</a><br><span style="font-size:0.85em;color:#888;">Internet, Mobile, AdTech, MarTech, and SaaS expo with free visitor passes at the Marriott Brooklyn Bridge.</span></td>
+            <td>9–10 Apr 2026</td>
+            <td>Marriott Brooklyn Bridge · Brooklyn</td>
+            <td>Free visitor pass</td>
+            <td><span class="track-badge track-C">Startup / VC / Founder</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://www.leadersinaisummit.com/nyc" target="_blank" rel="noopener">Leaders In AI Summit NYC 2026</a><br><span style="font-size:0.85em;color:#888;">C-level AI strategy summit at the Marriott Marquis for executives shaping enterprise AI adoption.</span></td>
+            <td>21–22 Apr 2026</td>
+            <td>Marriott Marquis · Times Square (Manhattan)</td>
+            <td>TBA</td>
+            <td><span class="track-badge track-B">AI / ML / Dev</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://empirestartups.com/events/new-york-fintech-week/" target="_blank" rel="noopener">New York FinTech Week 2026</a><br><span style="font-size:0.85em;color:#888;">Five-day citywide fintech festival — panels, demos, pitch competitions, and after-parties across Manhattan.</span></td>
+            <td>27 Apr – 1 May 2026</td>
+            <td>Multiple Manhattan venues</td>
+            <td>Varies</td>
+            <td><span class="track-badge track-D">Industry-Specific</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://www.agentconference.com/" target="_blank" rel="noopener">AI Agent Conference 2026</a><br><span style="font-size:0.85em;color:#888;">Premier autonomous AI conference — two days on agents, tooling, and real-world deployment at the Hilton Midtown.</span></td>
+            <td>4–5 May 2026</td>
+            <td>Hilton Midtown · Manhattan</td>
+            <td>TBA</td>
+            <td><span class="track-badge track-B">AI / ML / Dev</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://www.aihot100summit.com/" target="_blank" rel="noopener">AI Hot 100 Summit (3rd Edition)</a><br><span style="font-size:0.85em;color:#888;">150+ AI execs, 100+ AI founders, and 100+ VC partners under one roof at Civic Hall.</span></td>
+            <td>6–7 May 2026</td>
+            <td>Civic Hall · Manhattan</td>
+            <td>TBA</td>
+            <td><span class="track-badge track-B">AI / ML / Dev</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://www.thesmallbusinessexpo.com/city/new-york-city/" target="_blank" rel="noopener">NYC Small Business Expo (Spring)</a><br><span style="font-size:0.85em;color:#888;">NYC's largest small business expo — free admission with workshops, exhibitors, and networking at the Javits Center.</span></td>
+            <td>7 May 2026</td>
+            <td>Javits Center Hall 1A · Manhattan</td>
+            <td>Free</td>
+            <td><span class="track-badge track-A">Operators &amp; Networking</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://pulse.nyc/ai-week/" target="_blank" rel="noopener">AI Week New York 2026 (Spring Edition)</a><br><span style="font-size:0.85em;color:#888;">Week-long citywide AI festival — 100+ events, 15K+ attendees, and 100+ speakers across the city.</span></td>
+            <td>11–17 May 2026</td>
+            <td>Citywide · Manhattan &amp; Brooklyn</td>
+            <td>Varies</td>
+            <td><span class="track-badge track-B">AI / ML / Dev</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://www.tech-week.com/" target="_blank" rel="noopener">NYC Tech Week 2026</a><br><span style="font-size:0.85em;color:#888;">The city's biggest decentralized tech festival — hundreds of events, parties, and meetups across all boroughs.</span></td>
+            <td>1–7 Jun 2026</td>
+            <td>Citywide</td>
+            <td>Varies</td>
+            <td><span class="track-badge track-C">Startup / VC / Founder</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Back link -->
+  <a href="/events-radar" class="back-link">&larr; Back to Events Radar</a>
+
+  <!-- CTA Section -->
+  <div class="digest-cta">
+    <h2>Need help navigating the NYC ecosystem?</h2>
+    <p>We help founders and operators build the right connections through AI strategy and hands-on support.</p>
+    <div class="cta-group">
+      <a href="https://calendly.com/brandon-hogstad/20-minute-call" class="cta-button" target="_blank" rel="noopener">Book a Call</a>
+      <a href="mailto:brandon@morpheos.llc" class="cta-button outline">Send a Message</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> MORPHEOS LLC. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <!-- Subscribe Banner -->
+  <div class="subscribe-banner" id="subscribeBanner">
+    <p>Get this in your inbox every Monday &rarr;</p>
+    <a href="https://dispatch.morpheos.llc/subscribe" class="subscribe-btn" target="_blank" rel="noopener">Subscribe free</a>
+    <button class="banner-close" id="bannerClose" aria-label="Dismiss">&times;</button>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Dropdown toggle
+    const servicesLink = document.getElementById('servicesLink');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    if (servicesLink && servicesDropdown) {
+      servicesLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        servicesDropdown.style.display = servicesDropdown.style.display === 'block' ? 'none' : 'block';
+      });
+      document.addEventListener('click', (e) => {
+        if (!servicesLink.contains(e.target) && !servicesDropdown.contains(e.target)) {
+          servicesDropdown.style.display = 'none';
+        }
+      });
+    }
+
+    // Nav logo fade on scroll
+    const navLogo = document.querySelector('.nav-logo');
+    if (navLogo) {
+      window.addEventListener('scroll', () => {
+        navLogo.classList.toggle('visible', window.scrollY > 200);
+      });
+    }
+
+    // Mobile menu
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    if (menuToggle && mobileMenu && menuOverlay) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+      });
+      menuOverlay.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+          menuOverlay.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+
+    // Subscribe banner dismiss
+    const banner = document.getElementById('subscribeBanner');
+    const bannerClose = document.getElementById('bannerClose');
+    if (banner && bannerClose) {
+      if (sessionStorage.getItem('bannerDismissed')) {
+        banner.classList.add('hidden');
+      }
+      bannerClose.addEventListener('click', () => {
+        banner.classList.add('hidden');
+        sessionStorage.setItem('bannerDismissed', '1');
+      });
+    }
+  </script>
+</body>
+</html>
